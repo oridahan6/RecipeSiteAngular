@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
+import { routing } from './app.routes';
+
 // Services
 import { DataService } from './services/data.service';
 
@@ -18,13 +20,6 @@ import {
   SharedModule
 } from './shared';
 
-// Define the routes
-const ROUTES = [
-  { path: '', /* redirectTo: '/', */ pathMatch: 'full', component: HomeComponent },
-  { path: 'recipes', component: RecipesListComponent },
-  { path: 'add-recipe', component: AddRecipeComponent }
-];
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +33,7 @@ const ROUTES = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES),
+    routing,
     SharedModule
   ],
   providers: [DataService],
