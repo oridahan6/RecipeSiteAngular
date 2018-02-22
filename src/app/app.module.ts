@@ -7,7 +7,11 @@ import { RouterModule } from '@angular/router';
 // Services
 import { DataService } from './services/data.service';
 
+// Components
 import { AppComponent } from './app.component';
+import { RecipesListComponent } from './recipes-list/recipes-list.component';
+import { AddRecipeComponent } from './add-recipe/add-recipe.component';
+
 
 // Define the routes
 const ROUTES = [
@@ -15,17 +19,22 @@ const ROUTES = [
     path: '',
     redirectTo: '/',
     pathMatch: 'full'
+  },
+  {
+    path: 'recipes',
+    component: RecipesListComponent
+  },
+  {
+	path: 'add-recipe',
+    component: AddRecipeComponent
   }
-  // ,
-  // {
-  //   path: 'recipes',
-  //   component: PostsComponent
-  // }
 ];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RecipesListComponent,
+    AddRecipeComponent
   ],
   imports: [
     BrowserModule,
