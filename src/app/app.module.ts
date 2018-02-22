@@ -4,8 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
+// Services
+import { DataService } from './services/data.service';
+
 import { AppComponent } from './app.component';
-import { DataService } from './data.service';
 
 // Define the routes
 const ROUTES = [
