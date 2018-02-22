@@ -11,14 +11,16 @@ import { DataService } from './services/data.service';
 import { AppComponent } from './app.component';
 import { RecipesListComponent } from './recipes-list/recipes-list.component';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
+import { HomeComponent } from './home/home.component';
 
 
 // Define the routes
 const ROUTES = [
   {
     path: '',
-    redirectTo: '/',
-    pathMatch: 'full'
+    // redirectTo: '/',
+    pathMatch: 'full',
+    component: HomeComponent
   },
   {
     path: 'recipes',
@@ -34,7 +36,8 @@ const ROUTES = [
   declarations: [
     AppComponent,
     RecipesListComponent,
-    AddRecipeComponent
+    AddRecipeComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
