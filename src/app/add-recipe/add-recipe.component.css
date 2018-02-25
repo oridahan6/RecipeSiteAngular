@@ -1,0 +1,87 @@
+.container * { text-align: right; direction: rtl; }
+
+.radios-container label { padding-right: 1.25rem; }
+
+.radios-container .form-check-label { margin-left: 15px; }
+
+.add-recipe-section { padding-bottom: 15px; border-bottom: 3px solid #dedede; margin-bottom: 15px; }
+.add-recipe-section h2 { font-size: 20px; font-weight: bold; margin-bottom: 20px; }
+
+#imagesUploadInput + label {
+	color: #EB6864;
+    background-color: #FFF;
+    border: 2px solid #EB6864;
+    border-radius: 8px;
+    margin-bottom: 0;
+}
+
+#imagesUploadInput + label .fa-upload { margin-left: 10px; }
+
+/* CSS Tabs */
+/*@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');*/
+
+.tabs-container section {
+	display: none;
+	padding: 20px 0 0;
+	border-top: 1px solid #ddd;
+}
+
+.tabs-container input[type=radio] {
+	display: none;
+}
+
+.tabs-container label.tab {
+	display: inline-block;
+	margin: 0 0 -1px;
+	padding: 15px 25px;
+	font-weight: 600;
+	text-align: center;
+	color: #bbb;
+	border: 1px solid transparent;
+}
+
+.tabs-container label:before {
+	font-family: fontawesome;
+	font-weight: normal;
+	margin-left: 10px;
+}
+
+/*
+.tabs-container label[for*='1']:before { content: '\f1cb'; }
+.tabs-container label[for*='2']:before { content: '\f17d'; }
+*/
+
+.tabs-container label:hover {
+	color: #888;
+	cursor: pointer;
+}
+
+.tabs-container input:checked + label {
+	color: #555;
+	border: 1px solid #ddd;
+	border-top: 2px solid orange;
+	border-bottom: 1px solid #fff;
+}
+
+#ingredient-tab1:checked ~ #ingredient-content1,
+#ingredient-tab2:checked ~ #ingredient-content2,
+#directions-tab1:checked ~ #directions-content1,
+#directions-tab2:checked ~ #directions-content2 {
+	display: block;
+}
+
+@media screen and (max-width: 650px) {
+	.tabs-container label {
+		font-size: 0;
+	}
+	.tabs-container label:before {
+		margin: 0;
+		font-size: 18px;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.tabs-container label {
+		padding: 15px;
+	}	
+}

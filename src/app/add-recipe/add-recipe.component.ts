@@ -7,9 +7,49 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddRecipeComponent implements OnInit {
 
-  constructor() { }
+	// get from db
+	units = [
+		"גרם",
+		"כפית",
+		"כף",
+		"קופסא"
+	];
+	categories = [
+		"חלבי",
+		"בשרי",
+		"פרווה",
+		"ארוחת ערב",
+		"ארוחת בוקר",
+		"ארוחת צהריים"
+	];
+	cuisines = [
+		"איטלקי",
+		"ים תיכוני",
+		"מרוקאי",
+		"ישראלי"
+	];
+	mainIngredients = [
+		"קוטג'",
+		"טונה",
+		"סלמון",
+		"אורז",
+		"בורגול",
+		"עגבניה",
+		"רסק עגבניות"
+	];
+	directionMethods = [
+		"בישול",
+		"אפייה",
+		"טיגון",
+		"ללא בישול",
+		"אידוי",
+		"הקפאה",
+		"גריל"
+	];
 
-  ngOnInit() {
-  }
+	constructor() { }
+
+	ngOnInit() {
+	}
 
 }

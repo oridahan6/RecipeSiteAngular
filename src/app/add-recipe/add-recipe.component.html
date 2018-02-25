@@ -1,1 +1,190 @@
-<h1>Add a New Recipe</h1>
+<div class="container">
+	<h1>הוספת מתכון</h1>
+    <form>
+        <fieldset>
+        	<section class="add-recipe-section">
+        		<div class="form-group">
+	                <label for="recipe-title">כותרת</label>
+	                <input type="text" class="form-control" id="recipeTitle" placeholder="הכנס כותרת">
+	                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+	            </div>
+	            <fieldset class="form-group">
+	                <label>סוג</label>
+	                <div id="typesRadios" class="form-check radios-container">
+	                    <input type="radio" class="form-check-input" name="type" id="dairyRadio" value="חלבי" checked>
+	                    <label class="form-check-label" for="dairyRadio">חלבי</label>
+	                    <input type="radio" class="form-check-input" name="type" id="parveRadio" value="פרווה">
+	                    <label class="form-check-label" for="parveRadio">פרווה</label>
+	                    <input type="radio" class="form-check-input" name="type" id="meatRadio" value="בשרי">
+	                    <label class="form-check-label" for="parveRadio">בשרי</label>
+	                </div>
+	            </fieldset>
+	            <fieldset class="form-group">
+	                <label>דרגת קושי</label>
+	                <div id="levelRadios" class="form-check radios-container">
+	                    <input type="radio" class="form-check-input" name="level" id="easyRadio" value="קל" checked>
+	                    <label class="form-check-label" for="easyRadio">קל</label>
+	                    <input type="radio" class="form-check-input" name="level" id="intermediateRadio" value="בינוני">
+	                    <label class="form-check-label" for="intermediateRadio">בינוני</label>
+	                    <input type="radio" class="form-check-input" name="level" id="hardRadio" value="קשה">
+	                    <label class="form-check-label" for="hardRadio">קשה</label>
+	                </div>
+	            </fieldset>
+	            <div class="form-group row">
+	            	<div class="col-6">
+		                <label>זמן הכנה</label>
+		                <div class="row">
+			                <div class="inline-block col-6">
+				                <select class="form-control" id="exampleSelect1">
+				                	<option disabled>שעות</option>
+							        <option *ngFor="let dummy of ' '.repeat(24).split(''), let x = index">{{ x + 1 }}</option>
+						        </select>
+						    </div>
+						    <div class="inline-block col-6">
+						        <select class="form-control" id="exampleSelect1">
+				                	<option disabled>דקות</option>
+							        <option *ngFor="let dummy of ' '.repeat(60).split(''), let x = index">{{ x + 1 }}</option>
+						        </select>
+						    </div>
+		                </div>
+		                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+	            	</div>
+	            	<div class="col-6">
+	            		<label>זמן בישול</label>
+		                <div class="row">
+			                <div class="inline-block col-6">
+				                <select class="form-control">
+				                	<option disabled>שעות</option>
+							        <option *ngFor="let dummy of ' '.repeat(24).split(''), let x = index">{{ x + 1 }}</option>
+						        </select>
+						    </div>
+						    <div class="inline-block col-6">
+						        <select class="form-control">
+				                	<option disabled>דקות</option>
+							        <option *ngFor="let dummy of ' '.repeat(60).split(''), let x = index">{{ x + 1 }}</option>
+						        </select>
+						    </div>
+		                </div>
+		                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+	            	</div>
+	            </div>	
+        	</section>
+            <section class="add-recipe-section tabs-container">
+            	<h2>מצרכים</h2>
+            	<div class="form-group">
+					<input id="ingredient-tab1" type="radio" name="ingredient-tabs" checked>
+					<label class="tab" for="ingredient-tab1">הוספת מצרך</label>
+
+					<input id="ingredient-tab2" type="radio" name="ingredient-tabs">
+					<label class="tab" for="ingredient-tab2">ע"י הדבקה</label>
+
+					<section id="ingredient-content1">
+		        		<div class="form-group">
+			                <label>שם</label>
+			                <input type="text" class="form-control" placeholder="שם המצרך">
+			                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+			            </div>
+			           	<div class="form-group row">
+			           		<div class="col-6">
+			           			<label>כמות</label>
+			           			<input type="text" class="form-control" placeholder="לדוג' 2, 1 1\3, 100, 0.5">
+			           		</div>
+			           		<div class="col-6">
+			           			<label>מידה</label>
+						        <select class="form-control">
+				                	<option disabled>בחר</option>
+							        <option *ngFor="let unit of units">{{ unit }}</option>
+						        </select>
+			           		</div>
+			           	</div>
+			           	<div class="align-center">
+							<button type="button" class="btn btn-outline-primary">הוסף מצרך</button>			           		
+			           	</div>
+					</section>
+
+					<section id="ingredient-content2">
+						<!-- add explanation -->
+						<div class="form-group">
+							<label>הדבק מצרכים</label>
+	            			<textarea class="form-control" rows="4"></textarea>
+	            		</div>
+            			<div class="align-center">
+	            			<button type="button" class="btn btn-outline-primary">הוסף מצרכים</button>
+	            		</div>
+					</section>
+            	</div>
+            </section>
+            <section class="add-recipe-section tabs-container">
+            	<h2>שלבי הכנה</h2>
+            	<div class="form-group">
+					<input id="directions-tab1" type="radio" name="directions-tabs" checked>
+					<label class="tab" for="directions-tab1">הוספת שלב הכנה</label>
+
+					<input id="directions-tab2" type="radio" name="directions-tabs">
+					<label class="tab" for="directions-tab2">ע"י הדבקה</label>
+
+					<section id="directions-content1">
+		        		<div class="form-group">
+			                <label>שלב</label>
+			                <input type="text" class="form-control" placeholder="הוסף שלב">
+			                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+			            </div>
+			           	<div class="align-center">
+							<button type="button" class="btn btn-outline-primary">הוסף שלב</button>			           		
+			           	</div>
+					</section>
+
+					<section id="directions-content2">
+						<!-- add explanation -->
+						<div class="form-group">
+							<label>הדבק שלבים</label>
+	            			<textarea class="form-control" rows="4"></textarea>
+	            		</div>
+            			<div class="align-center">
+	            			<button type="button" class="btn btn-outline-primary">הוסף שלבים</button>
+	            		</div>
+					</section>
+            	</div>
+            </section>
+            <section class="add-recipe-section">
+            	<h2>פרטים נוספים</h2>
+            	<div class="form-group">
+            		<label>קטגוריות</label>
+            		<select multiple="" class="form-control">
+				        <!-- <option disabled>בחר</option> -->
+				        <option *ngFor="let category of categories">{{ category }}</option>
+				    </select>
+				</div>
+				<div class="form-group">
+					<label>סוג מטבח</label>
+				    <select multiple="" class="form-control">
+				        <!-- <option disabled>בחר</option> -->
+				        <option *ngFor="let cuisine of cuisines">{{ cuisine }}</option>
+				    </select>
+				</div>
+				<div class="form-group">
+					<label>מצרכים עיקריים</label>
+				    <select multiple="" class="form-control">
+				        <!-- <option disabled>בחר</option> -->
+				        <option *ngFor="let ingredient of mainIngredients">{{ ingredient }}</option>
+				    </select>
+            	</div>
+				<div class="form-group">
+					<label>דרכי הכנה</label>
+				    <select multiple="" class="form-control">
+				        <!-- <option disabled>בחר</option> -->
+				        <option *ngFor="let directionMethod of directionMethods">{{ directionMethod }}</option>
+				    </select>
+            	</div>
+            	<div class="form-group align-center">
+	                <input type="file" id="imagesUploadInput" class="form-control-file inputfile" name="recipe-images" aria-describedby="fileHelp" multiple  accept=".jpg,.jpeg,.png,.hief,.hiec">
+	                <label for="imagesUploadInput"><i class="fas fa-upload"></i>הוספת תמונות</label>
+	                <!-- <small id="fileHelp" class="form-text text-muted">הוסף תמונות של המתכון</small> -->
+	            </div>
+            </section>
+            <div class="align-center">
+				<button type="submit" class="btn btn-primary">הוסף מתכון</button>            	
+            </div>
+        </fieldset>
+    </form>
+</div>
