@@ -19,9 +19,15 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css",
+        "sass/bootswatch/_bootswatch.scss",
+        "sass/styles.scss",
         "style/bootstrap.min.css"
       ],
+      "stylePreprocessorOptions": {
+		"includePaths": [
+    		"sass"
+  	    ]
+	  },
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
@@ -52,7 +58,8 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
-    "component": {}
+    "styleExt": "scss",
+    "component": {
+    }
   }
 }

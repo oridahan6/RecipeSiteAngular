@@ -1,16 +1,19 @@
+
+@import 'variables';
+
 .container * { text-align: right; direction: rtl; }
 
 .radios-container label { padding-right: 1.25rem; }
 
 .radios-container .form-check-label { margin-left: 15px; }
 
-.add-recipe-section { padding-bottom: 15px; border-bottom: 3px solid #dedede; margin-bottom: 15px; }
+.add-recipe-section { padding-bottom: 15px; border-bottom: 3px solid $border-color; margin-bottom: 15px; }
 .add-recipe-section h2 { font-size: 20px; font-weight: bold; margin-bottom: 20px; }
 
 #imagesUploadInput + label {
-	color: #EB6864;
+	color: $red;
     background-color: #FFF;
-    border: 2px solid #EB6864;
+    border: 2px solid $red;
     border-radius: 8px;
     margin-bottom: 0;
 }
@@ -23,7 +26,7 @@
 .tabs-container section {
 	display: none;
 	padding: 20px 0 0;
-	border-top: 1px solid #ddd;
+	border-top: 1px solid $border-color;
 }
 
 .tabs-container input[type=radio] {
@@ -58,8 +61,8 @@
 
 .tabs-container input:checked + label {
 	color: #555;
-	border: 1px solid #ddd;
-	border-top: 2px solid #EB6864;
+	border: 1px solid $border-color;
+	border-top: 2px solid $red;
 	border-bottom: 1px solid #fff;
 }
 
