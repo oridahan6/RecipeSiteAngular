@@ -19,6 +19,7 @@ import {
   HeaderComponent,
   SharedModule
 } from './shared';
+import { AddedIngredientsComponent } from './added-ingredients/added-ingredients.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {
     AddRecipeComponent,
     HomeComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    AddedIngredientsComponent,
   ],
   imports: [
     BrowserModule,

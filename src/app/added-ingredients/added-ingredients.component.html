@@ -1,0 +1,13 @@
+<!-- if changing the ingredient from this view, update the added ingredients variable -->
+<section *ngIf="addedIngredients">
+	<ul *ngFor="let addedIngredient of addedIngredients">
+		<li>
+			<input type="text" value="{{ addedIngredient.name }}">
+			<input type="text" value="{{ addedIngredient.quantity }}">
+			<app-select-units [units]="units" [selectedUnit]="addedIngredient.unit"></app-select-units>
+			<!-- <select>
+				<option *ngFor="let unit of units" value="{{ unit.id }}">{{ unit.name }}</option>
+			</select> -->
+		</li>
+	</ul>
+</section>
