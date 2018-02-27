@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+
+import { SelectUnitsComponent } from '../select-units/select-units.component';
+
+import { Ingredient } from '../models/ingredient';
 
 @Component({
   selector: 'app-add-recipe',
@@ -7,12 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddRecipeComponent implements OnInit {
 
+	@ViewChild(SelectUnitsComponent) selectUnitsComponent: SelectUnitsComponent;
+
+	@ViewChild('ingredientName') ingredientName: ElementRef;
+	@ViewChild('ingredientQty') ingredientQty: ElementRef;
+
+	addedIngredients: Ingredient[] = [];
+
 	// get from db
 	units = [
-		"גרם",
-		"כפית",
-		"כף",
-		"קופסא"
+		{ id: 1, name: "גרם" },
+		{ id: 2, name: "כפית" },
+		{ id: 3, name: "כף" },
+		{ id: 4, name: "קופסא" }
 	];
 	categories = [
 		"חלבי",
@@ -47,9 +58,28 @@ export class AddRecipeComponent implements OnInit {
 		"גריל"
 	];
 
-	constructor() { }
+	constructor() {}
 
 	ngOnInit() {
 	}
+
+	addIngredient(): void {
+		var addedIngredient = {
+			name: 		this.ingredientName.nativeElement.value,
+			quantity:	this.ingredientQty.nativeElement.value,
+			unit:		this.selectUnitsComponent.selectedUnit	
+		};
+
+		console.log("addedIngredient", addedIngredient);
+
+
+		this.addedIngredients.push(addedIngredient);
+		console.log("this.addedIngredients", this.addedIngredients);
+
+		this.ingredientName.nativeElement.value = "";
+		this.ingredientQty.nativeElement.value = "";
+		this.selectUnitsComponent.selectedUnit = "";
+
+  	}
 
 }

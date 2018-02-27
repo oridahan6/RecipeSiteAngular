@@ -82,24 +82,21 @@
 					<section id="ingredient-content1">
 		        		<div class="form-group">
 			                <label>שם</label>
-			                <input type="text" class="form-control" placeholder="שם המצרך">
+			                <input #ingredientName type="text" class="form-control" placeholder="שם המצרך">
 			                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
 			            </div>
 			           	<div class="form-group row">
 			           		<div class="col-6">
 			           			<label>כמות</label>
-			           			<input type="text" class="form-control" placeholder="לדוג' 2, 1 1\3, 100, 0.5">
+			           			<input #ingredientQty type="text" class="form-control" placeholder="לדוג' 2, 1 1\3, 100, 0.5">
 			           		</div>
 			           		<div class="col-6">
 			           			<label>מידה</label>
-						        <select class="form-control">
-				                	<option disabled>בחר</option>
-							        <option *ngFor="let unit of units">{{ unit }}</option>
-						        </select>
+			           			<app-select-units [units]="units" [selectedUnit]=""></app-select-units>
 			           		</div>
 			           	</div>
 			           	<div class="align-center">
-							<button type="button" class="btn btn-outline-primary">הוסף מצרך</button>			           		
+							<button type="button" class="btn btn-outline-primary" (click)="addIngredient()">הוסף מצרך</button>			           		
 			           	</div>
 					</section>
 
@@ -113,6 +110,7 @@
 	            			<button type="button" class="btn btn-outline-primary">הוסף מצרכים</button>
 	            		</div>
 					</section>
+					<app-added-ingredients [addedIngredients]="addedIngredients" [units]="units"></app-added-ingredients>
             	</div>
             </section>
     		<!-- Directions -->

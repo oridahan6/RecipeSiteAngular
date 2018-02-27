@@ -9,6 +9,7 @@ import { DataService } from '../services/data.service';
 })
 export class RecipesListComponent implements OnInit {
 	// Define a users property to hold our user data
+	// add recipe.ts model class? and use a Recipe object?
 	recipes: Array<any>;
 
 	ngOnInit() {
