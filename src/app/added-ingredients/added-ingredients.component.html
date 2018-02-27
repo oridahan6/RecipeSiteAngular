@@ -5,9 +5,6 @@
 			<input type="text" value="{{ addedIngredient.name }}">
 			<input type="text" value="{{ addedIngredient.quantity }}">
 			<app-select-units [units]="units" [selectedUnit]="addedIngredient.unit"></app-select-units>
-			<!-- <select>
-				<option *ngFor="let unit of units" value="{{ unit.id }}">{{ unit.name }}</option>
-			</select> -->
 		</li>
 	</ul>
 </section>
