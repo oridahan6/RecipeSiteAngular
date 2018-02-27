@@ -1,0 +1,6 @@
+<!-- need to set different ID? #ingredientUnit -->
+
+<select [(ngModel)]="selectedUnit" #ingredientUnit class="form-control" name="selectUnit">
+	<option value="" [attr.selected]="!selectedUnit ? true : null" disabled>בחר</option>
+    <option *ngFor="let unit of units" value="{{ unit.id }}" [attr.selected]="selectedUnit == unit.id ? true : null">{{ unit.name }}</option>
+</select>

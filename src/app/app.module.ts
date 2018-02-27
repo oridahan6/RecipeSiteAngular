@@ -20,6 +20,7 @@ import {
   SharedModule
 } from './shared';
 import { AddedIngredientsComponent } from './added-ingredients/added-ingredients.component';
+import { SelectUnitsComponent } from './select-units/select-units.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AddedIngredientsComponent } from './added-ingredients/added-ingredients
     FooterComponent,
     HeaderComponent,
     AddedIngredientsComponent,
+    SelectUnitsComponent
   ],
   imports: [
     BrowserModule,
