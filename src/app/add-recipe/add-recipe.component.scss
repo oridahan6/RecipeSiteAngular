@@ -3,12 +3,19 @@
 
 .container * { text-align: right; direction: rtl; }
 
-.radios-container label { padding-right: 1.25rem; }
+.radios-container {
+	label { padding-right: 1.25rem; }
 
-.radios-container .form-check-label { margin-left: 15px; }
+	.form-check-label { margin-left: 15px; }
+}
 
-.add-recipe-section { padding-bottom: 15px; border-bottom: 3px solid $border-color; margin-bottom: 15px; }
-.add-recipe-section h2 { font-size: 20px; font-weight: bold; margin-bottom: 20px; }
+.add-recipe-section { 
+	padding-bottom: 15px; 
+	border-bottom: 3px solid $border-color; 
+	margin-bottom: 15px; 
+
+	h2 { font-size: 20px; font-weight: bold; margin-bottom: 20px; }
+}
 
 #imagesUploadInput + label {
 	color: $red;
@@ -20,51 +27,54 @@
 
 #imagesUploadInput + label .fa-upload { margin-left: 10px; }
 
-/* CSS Tabs */
+// CSS Tabs ====================================================================== 
+
 /*@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');*/
 
-.tabs-container section {
-	display: none;
-	padding: 20px 0 0;
-	border-top: 1px solid $border-color;
-}
+.tabs-container{
+	section {
+		display: none;
+		padding: 20px 0 0;
+		border-top: 1px solid $border-color;
+	}
 
-.tabs-container input[type=radio] {
-	display: none;
-}
+	input[type=radio] {
+		display: none;
+	}
 
-.tabs-container label.tab {
-	display: inline-block;
-	margin: 0 0 -1px;
-	padding: 15px 25px;
-	font-weight: 600;
-	text-align: center;
-	color: #bbb;
-	border: 1px solid transparent;
-}
+	label.tab {
+		display: inline-block;
+		margin: 0 0 -1px;
+		padding: 15px 25px;
+		font-weight: 600;
+		text-align: center;
+		color: #bbb;
+		border: 1px solid transparent;
+	}
 
-.tabs-container label:before {
-	font-family: fontawesome;
-	font-weight: normal;
-	margin-left: 10px;
+	label:before {
+		font-family: fontawesome;
+		font-weight: normal;
+		margin-left: 10px;
+	}
+
+	label:hover {
+		color: #888;
+		cursor: pointer;
+	}
+
+	input:checked + label {
+		color: #555;
+		border: 1px solid $border-color;
+		border-top: 2px solid $red;
+		border-bottom: 1px solid #fff;
+	}
 }
 
 /*
 .tabs-container label[for*='1']:before { content: '\f1cb'; }
 .tabs-container label[for*='2']:before { content: '\f17d'; }
 */
-
-.tabs-container label:hover {
-	color: #888;
-	cursor: pointer;
-}
-
-.tabs-container input:checked + label {
-	color: #555;
-	border: 1px solid $border-color;
-	border-top: 2px solid $red;
-	border-bottom: 1px solid #fff;
-}
 
 #ingredient-tab1:checked ~ #ingredient-content1,
 #ingredient-tab2:checked ~ #ingredient-content2,
@@ -74,13 +84,16 @@
 }
 
 @media screen and (max-width: 650px) {
-	.tabs-container label {
-		font-size: 0;
-	}
-	.tabs-container label:before {
-		margin: 0;
-		font-size: 18px;
-	}
+	.tabs-container {
+		label {
+			font-size: 0;
+		}
+
+		label:before {
+			margin: 0;
+			font-size: 18px;
+		}
+	} 
 }
 
 @media screen and (max-width: 400px) {
