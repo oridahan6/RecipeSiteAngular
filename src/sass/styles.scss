@@ -12,9 +12,16 @@
 @import "~bootstrap/scss/forms";
 
 // General styling ====================================================================== 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body { padding-top: 4.5rem; }
 
 /*label { font-weight: bold; }*/
+
+button { cursor: pointer; }
 
 input[type=file].inputfile { 
     width: 0.1px;

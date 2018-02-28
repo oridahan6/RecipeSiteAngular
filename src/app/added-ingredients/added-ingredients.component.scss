@@ -1,0 +1,31 @@
+%border-radius-0 { border-radius: 0; }
+
+.added-ingredients-container {
+
+	padding-top: 20px;
+
+	ul { 
+		list-style-type: none; 
+
+		li {
+			display: flex;
+			flex-direction: row;
+
+			input { border-left: none; }
+
+			input[name="addedIngredientName"] { width: 60%; }
+			input[name="addedIngredientQty"] { width: 15%; }
+			select { width: 15%; }
+
+			.form-control { @extend %border-radius-0; }
+
+			button {
+				width: 10%;
+				background-color: red;
+			    margin-right: -3px;
+			    border: 1px solid red;
+			    color: #FFF;
+			}
+		}
+	}
+}

@@ -1,10 +1,12 @@
 <!-- if changing the ingredient from this view, update the added ingredients variable -->
-<section *ngIf="addedIngredients">
+<!-- add drag and delete -->
+<section class="added-ingredients-container" *ngIf="addedIngredients">
 	<ul *ngFor="let addedIngredient of addedIngredients">
 		<li>
-			<input type="text" value="{{ addedIngredient.name }}">
-			<input type="text" value="{{ addedIngredient.quantity }}">
+			<input type="text" class="form-control" name="addedIngredientName" value="{{ addedIngredient.name }}">
+			<input type="text" class="form-control" name="addedIngredientQty" value="{{ addedIngredient.quantity }}">
 			<app-select-units [units]="units" [selectedUnit]="addedIngredient.unit"></app-select-units>
+			<button (click)="removeIngredient(addedIngredient)">-</button>
 		</li>
 	</ul>
 </section>

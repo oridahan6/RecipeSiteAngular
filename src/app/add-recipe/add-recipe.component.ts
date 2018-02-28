@@ -82,4 +82,8 @@ export class AddRecipeComponent implements OnInit {
 
   	}
 
+  	addedIngredientsChanged($event) {
+  		this.addedIngredients = $event;
+  	}
+
 }
