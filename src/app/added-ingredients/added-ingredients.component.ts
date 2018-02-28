@@ -12,14 +12,13 @@ export class AddedIngredientsComponent implements OnInit {
 	@Input() addedIngredients: Ingredient[];
 	@Input() units: string[];
 
-	@Output() addedIngredientsChangedEvent = new EventEmitter<Ingredient[]>();
+	@Output() ingredientRemovedEvent = new EventEmitter<Ingredient>();
 
 	ngOnInit() {
 	}
 
 	removeIngredient(addedIngredient: Ingredient) {
-		this.addedIngredients = this.addedIngredients.filter(obj => obj !== addedIngredient);
-		this.addedIngredientsChangedEvent.emit(this.addedIngredients)
+		this.ingredientRemovedEvent.emit(addedIngredient)
 	}
 
 }

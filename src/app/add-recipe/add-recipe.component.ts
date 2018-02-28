@@ -74,7 +74,7 @@ export class AddRecipeComponent implements OnInit {
 
 
 		this.addedIngredients.push(addedIngredient);
-		console.log("this.addedIngredients", this.addedIngredients);
+		console.log("add recipe this.addedIngredients", this.addedIngredients);
 
 		this.ingredientName.nativeElement.value = "";
 		this.ingredientQty.nativeElement.value = "";
@@ -82,8 +82,9 @@ export class AddRecipeComponent implements OnInit {
 
   	}
 
-  	addedIngredientsChanged($event) {
-  		this.addedIngredients = $event;
+  	ingredientRemoved($event) {
+  		let removedIngredient = $event;
+  		this.addedIngredients = this.addedIngredients.filter(obj => obj !== removedIngredient);
   	}
 
 }
