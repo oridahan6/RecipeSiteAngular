@@ -3,7 +3,7 @@
 	<h2>מצרכים שהוספו</h2>
 	<ul dnd-sortable-container [sortableData]="addedIngredients">
 		<li *ngFor="let addedIngredient of addedIngredients; let i = index" dnd-sortable [sortableIndex]="i" [dragData]="addedIngredients" (onDropSuccess)="moveIngredient($event, i)">
-			<input type="text" class="form-control" name="addedIngredientName" value="{{ addedIngredient.name }}">
+			<input type="text" class="form-control" name="addedIngredientName" value="{{ addedIngredient.name }}" (input)="ingredientNameChanged(addedIngredient, $event.target.value)">
 			<input type="text" class="form-control" name="addedIngredientQty" value="{{ addedIngredient.quantity }}">
 			<app-select-units [units]="units" [selectedUnit]="addedIngredient.unit"></app-select-units>
 			<button class="handle" title="העבר"><i class="fas fa-bars"></i></button>

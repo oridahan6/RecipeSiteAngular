@@ -131,10 +131,10 @@ export class AddRecipeComponent implements OnInit {
   	}
 
   	getUnitIdFromName(name: string): number {
-  		var filterObj = this.units.filter(function(e) {
+  		var foundUnit = this.units.filter(function(e) {
 			return e.name == name;
 		});
-		return filterObj.length ? filterObj[0].id : 0;
+		return foundUnit.length ? foundUnit[0].id : 0;
   	}
 
 }

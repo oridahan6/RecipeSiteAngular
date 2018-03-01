@@ -26,4 +26,12 @@ export class AddedIngredientsComponent implements OnInit {
 		console.log('this.addedIngredients',this.addedIngredients);
 	}
 
+	ingredientNameChanged(changedIngredient: Ingredient, newValue: string) {
+		this.addedIngredients.forEach((addedIngredient, index) => {
+			if (addedIngredient.name === changedIngredient.name) {
+				addedIngredient.name = newValue;
+			}
+		});
+	}
+
 }
