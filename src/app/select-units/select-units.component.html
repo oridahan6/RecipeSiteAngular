@@ -1,6 +1,5 @@
 <!-- TODO: need to set different ID? #ingredientUnit -->
-<!-- TODO: need to think of another condition to the .added-ingredient-select, the selectedUnit might be empty even if the user added an ingredien (could have delibirately not selecting unit) -->
-<select [(ngModel)]="selectedUnit" #ingredientUnit class="form-control" [class.added-ingredient-select]="selectedUnit" name="selectUnit">
-	<option value="" [attr.selected]="!selectedUnit ? true : null" disabled>בחר</option>
-    <option *ngFor="let unit of units" value="{{ unit.id }}" [attr.selected]="selectedUnit == unit.id ? true : null">{{ unit.name }}</option>
+<select [(ngModel)]="selectedUnit" #ingredientUnit class="form-control" [class.added-ingredient-select]="addedIngredient" name="selectUnit" (change)="unitSelectChanged($event.target.value)">
+	<option value="0" [attr.selected]="!addedIngredient ? true : null" disabled>בחר</option>
+    <option *ngFor="let unit of units" value="{{ unit.id }}" [attr.selected]="addedIngredient && addedIngredient.unit == unit.id ? true : null">{{ unit.name }}</option>
 </select>

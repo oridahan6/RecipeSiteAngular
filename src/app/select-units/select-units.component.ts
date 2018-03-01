@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { Ingredient } from '../models/ingredient';
+
 @Component({
   selector: 'app-select-units',
   templateUrl: './select-units.component.html',
@@ -7,13 +9,19 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SelectUnitsComponent implements OnInit {
 
+	@Input() addedIngredient: Ingredient;
 	@Input() units: string[];
-
-	@Input() selectedUnit: string;
+	@Input() selectedUnit: number;
 
 	constructor() { }
 
 	ngOnInit() {
 	}
 
+	unitSelectChanged(newValue: number) {
+		if (this.addedIngredient){
+			this.selectedUnit = newValue;
+			this.addedIngredient.unit = +newValue;	
+		}
+	}
 }

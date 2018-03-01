@@ -18,7 +18,7 @@ export class AddedIngredientsComponent implements OnInit {
 	}
 
 	removeIngredient(addedIngredient: Ingredient) {
-		this.ingredientRemovedEvent.emit(addedIngredient)
+		this.ingredientRemovedEvent.emit(addedIngredient);
 	}
 
 	moveIngredient(ingredient: Ingredient, position: number) {

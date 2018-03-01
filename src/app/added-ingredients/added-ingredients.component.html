@@ -6,7 +6,7 @@
 		<li *ngFor="let addedIngredient of addedIngredients; let i = index" dnd-sortable [sortableIndex]="i" [dragData]="addedIngredients" (onDropSuccess)="moveIngredient($event, i)">
 			<input type="text" class="form-control" name="addedIngredientName" value="{{ addedIngredient.name }}" (input)="ingredientNameChanged(addedIngredient, $event.target.value)">
 			<input type="text" class="form-control" name="addedIngredientQty" value="{{ addedIngredient.quantity }}" (input)="ingredientQtyChanged(addedIngredient, $event.target.value)">
-			<app-select-units [units]="units" [selectedUnit]="addedIngredient.unit"></app-select-units>
+			<app-select-units [units]="units" [addedIngredient]="addedIngredient" [selectedUnit]="addedIngredient.unit" (selectedUnitChanged)="selectedUnitChanged($event)"></app-select-units>
 			<button class="handle" title="העבר"><i class="fas fa-bars"></i></button>
 			<button class="delete" title="מחק" (click)="removeIngredient(addedIngredient)"><i class="fas fa-minus"></i></button>
 		</li>
