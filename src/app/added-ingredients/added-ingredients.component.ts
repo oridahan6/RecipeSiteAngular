@@ -10,7 +10,7 @@ import { Ingredient } from '../models/ingredient';
 export class AddedIngredientsComponent implements OnInit {
 
 	@Input() addedIngredients: Ingredient[];
-	@Input() units: string[];
+	@Input() units: number[];
 
 	@Output() ingredientRemovedEvent = new EventEmitter<Ingredient>();
 

@@ -17,24 +17,23 @@
 
 			input { border-left: none; }
 
-			input[name="addedIngredientName"] { width: 60%; }
+			input[name="addedIngredientName"] { width: 55%; }
 			input[name="addedIngredientQty"] { width: 15%; }
-			select { width: 15%; }
 
 			.form-control { @extend %border-radius-0; }
 
 			button {
-				width: 10%;
 			    margin-right: -3px;
 			    outline: none;
 
 			    &.delete {
+			    	width: 7%;
 			    	background-color: red;	
 			    	color: #FFF;
 			    	border: 1px solid $border-color;
 			    }
 
-			    &.handle { border: 1px solid $border-color; background-color: #FFF; }
+			    &.handle { width: 8%; border: 1px solid $border-color; background-color: #FFF; }
 			}
 		}
 	}

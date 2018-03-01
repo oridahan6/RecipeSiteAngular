@@ -104,10 +104,10 @@
 						<!-- add explanation -->
 						<div class="form-group">
 							<label>הדבק מצרכים</label>
-	            			<textarea class="form-control" rows="4" placeholder="הדבק מצרכים, כל מצרך בשורה חדשה."></textarea>
+	            			<textarea class="form-control" #ingredientsText rows="4" placeholder="הדבק מצרכים, כל מצרך בשורה חדשה."></textarea>
 	            		</div>
             			<div class="align-center">
-	            			<button type="button" class="btn btn-outline-primary">הוסף מצרכים</button>
+	            			<button type="button" class="btn btn-outline-primary" (click)="addPastedIngredients()">הוסף מצרכים</button>
 	            		</div>
 					</section>
 					<app-added-ingredients [addedIngredients]="addedIngredients" [units]="units" (ingredientRemovedEvent)="ingredientRemoved($event)"></app-added-ingredients>
