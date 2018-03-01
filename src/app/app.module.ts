@@ -3,6 +3,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { DndModule } from 'ng2-dnd';
 
 import { routing } from './app.routes';
 
@@ -38,7 +39,8 @@ import { SelectUnitsComponent } from './select-units/select-units.component';
     FormsModule,
     HttpModule,
     routing,
-    SharedModule
+    SharedModule,
+    DndModule.forRoot()
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

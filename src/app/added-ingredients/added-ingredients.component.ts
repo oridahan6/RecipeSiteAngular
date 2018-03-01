@@ -21,4 +21,9 @@ export class AddedIngredientsComponent implements OnInit {
 		this.ingredientRemovedEvent.emit(addedIngredient)
 	}
 
+	moveIngredient(ingredient: Ingredient, position: number) {
+		// possubly that this function is not needed
+		console.log('this.addedIngredients',this.addedIngredients);
+	}
+
 }

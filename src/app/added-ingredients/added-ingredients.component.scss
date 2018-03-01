@@ -1,3 +1,6 @@
+
+@import "variables";
+
 %border-radius-0 { border-radius: 0; }
 
 .added-ingredients-container {
@@ -10,6 +13,7 @@
 		li {
 			display: flex;
 			flex-direction: row;
+			margin-top: -1px;
 
 			input { border-left: none; }
 
@@ -21,10 +25,16 @@
 
 			button {
 				width: 10%;
-				background-color: red;
 			    margin-right: -3px;
-			    border: 1px solid red;
-			    color: #FFF;
+			    outline: none;
+
+			    &.delete {
+			    	background-color: red;	
+			    	color: #FFF;
+			    	border: 1px solid $border-color;
+			    }
+
+			    &.handle { border: 1px solid $border-color; background-color: #FFF; }
 			}
 		}
 	}
