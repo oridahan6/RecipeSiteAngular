@@ -1,6 +1,7 @@
 <!-- if changing the ingredient from this view, update the added ingredients variable -->
 <!-- add drag and delete -->
 <section class="added-ingredients-container" *ngIf="addedIngredients">
+	<h2>מצרכים שהוספו</h2>
 	<ul dnd-sortable-container [sortableData]="addedIngredients">
 		<li *ngFor="let addedIngredient of addedIngredients; let i = index" dnd-sortable [sortableIndex]="i" [dragData]="addedIngredients" (onDropSuccess)="moveIngredient($event, i)">
 			<input type="text" class="form-control" name="addedIngredientName" value="{{ addedIngredient.name }}">
