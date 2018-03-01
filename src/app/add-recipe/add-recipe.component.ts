@@ -17,6 +17,7 @@ export class AddRecipeComponent implements OnInit {
 	@ViewChild('ingredientQty') ingredientQty: ElementRef;
 	@ViewChild('ingredientsText') ingredientsText: ElementRef;
 
+	// test data
 	addedIngredients: Ingredient[] = [
 		{name: "a", quantity: "3", unit: 1},
 		{name: "b", quantity: "5", unit: 2},
