@@ -18,9 +18,9 @@ export class AddRecipeComponent implements OnInit {
 	@ViewChild('ingredientsText') ingredientsText: ElementRef;
 
 	addedIngredients: Ingredient[] = [
-		{name: "a", quantity: 3, unit: 1},
-		{name: "b", quantity: 5, unit: 2},
-		{name: "c", quantity: 6, unit: 3}
+		{name: "a", quantity: "3", unit: 1},
+		{name: "b", quantity: "5", unit: 2},
+		{name: "c", quantity: "6", unit: 3}
 	];
 
 	// get from db

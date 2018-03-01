@@ -34,4 +34,12 @@ export class AddedIngredientsComponent implements OnInit {
 		});
 	}
 
+	ingredientQtyChanged(changedIngredient: Ingredient, newValue: string) {
+		this.addedIngredients.forEach((addedIngredient, index) => {
+			if (addedIngredient.name === changedIngredient.name) {
+				addedIngredient.quantity = newValue;
+			}
+		});
+	}
+
 }
