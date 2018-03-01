@@ -86,7 +86,7 @@ export class AddRecipeComponent implements OnInit {
 
 		this.ingredientName.nativeElement.value = "";
 		this.ingredientQty.nativeElement.value = "";
-		this.selectUnitsComponent.selectedUnit = "";
+		this.selectUnitsComponent.selectedUnit = 0;
 
   	}
 
