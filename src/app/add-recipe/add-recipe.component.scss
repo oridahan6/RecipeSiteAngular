@@ -27,14 +27,17 @@
 
 #imagesUploadInput + label .fa-upload { margin-left: 10px; }
 
+.new-ingredient-category select { width: 30%; margin-right: 1rem; }
+
 // CSS Tabs ====================================================================== 
 
 /*@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');*/
 
 .tabs-container{
-	section {
+	section.tab-content {
 		display: none;
 		padding: 20px 0 0;
+		margin-bottom: 20px;
 		border-top: 1px solid $border-color;
 	}
 

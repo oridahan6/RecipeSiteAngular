@@ -44,10 +44,25 @@ input[type=file].inputfile {
     padding: 0.625rem 1.25rem;
 }
 
-.inline-block { display: inline-block; }
+.inline-block { display: inline-block !important; }
 .align-center { text-align: center !important; }
 
 // Application global styling ====================================================================== 
 .add-recipe-section { 
 	h2 { font-size: 20px; font-weight: bold; margin-bottom: 20px; }
+}
+
+.flex-input-button-container {
+
+	display: flex;
+
+	input {
+		width: 70%;
+		margin-left: 2%;
+	}
+
+	button {
+		width: 28%;
+	}
+
 }

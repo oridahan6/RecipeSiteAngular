@@ -9,16 +9,19 @@ import { Ingredient } from '../models/ingredient';
 })
 export class AddedIngredientsComponent implements OnInit {
 
-	@Input() addedIngredients: Ingredient[];
+	objectKeys = Object.keys;
+
+	@Input() addedIngredients: {[categoryName: string]: Ingredient[]};
+	@Input() selectedIngredientsCategory: string;
 	@Input() units: number[];
 
-	@Output() ingredientRemovedEvent = new EventEmitter<Ingredient>();
+	@Output() ingredientRemovedEvent = new EventEmitter<{categoryName: string, removedIngredient: Ingredient}>();
 
 	ngOnInit() {
 	}
 
-	removeIngredient(addedIngredient: Ingredient) {
-		this.ingredientRemovedEvent.emit(addedIngredient);
+	removeIngredient(categoryName: string, addedIngredient: Ingredient) {
+		this.ingredientRemovedEvent.emit({categoryName: categoryName, removedIngredient: addedIngredient});
 	}
 
 	moveIngredient(ingredient: Ingredient, position: number) {
@@ -27,7 +30,7 @@ export class AddedIngredientsComponent implements OnInit {
 	}
 
 	ingredientNameChanged(changedIngredient: Ingredient, newValue: string) {
-		this.addedIngredients.forEach((addedIngredient, index) => {
+		this.addedIngredients[this.selectedIngredientsCategory].forEach((addedIngredient, index) => {
 			if (addedIngredient.name === changedIngredient.name) {
 				addedIngredient.name = newValue;
 			}
@@ -35,7 +38,7 @@ export class AddedIngredientsComponent implements OnInit {
 	}
 
 	ingredientQtyChanged(changedIngredient: Ingredient, newValue: string) {
-		this.addedIngredients.forEach((addedIngredient, index) => {
+		this.addedIngredients[this.selectedIngredientsCategory].forEach((addedIngredient, index) => {
 			if (addedIngredient.name === changedIngredient.name) {
 				addedIngredient.quantity = newValue;
 			}

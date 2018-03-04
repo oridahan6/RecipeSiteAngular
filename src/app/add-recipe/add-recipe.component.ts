@@ -11,18 +11,35 @@ import { Ingredient } from '../models/ingredient';
 })
 export class AddRecipeComponent implements OnInit {
 
+	// added support for looping through an associative object|array
+	objectKeys = Object.keys;
+
 	@ViewChild(SelectUnitsComponent) selectUnitsComponent: SelectUnitsComponent;
 
-	@ViewChild('ingredientName') ingredientName: ElementRef;
+	@ViewChild('ingredientNameInput') ingredientNameInput: ElementRef;
 	@ViewChild('ingredientQty') ingredientQty: ElementRef;
-	@ViewChild('ingredientsText') ingredientsText: ElementRef;
+	@ViewChild('ingredientsTextInput') ingredientsTextInput: ElementRef;
+	@ViewChild('newIngredientsCategoryInput') newIngredientsCategoryInput: ElementRef;
+
+	ingredientName: string;
+	ingredientsText: string;
+	newIngredientsCategory: string;
 
 	// test data
-	addedIngredients: Ingredient[] = [
-		{name: "a", quantity: "3", unit: 1},
-		{name: "b", quantity: "5", unit: 2},
-		{name: "c", quantity: "6", unit: 3}
-	];
+	addedIngredients: {[categoryName: string]: Ingredient[]} = {
+		"כללי": [
+			{name: "a", quantity: "3", unit: 1},
+			{name: "b", quantity: "5", unit: 2},
+			{name: "c", quantity: "6", unit: 3}
+		],
+		"רוטב": [
+			{name: "d", quantity: "3", unit: 2},
+			{name: "e", quantity: "5", unit: 4},
+			{name: "f", quantity: "6", unit: 5}
+		]
+	};
+
+	selectedIngredientsCategory: string = "כללי";
 
 	// get from db
 	units = [
@@ -73,26 +90,28 @@ export class AddRecipeComponent implements OnInit {
 
 	// TODO: check for duplicates before adding ingredient to array
 	addIngredient(): void {
+		if (!this.ingredientNameInput.nativeElement.value)
+			return;
+
 		var addedIngredient = {
-			name: 		this.ingredientName.nativeElement.value,
+			name: 		this.ingredientNameInput.nativeElement.value,
 			quantity:	this.ingredientQty.nativeElement.value,
 			unit:		+this.selectUnitsComponent.selectedUnit	
 		};
+		this.addedIngredients[this.selectedIngredientsCategory].push(addedIngredient);
 
-		console.log("addedIngredient", addedIngredient);
-
-
-		this.addedIngredients.push(addedIngredient);
-		console.log("add recipe this.addedIngredients", this.addedIngredients);
-
-		this.ingredientName.nativeElement.value = "";
+		this.ingredientNameInput.nativeElement.value = "";
+		this.ingredientName = "";
 		this.ingredientQty.nativeElement.value = "";
 		this.selectUnitsComponent.selectedUnit = 0;
 
   	}
 
   	addPastedIngredients() {
-  		var pastedTIngredientsText = this.ingredientsText.nativeElement.value.split("\n");;
+  		var pastedTIngredientsText = this.ingredientsTextInput.nativeElement.value;
+  		if (!pastedTIngredientsText)
+  			return;
+  		pastedTIngredientsText = pastedTIngredientsText.split("\n");;
 
   		for (let pastedTIngredient of pastedTIngredientsText) {
 
@@ -105,16 +124,31 @@ export class AddRecipeComponent implements OnInit {
 				unit:		this.getUnitIdFromName(matches[2])
 
 			}
-			this.addedIngredients.push(addedIngredient);
+			this.addedIngredients[this.selectedIngredientsCategory].push(addedIngredient);
 		}
-		this.ingredientsText.nativeElement.value = "";
+		this.ingredientsTextInput.nativeElement.value = "";
+		this.ingredientsText = "";
   	}
 
-	// TODO: try to use ingredient: Ingredient instead of $event
 	// TODO: chnage func name to removeIngredient
-  	ingredientRemoved($event) {
-  		let removedIngredient = $event;
-  		this.addedIngredients = this.addedIngredients.filter(obj => obj !== removedIngredient);
+  	ingredientRemoved(removedIngredientObject) {
+  		let removedIngredient = removedIngredientObject.removedIngredient;
+  		let categoryName = removedIngredientObject.categoryName;
+  		this.addedIngredients[categoryName] = this.addedIngredients[categoryName].filter(obj => obj !== removedIngredient);
+  	}
+
+  	ingredientsCategoryChanged(newCategory) {
+  		this.selectedIngredientsCategory = newCategory;
+  	}
+
+  	addIngredientCategory(categoryName) {
+  		if (!categoryName)
+  			return;
+
+  		this.addedIngredients[categoryName] = [];
+  		this.selectedIngredientsCategory = categoryName;
+  		this.newIngredientsCategoryInput.nativeElement.value = "";
+  		this.newIngredientsCategory = "";
   	}
 
 	getIngredientsRegex() {

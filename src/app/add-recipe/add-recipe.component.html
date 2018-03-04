@@ -79,10 +79,10 @@
 					<input id="ingredient-tab2" type="radio" name="ingredient-tabs">
 					<label class="tab" for="ingredient-tab2">ע"י הדבקה</label>
 
-					<section id="ingredient-content1">
+					<section id="ingredient-content1" class="tab-content">
 		        		<div class="form-group">
 			                <label>שם</label>
-			                <input #ingredientName type="text" class="form-control" placeholder="שם המצרך">
+			                <input #ingredientNameInput [(ngModel)]="ingredientName" name="ingredientName" type="text" class="form-control" placeholder="שם המצרך">
 			                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
 			            </div>
 			           	<div class="form-group row">
@@ -96,21 +96,36 @@
 			           		</div>
 			           	</div>
 			           	<div class="align-center">
-							<button type="button" class="btn btn-outline-primary" (click)="addIngredient()">הוסף מצרך</button>			           		
+							<button type="button" class="btn btn-outline-primary" [attr.disabled]="ingredientName ? null : true" (click)="addIngredient()">הוסף מצרך</button>			           		
 			           	</div>
 					</section>
 
-					<section id="ingredient-content2">
+					<section id="ingredient-content2" class="tab-content">
 						<!-- add explanation -->
 						<div class="form-group">
 							<label>הדבק מצרכים</label>
-	            			<textarea class="form-control" #ingredientsText rows="4" placeholder="הדבק מצרכים, כל מצרך בשורה חדשה."></textarea>
+	            			<textarea class="form-control" #ingredientsTextInput [(ngModel)]="ingredientText" name="ingredientText" rows="4" placeholder="הדבק מצרכים, כל מצרך בשורה חדשה."></textarea>
 	            		</div>
             			<div class="align-center">
-	            			<button type="button" class="btn btn-outline-primary" (click)="addPastedIngredients()">הוסף מצרכים</button>
+	            			<button type="button" class="btn btn-outline-primary" [attr.disabled]="ingredientText ? null : true" (click)="addPastedIngredients()">הוסף מצרכים</button>
 	            		</div>
 					</section>
-					<app-added-ingredients [addedIngredients]="addedIngredients" [units]="units" (ingredientRemovedEvent)="ingredientRemoved($event)"></app-added-ingredients>
+					<section class="new-ingredient-category">
+						<div *ngIf="objectKeys(addedIngredients).length > 1" class="form-group">
+							<label>הוסף לקטגוריה</label>
+							<select class="form-control inline-block" (change)="ingredientsCategoryChanged($event.target.value)">
+								<option *ngFor="let categoryName of objectKeys(addedIngredients)" [attr.selected]="categoryName == selectedIngredientsCategory ? true : null">{{ categoryName }}</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>הוסף קטגוריה חדשה</label>
+							<div class="flex-input-button-container">
+								<input #newIngredientsCategoryInput [(ngModel)]="newIngredientsCategory" name="newIngredientsCategory" type="text" class="form-control" placeholder="לדוג' רוטב, ציפוי וכו'">
+								<button type="button" class="btn btn-outline-primary" [attr.disabled]="newIngredientsCategory ? null : true" (click)="addIngredientCategory(newIngredientsCategoryInput.value)">הוסף קטגוריה</button>
+							</div>
+						</div>
+					</section>
+					<app-added-ingredients [addedIngredients]="addedIngredients" [selectedIngredientsCategory]="selectedIngredientsCategory" [units]="units" (ingredientRemovedEvent)="ingredientRemoved($event)"></app-added-ingredients>
             	</div>
             </section>
     		<!-- Directions -->
