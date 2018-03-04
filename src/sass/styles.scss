@@ -1,8 +1,4 @@
 
-// import project sass ====================================================================== 
-@import './variables';
-@import './mixins';
-
 // import bootstrap sass ====================================================================== 
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
@@ -10,6 +6,10 @@
 @import "~bootstrap/scss/grid";
 @import "~bootstrap/scss/navbar";
 @import "~bootstrap/scss/forms";
+
+// import project sass ====================================================================== 
+@import 'variables';
+@import 'mixins';
 
 // General styling ====================================================================== 
 * {
@@ -65,4 +65,14 @@ input[type=file].inputfile {
 		width: 28%;
 	}
 
+}
+
+.added-ingredients-container {
+	li {
+		.form-control:focus { 
+			outline: none; 
+			border-color: $border-color;
+			@include box-shadow(none); 
+		}
+	}
 }
