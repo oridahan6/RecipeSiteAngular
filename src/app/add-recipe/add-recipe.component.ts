@@ -258,6 +258,7 @@ export class AddRecipeComponent implements OnInit {
 		this.directionsTextInput.nativeElement.value = "";
 		this.directionsText = "";
   	}
+
   	directionsCategoryChanged(newCategory) {
   		this.selectedDirectionsCategory = newCategory;
   	}
