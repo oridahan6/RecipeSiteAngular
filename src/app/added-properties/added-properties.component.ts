@@ -3,14 +3,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Ingredient } from '../models/ingredient';
 
 @Component({
-  selector: 'app-added-ingredients',
-  templateUrl: './added-ingredients.component.html',
-  styleUrls: ['./added-ingredients.component.scss']
+  selector: 'app-added-properties',
+  templateUrl: './added-properties.component.html',
+  styleUrls: ['./added-properties.component.scss']
 })
 
 // enum ObjectType {Ingredient = "ingredient", Direction = "direction"}
 
-export class AddedIngredientsComponent implements OnInit {
+export class AddedPropertiesComponent implements OnInit {
 
 	objectKeys = Object.keys;
 

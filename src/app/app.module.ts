@@ -20,7 +20,7 @@ import {
   HeaderComponent,
   SharedModule
 } from './shared';
-import { AddedIngredientsComponent } from './added-ingredients/added-ingredients.component';
+import { AddedPropertiesComponent } from './added-properties/added-properties.component';
 import { SelectUnitsComponent } from './select-units/select-units.component';
 
 @NgModule({
@@ -31,7 +31,7 @@ import { SelectUnitsComponent } from './select-units/select-units.component';
     HomeComponent,
     FooterComponent,
     HeaderComponent,
-    AddedIngredientsComponent,
+    AddedPropertiesComponent,
     SelectUnitsComponent
   ],
   imports: [
