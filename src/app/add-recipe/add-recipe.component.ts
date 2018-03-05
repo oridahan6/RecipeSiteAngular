@@ -251,7 +251,7 @@ export class AddRecipeComponent implements OnInit {
 		if (!this.directionInput.nativeElement.value)
 			return;
 
-		var addedDirection = this.directionInput.nativeElement.value;
+		var addedDirection = new Direction(this.directionInput.nativeElement.value);
 		this.recipe.directions[this.selectedDirectionsCategory].push(addedDirection);
 
 		console.log('after add ingredient this.recipe.directions',this.recipe.directions);
@@ -292,7 +292,7 @@ export class AddRecipeComponent implements OnInit {
 	//////////////////////////////////////////////////////////////////////
 
 	submitForm(val) {
-		console.log("val", val);
+		console.log("this.recipe", this.recipe);
 
 	}
 
