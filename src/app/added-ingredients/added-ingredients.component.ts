@@ -14,6 +14,9 @@ export class AddedIngredientsComponent implements OnInit {
 
 	objectKeys = Object.keys;
 
+	title: string;
+	isIngredientsType: boolean;
+
 	// @Input() objectType: ObjectType;
 	@Input() objectType: string;
 
@@ -24,6 +27,12 @@ export class AddedIngredientsComponent implements OnInit {
 	@Output() objectRemovedEvent = new EventEmitter<{categoryName: string, removedObject: any}>();
 
 	ngOnInit() {
+		if (this.objectType == "ingredient"){
+			this.title = "מצרכים";
+			this.isIngredientsType = true;
+		}
+		if (this.objectType == "direction")
+			this.title = "שלבי הכנה";
 	}
 
 	removeObject(categoryName: string, object: {}) {

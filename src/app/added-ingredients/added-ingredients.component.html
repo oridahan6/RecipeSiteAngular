@@ -1,14 +1,14 @@
 <!-- TODO: change all spacing to rem from px -->
 <!-- TODO: BUG: add new category -> add ingredient -> remove the ingredient -> the category ul is still visible -->
-<section class="added-ingredients-container" *ngIf="addedObjects">
-	<h2>מצרכים שהוספו</h2>
+<section class="added-properties-container" [class.added-ingredients]="isIngredientsType" [class.added-directions]="!isIngredientsType" *ngIf="addedObjects">
+	<h2>{{ title }} שהוספו</h2>
 	<div *ngFor="let categoryName of objectKeys(addedObjects)">
 		<h3 class="{{ categoryName }}" *ngIf="categoryName != 'כללי'">{{ categoryName }}</h3>
 		<ul *ngIf="addedObjects[categoryName]" dnd-sortable-container [sortableData]="addedObjects[categoryName]">
 			<li *ngFor="let addedObject of addedObjects[categoryName]; let i = index" dnd-sortable [sortableIndex]="i" [dragData]="addedObjects[categoryName]" (onDropSuccess)="moveObject($event, i)">
-				<input type="text" class="form-control" name="addedIngredientName" value="{{ addedObject.name }}" (input)="objectNameChanged(addedObject, $event.target.value)">
-				<input type="text" class="form-control" name="addedIngredientQty" value="{{ addedObject.quantity }}" (input)="objectQtyChanged(addedObject, $event.target.value)">
-				<app-select-units [units]="units" [addedIngredient]="addedObject" [selectedUnit]="addedObject.unit" (selectedUnitChanged)="selectedUnitChanged($event)"></app-select-units>
+				<input type="text" class="form-control" name="addedObjectTitle" value="{{ isIngredientsType ? addedObject.name : addedObject }}" (input)="objectNameChanged(addedObject, $event.target.value)">
+				<input *ngIf="isIngredientsType" type="text" class="form-control" name="addedObjectQty" value="{{ addedObject.quantity }}" (input)="objectQtyChanged(addedObject, $event.target.value)">
+				<app-select-units *ngIf="isIngredientsType" [units]="units" [addedIngredient]="addedObject" [selectedUnit]="addedObject.unit" (selectedUnitChanged)="selectedUnitChanged($event)"></app-select-units>
 				<button class="handle" title="העבר"><i class="fas fa-bars"></i></button>
 				<button class="delete" title="מחק" (click)="removeObject(categoryName, addedObject)"><i class="fas fa-minus"></i></button>
 			</li>

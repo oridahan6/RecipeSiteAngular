@@ -41,6 +41,21 @@ export class AddRecipeComponent implements OnInit {
 
 	selectedIngredientsCategory: string = "כללי";
 
+	addedDirections: {[categoryName: string]: string[]} = {
+		"כללי": [
+			"בלה",
+			"בלה בלה",
+			"בלה בלה בלה"
+		],
+		"רוטב": [
+			"בלו",
+			"בלו בלו",
+			"בלו בלו בלו"
+		]
+	};
+
+	selectedDirectionsCategory: string = "כללי";
+
 	// get from db
 	units = [
 		{ id: 1, name: "גרם" },
@@ -87,6 +102,10 @@ export class AddRecipeComponent implements OnInit {
 
 	ngOnInit() {
 	}
+
+	//////////////////////////////////////////////////////////////////////
+	//// Ingredients methods						
+	//////////////////////////////////////////////////////////////////////
 
 	// TODO: check for duplicates before adding ingredient to array
 	addIngredient(): void {
@@ -173,5 +192,17 @@ export class AddRecipeComponent implements OnInit {
 		});
 		return foundUnit.length ? foundUnit[0].id : 0;
   	}
+
+	//////////////////////////////////////////////////////////////////////
+	//// Direction methods						
+	//////////////////////////////////////////////////////////////////////
+
+  	directionRemoved(removedDirectionObject) {
+  		let removedDirection = removedDirectionObject.removedObject;
+  		let categoryName = removedDirectionObject.categoryName;
+  		this.addedDirections[categoryName] = this.addedDirections[categoryName].filter(obj => obj !== removedDirection);
+  	}
+
+
 
 }

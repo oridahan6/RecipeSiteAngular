@@ -3,7 +3,7 @@
 
 %border-radius-0 { border-radius: 0; }
 
-.added-ingredients-container {
+.added-properties-container {
 
 	h3 {
 		font-size: 1.125rem;
@@ -19,8 +19,7 @@
 
 			input { border-left: none; }
 
-			input[name="addedIngredientName"] { width: 55%; }
-			input[name="addedIngredientQty"] { width: 15%; }
+			input[name="addedObjectQty"] { width: 15%; }
 
 			.form-control { @extend %border-radius-0; }
 
@@ -40,3 +39,6 @@
 		}
 	}
 }
+
+.added-ingredients input[name="addedObjectTitle"] { width: 55%; }
+.added-directions input[name="addedObjectTitle"] { width: 85%; }

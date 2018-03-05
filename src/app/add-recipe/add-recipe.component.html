@@ -125,7 +125,7 @@
 							</div>
 						</div>
 					</section>
-					<app-added-ingredients [addedObjects]="addedIngredients" [selectedObjectsCategory]="selectedIngredientsCategory" [units]="units" (objectRemovedEvent)="ingredientRemoved($event)"></app-added-ingredients>
+					<app-added-ingredients [addedObjects]="addedIngredients" [selectedObjectsCategory]="selectedIngredientsCategory" [objectType]="'ingredient'" [units]="units" (objectRemovedEvent)="ingredientRemoved($event)"></app-added-ingredients>
             	</div>
             </section>
     		<!-- Directions -->
@@ -159,6 +159,7 @@
 	            			<button type="button" class="btn btn-outline-primary">הוסף שלבים</button>
 	            		</div>
 					</section>
+					<app-added-ingredients [addedObjects]="addedDirections" [selectedObjectsCategory]="selectedDirectionsCategory" [objectType]="'direction'" (objectRemovedEvent)="directionRemoved($event)"></app-added-ingredients>
             	</div>
             </section>
             <section class="add-recipe-section">
