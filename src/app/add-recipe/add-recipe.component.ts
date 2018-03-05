@@ -16,6 +16,9 @@ export class AddRecipeComponent implements OnInit {
 
 	@ViewChild(SelectUnitsComponent) selectUnitsComponent: SelectUnitsComponent;
 
+	//////////////////
+	// ingredients
+	//////////////////
 	@ViewChild('ingredientNameInput') ingredientNameInput: ElementRef;
 	@ViewChild('ingredientQty') ingredientQty: ElementRef;
 	@ViewChild('ingredientsTextInput') ingredientsTextInput: ElementRef;
@@ -40,6 +43,17 @@ export class AddRecipeComponent implements OnInit {
 	};
 
 	selectedIngredientsCategory: string = "כללי";
+
+	//////////////////
+	// directions
+	//////////////////
+	@ViewChild('directionInput') directionInput: ElementRef;
+	@ViewChild('directionsTextInput') directionsTextInput: ElementRef;
+	@ViewChild('newDirectionsCategoryInput') newDirectionsCategoryInput: ElementRef;
+
+	direction: string;
+	directionsText: string;
+	newDirectionsCategory: string;
 
 	addedDirections: {[categoryName: string]: string[]} = {
 		"כללי": [
@@ -129,15 +143,15 @@ export class AddRecipeComponent implements OnInit {
   	}
 
   	addPastedIngredients() {
-  		var pastedTIngredientsText = this.ingredientsTextInput.nativeElement.value;
-  		if (!pastedTIngredientsText)
+  		var pastedIngredientsText = this.ingredientsTextInput.nativeElement.value;
+  		if (!pastedIngredientsText)
   			return;
-  		pastedTIngredientsText = pastedTIngredientsText.split("\n");;
+  		pastedIngredientsText = pastedIngredientsText.split("\n");;
 
-  		for (let pastedTIngredient of pastedTIngredientsText) {
+  		for (let pastedIngredient of pastedIngredientsText) {
 
 			// matches[1] - quantity, matches[2] - unit, matches[3] - ingredient name
-			var matches = pastedTIngredient.match(this.getIngredientsRegex());
+			var matches = pastedIngredient.match(this.getIngredientsRegex());
 
 			var addedIngredient: Ingredient = {
 				name: 		matches[3],
@@ -203,6 +217,44 @@ export class AddRecipeComponent implements OnInit {
   		this.addedDirections[categoryName] = this.addedDirections[categoryName].filter(obj => obj !== removedDirection);
   	}
 
+	// TODO: check for duplicates before adding ingredient to array
+	addDirection(): void {
+		if (!this.directionInput.nativeElement.value)
+			return;
 
+		var addedDirection = this.directionInput.nativeElement.value;
+		this.addedDirections[this.selectedDirectionsCategory].push(addedDirection);
 
+		console.log('after add ingredient this.addedDirections',this.addedDirections);
+
+		this.directionInput.nativeElement.value = "";
+		this.direction = "";
+  	}
+
+  	addPastedDirections() {
+  		var pastedDirectionsText = this.directionsTextInput.nativeElement.value;
+  		if (!pastedDirectionsText)
+  			return;
+  		pastedDirectionsText = pastedDirectionsText.split("\n");;
+
+  		for (let pastedDirection of pastedDirectionsText) {
+			this.addedDirections[this.selectedDirectionsCategory].push(pastedDirection);
+		}
+		this.directionsTextInput.nativeElement.value = "";
+		this.directionsText = "";
+  	}
+
+  	directionsCategoryChanged(newCategory) {
+  		this.selectedDirectionsCategory = newCategory;
+  	}
+
+  	addDirectionCategory(categoryName) {
+  		if (!categoryName)
+  			return;
+
+  		this.addedDirections[categoryName] = [];
+  		this.selectedDirectionsCategory = categoryName;
+  		this.newDirectionsCategoryInput.nativeElement.value = "";
+  		this.newDirectionsCategory = "";
+  	}
 }
