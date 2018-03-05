@@ -3,6 +3,10 @@
 
 .container * { text-align: right; direction: rtl; }
 
+form {
+	.ng-touched.ng-invalid { border-right: 5px solid #a94442; }
+}
+
 .radios-container {
 
 	display: flex;

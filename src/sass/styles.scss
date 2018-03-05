@@ -45,6 +45,15 @@ input[type=file].inputfile {
 .inline-block { display: inline-block !important; }
 .align-center { text-align: center !important; }
 
+// Bootstrap styling ====================================================================== 
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.alert { padding: 0.5rem 1.25rem; }
+
 // Application global styling ====================================================================== 
 .add-recipe-section { 
 	h2 { font-size: 1.25rem; font-weight: bold; margin-bottom: 1.25rem; }

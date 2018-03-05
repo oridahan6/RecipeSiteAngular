@@ -5,12 +5,13 @@
 		TODO: remove
 		<pre>{{diagnostic}}</pre>
 	</div>
-    <form (ngSubmit)="submitForm(value)"  #addRecipeForm="ngForm">
+    <form (ngSubmit)="submitForm()"  #addRecipeForm="ngForm">
         <fieldset>
         	<section class="add-recipe-section">
         		<div class="form-group">
 	                <label for="recipe-title">כותרת</label>
-	                <input type="text" [(ngModel)]="recipe.title" class="form-control" id="recipeTitle" name="recipeTitle" placeholder="הכנס כותרת" required>
+	                <input #spy #recipeTitle="ngModel" type="text" [(ngModel)]="recipe.title" class="form-control" id="recipeTitle" name="recipeTitle" placeholder="הכנס כותרת" required>
+	                <div [hidden]="recipeTitle.valid || recipeTitle.untouched" class="alert alert-danger">כותרת לא יכולה להישאר ריקה.</div>
 	                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
 	            </div>
 	            <fieldset class="form-group">
@@ -223,7 +224,7 @@
 	            </div>
             </section>
             <div class="align-center">
-				<button type="submit" class="btn btn-primary">הוסף מתכון</button>            	
+				<button type="submit" class="btn btn-primary" [disabled]="!addRecipeForm.form.valid">הוסף מתכון</button>            	
             </div>
         </fieldset>
     </form>
