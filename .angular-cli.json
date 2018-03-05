@@ -19,9 +19,9 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "sass/bootswatch/_bootswatch.scss",
+        "style/bootstrap.min.css",
         "sass/styles.scss",
-        "style/bootstrap.min.css"
+        "sass/bootswatch/_bootswatch.scss"
       ],
       "stylePreprocessorOptions": {
 		"includePaths": [
