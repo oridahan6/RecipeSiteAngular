@@ -1,11 +1,15 @@
 <div class="container">
 	<h1>הוספת מתכון</h1>
-    <form>
+	<div>
+		TODO: remove
+		<pre>{{diagnostic}}</pre>
+	</div>
+    <form (ngSubmit)="submitForm(value)"  #addRecipeForm="ngForm">
         <fieldset>
         	<section class="add-recipe-section">
         		<div class="form-group">
 	                <label for="recipe-title">כותרת</label>
-	                <input type="text" class="form-control" id="recipeTitle" placeholder="הכנס כותרת">
+	                <input type="text" class="form-control" id="recipeTitle" placeholder="הכנס כותרת" required>
 	                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
 	            </div>
 	            <fieldset class="form-group">
@@ -111,10 +115,10 @@
 	            		</div>
 					</section>
 					<section class="new-category">
-						<div *ngIf="objectKeys(addedIngredients).length > 1" class="form-group">
+						<div *ngIf="objectKeys(recipeData.ingredients).length > 1" class="form-group">
 							<label>הוסף לקטגוריה</label>
 							<select class="form-control inline-block" (change)="ingredientsCategoryChanged($event.target.value)">
-								<option *ngFor="let categoryName of objectKeys(addedIngredients)" [attr.selected]="categoryName == selectedIngredientsCategory ? true : null">{{ categoryName }}</option>
+								<option *ngFor="let categoryName of objectKeys(recipeData.ingredients)" [attr.selected]="categoryName == selectedIngredientsCategory ? true : null">{{ categoryName }}</option>
 							</select>
 						</div>
 						<div class="form-group">
@@ -125,7 +129,7 @@
 							</div>
 						</div>
 					</section>
-					<app-added-properties [addedObjects]="addedIngredients" [selectedObjectsCategory]="selectedIngredientsCategory" [objectType]="'ingredient'" [units]="units" (objectRemovedEvent)="ingredientRemoved($event)"></app-added-properties>
+					<app-added-properties [addedObjects]="recipeData.ingredients" [selectedObjectsCategory]="selectedIngredientsCategory" [objectType]="'ingredient'" [units]="units" (objectRemovedEvent)="ingredientRemoved($event)"></app-added-properties>
             	</div>
             </section>
     		<!-- Directions -->
@@ -160,10 +164,10 @@
 	            		</div>
 					</section>
 					<section class="new-category">
-						<div *ngIf="objectKeys(addedDirections).length > 1" class="form-group">
+						<div *ngIf="objectKeys(recipeData.directions).length > 1" class="form-group">
 							<label>הוסף לקטגוריה</label>
 							<select class="form-control inline-block" (change)="directionsCategoryChanged($event.target.value)">
-								<option *ngFor="let categoryName of objectKeys(addedDirections)" [attr.selected]="categoryName == selectedDirectionsCategory ? true : null">{{ categoryName }}</option>
+								<option *ngFor="let categoryName of objectKeys(recipeData.directions)" [attr.selected]="categoryName == selectedDirectionsCategory ? true : null">{{ categoryName }}</option>
 							</select>
 						</div>
 						<div class="form-group">
@@ -174,7 +178,7 @@
 							</div>
 						</div>
 					</section>
-					<app-added-properties [addedObjects]="addedDirections" [selectedObjectsCategory]="selectedDirectionsCategory" [objectType]="'direction'" (objectRemovedEvent)="directionRemoved($event)"></app-added-properties>
+					<app-added-properties [addedObjects]="recipeData.directions" [selectedObjectsCategory]="selectedDirectionsCategory" [objectType]="'direction'" (objectRemovedEvent)="directionRemoved($event)"></app-added-properties>
             	</div>
             </section>
             <section class="add-recipe-section">

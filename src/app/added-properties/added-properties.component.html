@@ -6,8 +6,8 @@
 		<h3 class="{{ categoryName }}" *ngIf="categoryName != 'כללי'">{{ categoryName }}</h3>
 		<ul *ngIf="addedObjects[categoryName]" dnd-sortable-container [sortableData]="addedObjects[categoryName]">
 			<li *ngFor="let addedObject of addedObjects[categoryName]; let i = index" dnd-sortable [sortableIndex]="i" [dragData]="addedObjects[categoryName]" (onDropSuccess)="moveObject($event, i)">
-				<input type="text" class="form-control" name="addedObjectTitle" value="{{ isIngredientsType ? addedObject.name : addedObject }}" (input)="objectNameChanged(addedObject, $event.target.value)">
-				<input *ngIf="isIngredientsType" type="text" class="form-control" name="addedObjectQty" value="{{ addedObject.quantity }}" (input)="objectQtyChanged(addedObject, $event.target.value)">
+				<input type="text" [(ngModel)]="addedObject.title" class="form-control" name="addedObjectTitle" value="{{ addedObject.title }}">
+				<input *ngIf="isIngredientsType" type="text" [(ngModel)]="addedObject.quantity" class="form-control" name="addedObjectQty" value="{{ addedObject.quantity }}">
 				<app-select-units *ngIf="isIngredientsType" [units]="units" [addedIngredient]="addedObject" [selectedUnit]="addedObject.unit" (selectedUnitChanged)="selectedUnitChanged($event)"></app-select-units>
 				<button class="handle" title="העבר"><i class="fas fa-bars"></i></button>
 				<button class="delete" title="מחק" (click)="removeObject(categoryName, addedObject)"><i class="fas fa-minus"></i></button>

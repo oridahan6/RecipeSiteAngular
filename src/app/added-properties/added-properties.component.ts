@@ -46,31 +46,4 @@ export class AddedPropertiesComponent implements OnInit {
 		console.log('this.addedObjects',this.addedObjects);
 	}
 
-	objectNameChanged(changedObject: {}, newValue: string) {
-		this.addedObjects[this.selectedObjectsCategory].forEach((addedObject, index) => {
-			if (addedObject.hasOwnProperty("name") && changedObject.hasOwnProperty("name")) {
-				var addedObjectIng = addedObject as Ingredient;
-				var changedObjectIng = changedObject as Ingredient;
-				if (addedObjectIng.name === changedObjectIng.name) {
-					addedObjectIng.name = newValue;
-				}
-			} else if (addedObject == changedObject) {
-				addedObject = newValue;
-			}
-			
-		});
-	}
-
-	objectQtyChanged(changedObject: {}, newValue: string) {
-		this.addedObjects[this.selectedObjectsCategory].forEach((addedObject, index) => {
-			if (addedObject.hasOwnProperty("name") && changedObject.hasOwnProperty("name")) {
-				var addedObjectIng = addedObject as Ingredient;
-				var changedObjectIng = changedObject as Ingredient;
-				if (addedObjectIng.name === changedObjectIng.name) {
-					addedObjectIng.quantity = newValue
-				}
-			}
-		});
-	}
-
 }

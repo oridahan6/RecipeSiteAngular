@@ -2,7 +2,9 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { SelectUnitsComponent } from '../select-units/select-units.component';
 
+import { Recipe } from '../models/recipe';
 import { Ingredient } from '../models/ingredient';
+import { Direction } from '../models/direction';
 
 @Component({
   selector: 'app-add-recipe',
@@ -10,9 +12,6 @@ import { Ingredient } from '../models/ingredient';
   styleUrls: ['./add-recipe.component.scss']
 })
 export class AddRecipeComponent implements OnInit {
-
-	// added support for looping through an associative object|array
-	objectKeys = Object.keys;
 
 	@ViewChild(SelectUnitsComponent) selectUnitsComponent: SelectUnitsComponent;
 
@@ -27,21 +26,6 @@ export class AddRecipeComponent implements OnInit {
 	ingredientName: string;
 	ingredientsText: string;
 	newIngredientsCategory: string;
-
-	// test data
-	addedIngredients: {[categoryName: string]: Ingredient[]} = {
-		"כללי": [
-			{name: "a", quantity: "3", unit: 1},
-			{name: "b", quantity: "5", unit: 2},
-			{name: "c", quantity: "6", unit: 3}
-		],
-		"רוטב": [
-			{name: "d", quantity: "3", unit: 2},
-			{name: "e", quantity: "5", unit: 4},
-			{name: "f", quantity: "6", unit: 5}
-		]
-	};
-
 	selectedIngredientsCategory: string = "כללי";
 
 	//////////////////
@@ -54,21 +38,18 @@ export class AddRecipeComponent implements OnInit {
 	direction: string;
 	directionsText: string;
 	newDirectionsCategory: string;
-
-	addedDirections: {[categoryName: string]: string[]} = {
-		"כללי": [
-			"בלה",
-			"בלה בלה",
-			"בלה בלה בלה"
-		],
-		"רוטב": [
-			"בלו",
-			"בלו בלו",
-			"בלו בלו בלו"
-		]
-	};
-
 	selectedDirectionsCategory: string = "כללי";
+
+	//////////////////
+	// General
+	//////////////////
+
+	recipeData: Recipe;
+
+	// added support for looping through an associative object|array
+	objectKeys = Object.keys;
+
+	uploadedFiles: FileList;
 
 	// get from db
 	units = [
@@ -115,6 +96,37 @@ export class AddRecipeComponent implements OnInit {
 	constructor() {}
 
 	ngOnInit() {
+		let ingredients = {
+			"כללי": [
+				new Ingredient("a", "3", 1),
+				new Ingredient("b", "5", 2),
+				new Ingredient("c", "6", 3)
+			],
+			"רוטב": [
+				new Ingredient("d", "3", 2),
+				new Ingredient("e", "5", 4),
+				new Ingredient("f", "6", 5)
+			]
+		};
+		let directions = {
+			"כללי": [
+				new Direction("בלה"),
+				new Direction("בלה בלה"),
+				new Direction("בלה בלה בלה")
+			],
+			"רוטב": [
+				new Direction("בלו"),
+				new Direction("בלו בלו"),
+				new Direction("בלו בלו בלו")
+			]
+		};
+
+		this.recipeData = new Recipe(
+			0,
+			"",
+			ingredients,
+			directions
+		);
 	}
 
 	//////////////////////////////////////////////////////////////////////
@@ -131,9 +143,10 @@ export class AddRecipeComponent implements OnInit {
 			this.ingredientQty.nativeElement.value,
 			+this.selectUnitsComponent.selectedUnit	
 		);
-		this.addedIngredients[this.selectedIngredientsCategory].push(addedIngredient);
+		console.log('addedIngredient',addedIngredient);
+		this.recipeData.ingredients[this.selectedIngredientsCategory].push(addedIngredient);
 
-		console.log('after add ingredient this.addedIngredients',this.addedIngredients);
+		console.log('after add ingredient this.recipeData.ingredients',this.recipeData.ingredients);
 
 		this.ingredientNameInput.nativeElement.value = "";
 		this.ingredientName = "";
@@ -152,15 +165,17 @@ export class AddRecipeComponent implements OnInit {
 
 			// matches[1] - quantity, matches[2] - unit, matches[3] - ingredient name
 			var matches = pastedIngredient.match(this.getIngredientsRegex());
+			if (matches) {
+				var addedIngredient = new Ingredient(
+					matches[3],
+					matches[1],
+					this.getUnitIdFromName(matches[2])
 
-			var addedIngredient = new Ingredient(
-				matches[3],
-				matches[1],
-				this.getUnitIdFromName(matches[2])
-
-			);
-			this.addedIngredients[this.selectedIngredientsCategory].push(addedIngredient);
+				);
+				this.recipeData.ingredients[this.selectedIngredientsCategory].push(addedIngredient);
+			}
 		}
+		// TODO - show error if one of the ingredients were not matched with the regex
 		this.ingredientsTextInput.nativeElement.value = "";
 		this.ingredientsText = "";
   	}
@@ -169,7 +184,7 @@ export class AddRecipeComponent implements OnInit {
   	ingredientRemoved(removedIngredientObject) {
   		let removedIngredient = removedIngredientObject.removedObject;
   		let categoryName = removedIngredientObject.categoryName;
-  		this.addedIngredients[categoryName] = this.addedIngredients[categoryName].filter(obj => obj !== removedIngredient);
+  		this.recipeData.ingredients[categoryName] = this.recipeData.ingredients[categoryName].filter(obj => obj !== removedIngredient);
   	}
 
   	ingredientsCategoryChanged(newCategory) {
@@ -180,7 +195,7 @@ export class AddRecipeComponent implements OnInit {
   		if (!categoryName)
   			return;
 
-  		this.addedIngredients[categoryName] = [];
+  		this.recipeData.ingredients[categoryName] = [];
   		this.selectedIngredientsCategory = categoryName;
   		this.newIngredientsCategoryInput.nativeElement.value = "";
   		this.newIngredientsCategory = "";
@@ -214,7 +229,7 @@ export class AddRecipeComponent implements OnInit {
   	directionRemoved(removedDirectionObject) {
   		let removedDirection = removedDirectionObject.removedObject;
   		let categoryName = removedDirectionObject.categoryName;
-  		this.addedDirections[categoryName] = this.addedDirections[categoryName].filter(obj => obj !== removedDirection);
+  		this.recipeData.directions[categoryName] = this.recipeData.directions[categoryName].filter(obj => obj !== removedDirection);
   	}
 
 	// TODO: check for duplicates before adding ingredient to array
@@ -223,9 +238,9 @@ export class AddRecipeComponent implements OnInit {
 			return;
 
 		var addedDirection = this.directionInput.nativeElement.value;
-		this.addedDirections[this.selectedDirectionsCategory].push(addedDirection);
+		this.recipeData.directions[this.selectedDirectionsCategory].push(addedDirection);
 
-		console.log('after add ingredient this.addedDirections',this.addedDirections);
+		console.log('after add ingredient this.recipeData.directions',this.recipeData.directions);
 
 		this.directionInput.nativeElement.value = "";
 		this.direction = "";
@@ -238,12 +253,11 @@ export class AddRecipeComponent implements OnInit {
   		pastedDirectionsText = pastedDirectionsText.split("\n");;
 
   		for (let pastedDirection of pastedDirectionsText) {
-			this.addedDirections[this.selectedDirectionsCategory].push(pastedDirection);
+			this.recipeData.directions[this.selectedDirectionsCategory].push(pastedDirection);
 		}
 		this.directionsTextInput.nativeElement.value = "";
 		this.directionsText = "";
   	}
-
   	directionsCategoryChanged(newCategory) {
   		this.selectedDirectionsCategory = newCategory;
   	}
@@ -252,9 +266,22 @@ export class AddRecipeComponent implements OnInit {
   		if (!categoryName)
   			return;
 
-  		this.addedDirections[categoryName] = [];
+  		this.recipeData.directions[categoryName] = [];
   		this.selectedDirectionsCategory = categoryName;
   		this.newDirectionsCategoryInput.nativeElement.value = "";
   		this.newDirectionsCategory = "";
   	}
+
+	//////////////////////////////////////////////////////////////////////
+	//// General methods						
+	//////////////////////////////////////////////////////////////////////
+
+	submitForm(val) {
+		console.log("val", val);
+
+	}
+
+
+  	// TODO: Remove this when we're done
+	get diagnostic() { return JSON.stringify(this.recipeData); }
 }
