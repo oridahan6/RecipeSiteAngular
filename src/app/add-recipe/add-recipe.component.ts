@@ -126,11 +126,11 @@ export class AddRecipeComponent implements OnInit {
 		if (!this.ingredientNameInput.nativeElement.value)
 			return;
 
-		var addedIngredient = {
-			name: 		this.ingredientNameInput.nativeElement.value,
-			quantity:	this.ingredientQty.nativeElement.value,
-			unit:		+this.selectUnitsComponent.selectedUnit	
-		};
+		var addedIngredient = new Ingredient(
+			this.ingredientNameInput.nativeElement.value,
+			this.ingredientQty.nativeElement.value,
+			+this.selectUnitsComponent.selectedUnit	
+		);
 		this.addedIngredients[this.selectedIngredientsCategory].push(addedIngredient);
 
 		console.log('after add ingredient this.addedIngredients',this.addedIngredients);
@@ -153,12 +153,12 @@ export class AddRecipeComponent implements OnInit {
 			// matches[1] - quantity, matches[2] - unit, matches[3] - ingredient name
 			var matches = pastedIngredient.match(this.getIngredientsRegex());
 
-			var addedIngredient: Ingredient = {
-				name: 		matches[3],
-				quantity: 	matches[1],
-				unit:		this.getUnitIdFromName(matches[2])
+			var addedIngredient = new Ingredient(
+				matches[3],
+				matches[1],
+				this.getUnitIdFromName(matches[2])
 
-			}
+			);
 			this.addedIngredients[this.selectedIngredientsCategory].push(addedIngredient);
 		}
 		this.ingredientsTextInput.nativeElement.value = "";

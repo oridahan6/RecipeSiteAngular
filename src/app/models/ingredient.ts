@@ -1,5 +1,9 @@
 export class Ingredient {
-	name: string;
-	quantity: string;
-	unit: number;
+
+  constructor(
+    public name: string,
+    public quantity: string,
+    public unit: number
+  ) {  }
+
 }
