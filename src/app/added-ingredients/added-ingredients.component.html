@@ -1,15 +1,16 @@
 <!-- TODO: change all spacing to rem from px -->
-<section class="added-ingredients-container" *ngIf="addedIngredients">
+<!-- TODO: BUG: add new category -> add ingredient -> remove the ingredient -> the category ul is still visible -->
+<section class="added-ingredients-container" *ngIf="addedObjects">
 	<h2>מצרכים שהוספו</h2>
-	<div *ngFor="let categoryName of objectKeys(addedIngredients)">
+	<div *ngFor="let categoryName of objectKeys(addedObjects)">
 		<h3 class="{{ categoryName }}" *ngIf="categoryName != 'כללי'">{{ categoryName }}</h3>
-		<ul *ngIf="addedIngredients[categoryName]" dnd-sortable-container [sortableData]="addedIngredients[categoryName]">
-			<li *ngFor="let addedIngredient of addedIngredients[categoryName]; let i = index" dnd-sortable [sortableIndex]="i" [dragData]="addedIngredients[categoryName]" (onDropSuccess)="moveIngredient($event, i)">
-				<input type="text" class="form-control" name="addedIngredientName" value="{{ addedIngredient.name }}" (input)="ingredientNameChanged(addedIngredient, $event.target.value)">
-				<input type="text" class="form-control" name="addedIngredientQty" value="{{ addedIngredient.quantity }}" (input)="ingredientQtyChanged(addedIngredient, $event.target.value)">
-				<app-select-units [units]="units" [addedIngredient]="addedIngredient" [selectedUnit]="addedIngredient.unit" (selectedUnitChanged)="selectedUnitChanged($event)"></app-select-units>
+		<ul *ngIf="addedObjects[categoryName]" dnd-sortable-container [sortableData]="addedObjects[categoryName]">
+			<li *ngFor="let addedObject of addedObjects[categoryName]; let i = index" dnd-sortable [sortableIndex]="i" [dragData]="addedObjects[categoryName]" (onDropSuccess)="moveObject($event, i)">
+				<input type="text" class="form-control" name="addedIngredientName" value="{{ addedObject.name }}" (input)="objectNameChanged(addedObject, $event.target.value)">
+				<input type="text" class="form-control" name="addedIngredientQty" value="{{ addedObject.quantity }}" (input)="objectQtyChanged(addedObject, $event.target.value)">
+				<app-select-units [units]="units" [addedIngredient]="addedObject" [selectedUnit]="addedObject.unit" (selectedUnitChanged)="selectedUnitChanged($event)"></app-select-units>
 				<button class="handle" title="העבר"><i class="fas fa-bars"></i></button>
-				<button class="delete" title="מחק" (click)="removeIngredient(categoryName, addedIngredient)"><i class="fas fa-minus"></i></button>
+				<button class="delete" title="מחק" (click)="removeObject(categoryName, addedObject)"><i class="fas fa-minus"></i></button>
 			</li>
 		</ul>
 	</div>
