@@ -100,6 +100,8 @@ export class AddRecipeComponent implements OnInit {
 		};
 		this.addedIngredients[this.selectedIngredientsCategory].push(addedIngredient);
 
+		console.log('after add ingredient this.addedIngredients',this.addedIngredients);
+
 		this.ingredientNameInput.nativeElement.value = "";
 		this.ingredientName = "";
 		this.ingredientQty.nativeElement.value = "";
