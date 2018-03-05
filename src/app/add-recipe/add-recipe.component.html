@@ -15,23 +15,27 @@
 	            <fieldset class="form-group">
 	                <label>סוג</label>
 	                <div id="typesRadios" class="form-check radios-container">
-	                    <input type="radio" class="form-check-input" name="type" id="dairyRadio" value="חלבי" checked>
-	                    <label class="form-check-label" for="dairyRadio">חלבי</label>
-	                    <input type="radio" class="form-check-input" name="type" id="parveRadio" value="פרווה">
-	                    <label class="form-check-label" for="parveRadio">פרווה</label>
-	                    <input type="radio" class="form-check-input" name="type" id="meatRadio" value="בשרי">
-	                    <label class="form-check-label" for="parveRadio">בשרי</label>
+	                	<div class="radio-container" *ngFor="let type of kosherTypes">
+	                        <input type="radio"
+	                               id="{{ type.name }}Radio"
+	                               name="type"
+	                               value="{{ type.presentedName }}"
+	                               [(ngModel)]="recipe.kosherType" />
+	                        <label class="form-check-label" for="{{ type.name }}Radio">{{ type.presentedName }}</label>
+	                    </div>
 	                </div>
 	            </fieldset>
 	            <fieldset class="form-group">
 	                <label>דרגת קושי</label>
 	                <div id="levelRadios" class="form-check radios-container">
-	                    <input type="radio" class="form-check-input" name="level" id="easyRadio" value="קל" checked>
-	                    <label class="form-check-label" for="easyRadio">קל</label>
-	                    <input type="radio" class="form-check-input" name="level" id="intermediateRadio" value="בינוני">
-	                    <label class="form-check-label" for="intermediateRadio">בינוני</label>
-	                    <input type="radio" class="form-check-input" name="level" id="hardRadio" value="קשה">
-	                    <label class="form-check-label" for="hardRadio">קשה</label>
+	                	<div class="radio-container" *ngFor="let level of levels">
+	                        <input type="radio"
+	                               id="{{ level.name }}Radio"
+	                               name="level"
+	                               value="{{ level.presentedName }}"
+	                               [(ngModel)]="recipe.level" />
+	                        <label class="form-check-label" for="{{ level.name }}Radio">{{ level.presentedName }}</label>
+	                    </div>
 	                </div>
 	            </fieldset>
 	            <div class="form-group row">

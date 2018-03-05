@@ -51,6 +51,16 @@ export class AddRecipeComponent implements OnInit {
 
 	uploadedFiles: FileList;
 
+	kosherTypes = [
+		{ name: "dairy", presentedName: "חלבי" },
+		{ name: "parve", presentedName: "פרווה" },
+		{ name: "meat", presentedName: "בשרי" }
+	];
+	levels = [
+		{ name: "beginner", presentedName: "מתחיל" },
+		{ name: "intermediate", presentedName: "מנוסה" },
+		{ name: "expert", presentedName: "מומחה" }
+	];
 	// get from db
 	units = [
 		{ id: 1, name: "גרם" },
@@ -125,7 +135,11 @@ export class AddRecipeComponent implements OnInit {
 			0,
 			"",
 			ingredients,
-			directions
+			directions,
+			0,
+			0,
+			this.levels[0].presentedName,
+			this.kosherTypes[0].presentedName
 		);
 	}
 

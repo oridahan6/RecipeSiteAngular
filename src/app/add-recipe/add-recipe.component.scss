@@ -4,9 +4,11 @@
 .container * { text-align: right; direction: rtl; }
 
 .radios-container {
-	label { padding-right: 1.25rem; }
 
-	.form-check-label { margin-left: 0.9375rem; }
+	display: flex;
+
+	.radio-container { margin-left: .9375rem; }
+	.form-check-label { padding-right: .625rem; margin-left: 0.9375rem; }
 }
 
 .add-recipe-section { 
