@@ -25,7 +25,7 @@ let response = {
     message: null
 };
 
-// Get users
+// Get Recipes
 router.get('/recipes', (req, res) => {
     connection((db) => {
         db.collection('Recipe')
