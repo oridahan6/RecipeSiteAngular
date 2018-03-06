@@ -88,10 +88,10 @@ export class AddRecipeComponent implements OnInit {
 		new Category(6, "ארוחת בוקר", "")
 	];
 	cuisines = [
-		"איטלקי",
-		"ים תיכוני",
-		"מרוקאי",
-		"ישראלי"
+		{ id: 1, name: "איטלקי" },
+		{ id: 2, name: "ים תיכוני" },
+		{ id: 3, name: "מרוקאי" },
+		{ id: 4, name: "ישראלי" }
 	];
 	mainIngredients = [
 		"קוטג'",
@@ -149,7 +149,8 @@ export class AddRecipeComponent implements OnInit {
 			0,
 			0,
 			this.levels[0].presentedName,
-			this.kosherTypes[0].presentedName
+			this.kosherTypes[0].presentedName,
+			[0]
 		);
 	}
 
