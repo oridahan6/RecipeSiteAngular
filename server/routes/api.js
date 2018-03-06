@@ -7,6 +7,7 @@ var Recipe = require('../../model/recipe.js');
 var Category = require('../../model/category.js');
 var Unit = require('../../model/unit.js');
 var Cuisine = require('../../model/cuisine.js');
+var MainIngredient = require('../../model/mainIngredient.js');
 
 mongoose.connect('mongodb://localhost:27017/recipes', function (err) {
    if (err) throw err;
@@ -50,7 +51,7 @@ router.get('/categories', (req, res) => {
 		if (err) {
 			res.json({success:false, message: `Failed to load all categories. Error: ${err}`});
 		}
-		res.write(JSON.stringify({success: true, categories:categories},null,2));
+		res.write(JSON.stringify({success: true, categories: categories},null,2));
         res.end();
   	});
 });
@@ -61,7 +62,7 @@ router.get('/units', (req, res) => {
 		if (err) {
 			res.json({success:false, message: `Failed to load all units. Error: ${err}`});
 		}
-		res.write(JSON.stringify({success: true, units:units},null,2));
+		res.write(JSON.stringify({success: true, units: units},null,2));
         res.end();
   	});
 });
@@ -72,7 +73,18 @@ router.get('/cuisines', (req, res) => {
 		if (err) {
 			res.json({success:false, message: `Failed to load all cuisines. Error: ${err}`});
 		}
-		res.write(JSON.stringify({success: true, cuisines:cuisines},null,2));
+		res.write(JSON.stringify({success: true, cuisines: cuisines},null,2));
+        res.end();
+  	});
+});
+
+// Get Main Ingredients
+router.get('/main-ingredients', (req, res) => {
+	MainIngredient.find(function (err, mainIngredients) {
+		if (err) {
+			res.json({success:false, message: `Failed to load all main ingredients. Error: ${err}`});
+		}
+		res.write(JSON.stringify({success: true, mainIngredients: mainIngredients},null,2));
         res.end();
   	});
 });

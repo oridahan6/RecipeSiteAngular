@@ -78,15 +78,7 @@ export class AddRecipeComponent implements OnInit {
 	units: Unit[];
 	categories: Category[];
 	cuisines: Cuisine[];
-	mainIngredients = [
-		{ id: 1, name: "קוטג'" },
-		{ id: 2, name: "טונה" },
-		{ id: 3, name: "סלמון" },
-		{ id: 4, name: "אורז" },
-		{ id: 5, name: "בורגול" },
-		{ id: 6, name: "עגבניה" },
-		{ id: 7, name: "עגבניה" }
-	];
+	mainIngredients: Ingredient[];
 	directionMethods = [
 		{ id: 1, name: "בישול" },
 		{ id: 2, name: "אפייה" },
@@ -101,6 +93,7 @@ export class AddRecipeComponent implements OnInit {
 		this.setCategories();
 		this.setUnits();
 		this.setCuisines();
+		this.setMainIngredients();
 	}
 
 	ngOnInit() {
@@ -361,6 +354,19 @@ export class AddRecipeComponent implements OnInit {
 				},
 				err => console.error(err),
 				() => { /*console.log('done loading cuisines'); */ }
+		    );
+	}
+
+	setMainIngredients() {
+		this._dataService.getMainIngredients()
+		    .subscribe(
+				data => {
+					this.mainIngredients = data;
+					console.log("this.mainIngredients", this.mainIngredients);
+
+				},
+				err => console.error(err),
+				() => { /*console.log('done loading main ingredients'); */ }
 		    );
 	}
 

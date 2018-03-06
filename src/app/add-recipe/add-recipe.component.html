@@ -225,7 +225,7 @@
 					<!-- TODO: auto select based on ingredients that were already added -->
 					<label>מצרכים עיקריים</label>
 				    <select multiple="" class="form-control" [(ngModel)]="recipe.mainIngredients" name="mainIngredients">
-				        <option *ngFor="let ingredient of mainIngredients" value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+				        <option *ngFor="let ingredient of mainIngredients" value="{{ ingredient._id }}">{{ ingredient.title }}</option>
 				    </select>
 				    <small class="form-text text-muted">בחר מצרכים עיקריים הנמצאים במתכון</small>
             	</div>
