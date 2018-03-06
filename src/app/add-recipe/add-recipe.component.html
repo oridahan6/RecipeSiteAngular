@@ -209,29 +209,26 @@
             	<h2>פרטים נוספים</h2>
             	<div class="form-group">
             		<label>קטגוריות</label>
-            		<select multiple="" class="form-control">
-				        <!-- <option disabled>בחר</option> -->
-				        <option *ngFor="let category of categories">{{ category }}</option>
+            		<select multiple="" class="form-control" [(ngModel)]="recipe.categories" name="categories">
+				        <option *ngFor="let category of categories" value="{{ category.id }}">{{ category.name }}</option>
 				    </select>
+				    <small class="form-text text-muted">בחר קטגוריות הקשורות למתכון</small>
 				</div>
 				<div class="form-group">
 					<label>סוג מטבח</label>
 				    <select multiple="" class="form-control">
-				        <!-- <option disabled>בחר</option> -->
 				        <option *ngFor="let cuisine of cuisines">{{ cuisine }}</option>
 				    </select>
 				</div>
 				<div class="form-group">
 					<label>מצרכים עיקריים</label>
 				    <select multiple="" class="form-control">
-				        <!-- <option disabled>בחר</option> -->
 				        <option *ngFor="let ingredient of mainIngredients">{{ ingredient }}</option>
 				    </select>
             	</div>
 				<div class="form-group">
 					<label>דרכי הכנה</label>
 				    <select multiple="" class="form-control">
-				        <!-- <option disabled>בחר</option> -->
 				        <option *ngFor="let directionMethod of directionMethods">{{ directionMethod }}</option>
 				    </select>
             	</div>

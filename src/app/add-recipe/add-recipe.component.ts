@@ -5,6 +5,7 @@ import { SelectUnitsComponent } from '../select-units/select-units.component';
 import { Recipe } from '../model/recipe';
 import { Ingredient } from '../model/ingredient';
 import { Direction } from '../model/direction';
+import { Category } from '../model/category';
 
 @Component({
   selector: 'app-add-recipe',
@@ -78,13 +79,13 @@ export class AddRecipeComponent implements OnInit {
 		{ id: 5, name: "כפות" },
 		{ id: 6, name: "קופסא" }
 	];
-	categories = [
-		"חלבי",
-		"בשרי",
-		"פרווה",
-		"ארוחת ערב",
-		"ארוחת בוקר",
-		"ארוחת צהריים"
+	categories: Category[] = [
+		new Category(1, "חלבי", ""),
+		new Category(2, "בשרי", ""),
+		new Category(3, "פרווה", ""),
+		new Category(4, "ארוחת ערב", ""),
+		new Category(5, "ארוחת בוקר", ""),
+		new Category(6, "ארוחת בוקר", "")
 	];
 	cuisines = [
 		"איטלקי",
@@ -144,6 +145,7 @@ export class AddRecipeComponent implements OnInit {
 			"",
 			ingredients,
 			directions,
+			[0],
 			0,
 			0,
 			this.levels[0].presentedName,
