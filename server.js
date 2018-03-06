@@ -22,6 +22,11 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
+// catch 404
+app.use((req, res, next) => {
+  res.status(404).send('<h2 align=center>Page Not Found!</h2>');
+});
+
 //Set Port
 const port = process.env.PORT || '3000';
 app.set('port', port);
