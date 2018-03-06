@@ -17,6 +17,7 @@ export class Recipe {
 	    public level: string,
 	    public kosherType: string,
 	    public cuisines: number[],
-	    public mainIngredients: number[]
+	    public mainIngredients: number[],
+	    public directionMethods: number[]
 	) {  }
 }

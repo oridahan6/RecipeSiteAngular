@@ -225,15 +225,16 @@
 					<!-- TODO: auto select based on ingredients that were already added -->
 					<label>מצרכים עיקריים</label>
 				    <select multiple="" class="form-control" [(ngModel)]="recipe.mainIngredients" name="mainIngredients">
-				        <option *ngFor="let ingredient of mainIngredients"value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+				        <option *ngFor="let ingredient of mainIngredients" value="{{ ingredient.id }}">{{ ingredient.name }}</option>
 				    </select>
 				    <small class="form-text text-muted">בחר מצרכים עיקריים הנמצאים במתכון</small>
             	</div>
 				<div class="form-group">
 					<label>דרכי הכנה</label>
-				    <select multiple="" class="form-control">
-				        <option *ngFor="let directionMethod of directionMethods">{{ directionMethod }}</option>
+				    <select multiple="" class="form-control" [(ngModel)]="recipe.directionMethods" name="directionMethods">
+				        <option *ngFor="let directionMethod of directionMethods" value="{{ directionMethod.id }}">{{ directionMethod.name }}</option>
 				    </select>
+				    <small class="form-text text-muted">בחר שיטות בישול במתכון</small>
             	</div>
             	<div class="form-group align-center">
 	                <input type="file" id="imagesUploadInput" class="form-control-file inputfile" name="recipe-images" aria-describedby="fileHelp" multiple  accept=".jpg,.jpeg,.png,.hief,.hiec">

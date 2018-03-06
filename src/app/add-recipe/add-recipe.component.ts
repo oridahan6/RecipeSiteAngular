@@ -103,13 +103,13 @@ export class AddRecipeComponent implements OnInit {
 		{ id: 7, name: "עגבניה" }
 	];
 	directionMethods = [
-		"בישול",
-		"אפייה",
-		"טיגון",
-		"ללא בישול",
-		"אידוי",
-		"הקפאה",
-		"גריל"
+		{ id: 1, name: "בישול" },
+		{ id: 2, name: "אפייה" },
+		{ id: 3, name: "טיגון" },
+		{ id: 4, name: "ללא בישול" },
+		{ id: 5, name: "אידוי" },
+		{ id: 6, name: "הקפאה" },
+		{ id: 7, name: "גריל" }
 	];
 
 	constructor() {}
@@ -150,6 +150,7 @@ export class AddRecipeComponent implements OnInit {
 			0,
 			this.levels[0].presentedName,
 			this.kosherTypes[0].presentedName,
+			[0],
 			[0],
 			[0]
 		);
