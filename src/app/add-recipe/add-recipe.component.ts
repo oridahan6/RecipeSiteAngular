@@ -94,13 +94,13 @@ export class AddRecipeComponent implements OnInit {
 		{ id: 4, name: "ישראלי" }
 	];
 	mainIngredients = [
-		"קוטג'",
-		"טונה",
-		"סלמון",
-		"אורז",
-		"בורגול",
-		"עגבניה",
-		"רסק עגבניות"
+		{ id: 1, name: "קוטג'" },
+		{ id: 2, name: "טונה" },
+		{ id: 3, name: "סלמון" },
+		{ id: 4, name: "אורז" },
+		{ id: 5, name: "בורגול" },
+		{ id: 6, name: "עגבניה" },
+		{ id: 7, name: "עגבניה" }
 	];
 	directionMethods = [
 		"בישול",
@@ -150,6 +150,7 @@ export class AddRecipeComponent implements OnInit {
 			0,
 			this.levels[0].presentedName,
 			this.kosherTypes[0].presentedName,
+			[0],
 			[0]
 		);
 	}
