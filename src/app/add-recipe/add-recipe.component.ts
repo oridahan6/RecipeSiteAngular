@@ -1,11 +1,15 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
+import { DataService } from '../services/data.service';
+
 import { SelectUnitsComponent } from '../select-units/select-units.component';
 
 import { Recipe } from '../model/recipe';
 import { Ingredient } from '../model/ingredient';
 import { Direction } from '../model/direction';
 import { Category } from '../model/category';
+import { Unit } from '../model/unit';
+import { Cuisine } from '../model/cuisine';
 
 @Component({
   selector: 'app-add-recipe',
@@ -71,28 +75,9 @@ export class AddRecipeComponent implements OnInit {
 		{ name: "expert", presentedName: "מומחה" }
 	];
 	// get from db
-	units = [
-		{ id: 1, name: "גרם" },
-		{ id: 2, name: "כפית" },
-		{ id: 3, name: "כפיות" },
-		{ id: 4, name: "כף" },
-		{ id: 5, name: "כפות" },
-		{ id: 6, name: "קופסא" }
-	];
-	categories: Category[] = [
-		new Category(1, "חלבי", ""),
-		new Category(2, "בשרי", ""),
-		new Category(3, "פרווה", ""),
-		new Category(4, "ארוחת ערב", ""),
-		new Category(5, "ארוחת בוקר", ""),
-		new Category(6, "ארוחת בוקר", "")
-	];
-	cuisines = [
-		{ id: 1, name: "איטלקי" },
-		{ id: 2, name: "ים תיכוני" },
-		{ id: 3, name: "מרוקאי" },
-		{ id: 4, name: "ישראלי" }
-	];
+	units: Unit[];
+	categories: Category[];
+	cuisines: Cuisine[];
 	mainIngredients = [
 		{ id: 1, name: "קוטג'" },
 		{ id: 2, name: "טונה" },
@@ -112,19 +97,23 @@ export class AddRecipeComponent implements OnInit {
 		{ id: 7, name: "גריל" }
 	];
 
-	constructor() {}
+	constructor(private _dataService: DataService) {
+		this.setCategories();
+		this.setUnits();
+		this.setCuisines();
+	}
 
 	ngOnInit() {
 		let ingredients = {
 			"כללי": [
-				new Ingredient("a", "3", 1),
-				new Ingredient("b", "5", 2),
-				new Ingredient("c", "6", 3)
+				new Ingredient("a", "3", "5a9e883884d81edd7cb98249"),
+				new Ingredient("b", "5", "5a9e884a84d81edd7cb9825a"),
+				new Ingredient("c", "6", "5a9e88c284d81edd7cb982b6")
 			],
 			"רוטב": [
-				new Ingredient("d", "3", 2),
-				new Ingredient("e", "5", 4),
-				new Ingredient("f", "6", 5)
+				new Ingredient("d", "3", "5a9e884a84d81edd7cb9825a"),
+				new Ingredient("e", "5", "5a9e883884d81edd7cb98249"),
+				new Ingredient("f", "6", "5a9e88c284d81edd7cb982b6")
 			]
 		};
 		let directions = {
@@ -168,7 +157,7 @@ export class AddRecipeComponent implements OnInit {
 		var addedIngredient = new Ingredient(
 			this.ingredientNameInput.nativeElement.value,
 			this.ingredientQty.nativeElement.value,
-			+this.selectUnitsComponent.selectedUnit	
+			this.selectUnitsComponent.selectedUnit	
 		);
 		console.log('addedIngredient',addedIngredient);
 		this.recipe.ingredients[this.selectedIngredientsCategory].push(addedIngredient);
@@ -178,7 +167,7 @@ export class AddRecipeComponent implements OnInit {
 		this.ingredientNameInput.nativeElement.value = "";
 		this.ingredientName = "";
 		this.ingredientQty.nativeElement.value = "";
-		this.selectUnitsComponent.selectedUnit = 0;
+		this.selectUnitsComponent.selectedUnit = "";
 
   	}
 
@@ -242,11 +231,11 @@ export class AddRecipeComponent implements OnInit {
 		return "(גרם|כפית|כף|כפות|כפיות|קופסא)?";
   	}
 
-  	getUnitIdFromName(name: string): number {
+  	getUnitIdFromName(name: string): string {
   		var foundUnit = this.units.filter(function(e) {
 			return e.name == name;
 		});
-		return foundUnit.length ? foundUnit[0].id : 0;
+		return foundUnit.length ? foundUnit[0]._id : "";
   	}
 
 	//////////////////////////////////////////////////////////////////////
@@ -332,4 +321,47 @@ export class AddRecipeComponent implements OnInit {
 
   	// TODO: Remove this when we're done
 	get diagnostic() { return JSON.stringify(this.recipe); }
+
+	//////////////////////////////////////////////////////////////////////
+	//// Setters methods						
+	//////////////////////////////////////////////////////////////////////
+	setCategories() {
+		this._dataService.getCategories()
+		    .subscribe(
+				data => {
+					this.categories = data;
+					console.log("this.categories", this.categories);
+
+				},
+				err => console.error(err),
+				() => { /*console.log('done loading categories'); */ }
+		    );
+	}
+
+	setUnits() {
+		this._dataService.getUnits()
+		    .subscribe(
+				data => {
+					this.units = data;
+					console.log("this.units", this.units);
+
+				},
+				err => console.error(err),
+				() => { /*console.log('done loading units'); */ }
+		    );
+	}
+
+	setCuisines() {
+		this._dataService.getCuisines()
+		    .subscribe(
+				data => {
+					this.cuisines = data;
+					console.log("this.cuisines", this.cuisines);
+
+				},
+				err => console.error(err),
+				() => { /*console.log('done loading cuisines'); */ }
+		    );
+	}
+
 }

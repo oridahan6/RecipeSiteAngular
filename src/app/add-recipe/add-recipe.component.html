@@ -210,14 +210,14 @@
             	<div class="form-group">
             		<label>קטגוריות</label>
             		<select multiple="" class="form-control" [(ngModel)]="recipe.categories" name="categories">
-				        <option *ngFor="let category of categories" value="{{ category.id }}">{{ category.name }}</option>
+				        <option *ngFor="let category of categories" value="{{ category._id }}">{{ category.name }}</option>
 				    </select>
 				    <small class="form-text text-muted">בחר קטגוריות הקשורות למתכון</small>
 				</div>
 				<div class="form-group">
 					<label>סוג מטבח</label>
 				    <select multiple="" class="form-control" [(ngModel)]="recipe.cuisines" name="cuisines">
-				        <option *ngFor="let cuisine of cuisines" value="{{ cuisine.id }}">{{ cuisine.name }}</option>
+				        <option *ngFor="let cuisine of cuisines" value="{{ cuisine._id }}">{{ cuisine.name }}</option>
 				    </select>
 				    <small class="form-text text-muted">בחר סוגי מטבחים הקשורים למתכון</small>
 				</div>

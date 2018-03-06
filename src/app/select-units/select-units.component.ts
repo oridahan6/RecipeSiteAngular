@@ -11,17 +11,17 @@ export class SelectUnitsComponent implements OnInit {
 
 	@Input() addedIngredient: Ingredient;
 	@Input() units: string[];
-	@Input() selectedUnit: number;
+	@Input() selectedUnit: string;
 
 	constructor() { }
 
 	ngOnInit() {
 	}
 
-	unitSelectChanged(newValue: number) {
+	unitSelectChanged(newValue: string) {
 		if (this.addedIngredient){
 			this.selectedUnit = newValue;
-			this.addedIngredient.unit = +newValue;	
+			this.addedIngredient.unit = newValue;	
 		}
 	}
 }
