@@ -8,6 +8,7 @@ var Category = require('../../model/category.js');
 var Unit = require('../../model/unit.js');
 var Cuisine = require('../../model/cuisine.js');
 var MainIngredient = require('../../model/mainIngredient.js');
+var DirectionMethod = require('../../model/directionMethod.js');
 
 mongoose.connect('mongodb://localhost:27017/recipes', function (err) {
    if (err) throw err;
@@ -89,6 +90,15 @@ router.get('/main-ingredients', (req, res) => {
   	});
 });
 
-
+// Get Direction Methods
+router.get('/direction-methods', (req, res) => {
+	DirectionMethod.find(function (err, directionMethods) {
+		if (err) {
+			res.json({success:false, message: `Failed to load all direction methods. Error: ${err}`});
+		}
+		res.write(JSON.stringify({success: true, directionMethods: directionMethods},null,2));
+        res.end();
+  	});
+});
 
 module.exports = router;

@@ -10,6 +10,7 @@ import { Direction } from '../model/direction';
 import { Category } from '../model/category';
 import { Unit } from '../model/unit';
 import { Cuisine } from '../model/cuisine';
+import { DirectionMethod } from '../model/direction-method';
 
 @Component({
   selector: 'app-add-recipe',
@@ -79,21 +80,14 @@ export class AddRecipeComponent implements OnInit {
 	categories: Category[];
 	cuisines: Cuisine[];
 	mainIngredients: Ingredient[];
-	directionMethods = [
-		{ id: 1, name: "בישול" },
-		{ id: 2, name: "אפייה" },
-		{ id: 3, name: "טיגון" },
-		{ id: 4, name: "ללא בישול" },
-		{ id: 5, name: "אידוי" },
-		{ id: 6, name: "הקפאה" },
-		{ id: 7, name: "גריל" }
-	];
+	directionMethods: DirectionMethod[];
 
 	constructor(private _dataService: DataService) {
 		this.setCategories();
 		this.setUnits();
 		this.setCuisines();
 		this.setMainIngredients();
+		this.setDirectionMethods();
 	}
 
 	ngOnInit() {
@@ -367,6 +361,19 @@ export class AddRecipeComponent implements OnInit {
 				},
 				err => console.error(err),
 				() => { /*console.log('done loading main ingredients'); */ }
+		    );
+	}
+
+	setDirectionMethods() {
+		this._dataService.getDirectionMethods()
+		    .subscribe(
+				data => {
+					this.directionMethods = data;
+					console.log("this.directionMethods", this.directionMethods);
+
+				},
+				err => console.error(err),
+				() => { /*console.log('done loading direction methods'); */ }
 		    );
 	}
 

@@ -8,6 +8,7 @@ import { Ingredient } from '../model/ingredient';
 import { Category } from '../model/category';
 import { Unit } from '../model/unit';
 import { Cuisine } from '../model/cuisine';
+import { DirectionMethod } from '../model/direction-method';
 
 @Injectable()
 export class DataService {
@@ -44,6 +45,12 @@ export class DataService {
 		return this._http.get("/api/main-ingredients")
 	  		.map(result => result.json())
 	  		.map(res => <Ingredient[]>res.mainIngredients);;
+	}
+
+	getDirectionMethods() : Observable<DirectionMethod[]> {
+		return this._http.get("/api/direction-methods")
+	  		.map(result => result.json())
+	  		.map(res => <DirectionMethod[]>res.directionMethods);;
 	}
 
 }

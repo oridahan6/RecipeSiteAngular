@@ -232,7 +232,7 @@
 				<div class="form-group">
 					<label>דרכי הכנה</label>
 				    <select multiple="" class="form-control" [(ngModel)]="recipe.directionMethods" name="directionMethods">
-				        <option *ngFor="let directionMethod of directionMethods" value="{{ directionMethod.id }}">{{ directionMethod.name }}</option>
+				        <option *ngFor="let directionMethod of directionMethods" value="{{ directionMethod._id }}">{{ directionMethod.name }}</option>
 				    </select>
 				    <small class="form-text text-muted">בחר שיטות בישול במתכון</small>
             	</div>
