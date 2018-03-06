@@ -1,7 +1,9 @@
 export class Category {
 	constructor(
-		public id: number,	
+		public _id: string,	
 	    public name: string,
-	    public imageName: string
+	    public imageName: string,
+	    public recipesCount: number,
+    	public displayOrder: number,
 	) {  }
 }
