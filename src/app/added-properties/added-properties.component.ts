@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { Ingredient } from '../models/ingredient';
+import { Ingredient } from '../model/ingredient';
 
 @Component({
   selector: 'app-added-properties',

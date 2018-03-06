@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Ingredient } from '../models/ingredient';
+import { Ingredient } from '../model/ingredient';
 
 @Component({
   selector: 'app-select-units',

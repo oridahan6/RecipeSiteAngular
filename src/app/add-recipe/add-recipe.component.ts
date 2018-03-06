@@ -2,9 +2,9 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { SelectUnitsComponent } from '../select-units/select-units.component';
 
-import { Recipe } from '../models/recipe';
-import { Ingredient } from '../models/ingredient';
-import { Direction } from '../models/direction';
+import { Recipe } from '../model/recipe';
+import { Ingredient } from '../model/ingredient';
+import { Direction } from '../model/direction';
 
 @Component({
   selector: 'app-add-recipe',

@@ -1,5 +1,5 @@
-import { Ingredient } from '../models/ingredient';
-import { Direction } from '../models/direction';
+import { Ingredient } from '../model/ingredient';
+import { Direction } from '../model/direction';
 
 export class Recipe {
 	constructor(
