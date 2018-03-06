@@ -187,9 +187,12 @@
 					<section class="new-category">
 						<div *ngIf="objectKeys(recipe.directions).length > 1" class="form-group">
 							<label>הוסף לקטגוריה</label>
-							<select class="form-control inline-block" (change)="directionsCategoryChanged($event.target.value)">
-								<option *ngFor="let categoryName of objectKeys(recipe.directions)" [attr.selected]="categoryName == selectedDirectionsCategory ? true : null">{{ categoryName }}</option>
-							</select>
+							<div class="select">
+								<select class="form-control inline-block" (change)="directionsCategoryChanged($event.target.value)">
+									<option *ngFor="let categoryName of objectKeys(recipe.directions)" [attr.selected]="categoryName == selectedDirectionsCategory ? true : null">{{ categoryName }}</option>
+								</select>
+								<i class="fas fa-angle-down"></i>
+							</div>
 						</div>
 						<div class="form-group">
 							<label>הוסף קטגוריה חדשה</label>
