@@ -1,5 +1,8 @@
 <!-- TODO: need to set different ID? #ingredientUnit -->
-<select [(ngModel)]="selectedUnit" #ingredientUnit class="form-control" [class.added-ingredient-select]="addedIngredient" name="selectUnit" (change)="unitSelectChanged($event.target.value)">
-	<option value="0" [attr.selected]="!addedIngredient ? true : null" disabled>בחר</option>
-    <option *ngFor="let unit of units" value="{{ unit.id }}" [attr.selected]="addedIngredient && addedIngredient.unit == unit.id ? true : null">{{ unit.name }}</option>
-</select>
+<div class="select">
+	<select [(ngModel)]="selectedUnit" #ingredientUnit class="form-control" [class.added-ingredient-select]="addedIngredient" name="selectUnit" (change)="unitSelectChanged($event.target.value)">
+		<option [attr.selected]="!addedIngredient ? true : null" disabled hidden [value]="undefined">בחר</option>
+	    <option *ngFor="let unit of units" value="{{ unit.id }}" [attr.selected]="addedIngredient && addedIngredient.unit == unit.id ? true : null">{{ unit.name }}</option>
+	</select>
+	<i class="fas fa-angle-down"></i>
+</div>

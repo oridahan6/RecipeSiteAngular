@@ -41,6 +41,14 @@ export class AddRecipeComponent implements OnInit {
 	selectedDirectionsCategory: string = "כללי";
 
 	//////////////////
+	// Time
+	//////////////////
+	prepTimeHours: number;
+	prepTimeMinutes: number;
+	cookTimeHours: number;
+	cookTimeMinutes: number;
+
+	//////////////////
 	// General
 	//////////////////
 
@@ -286,6 +294,26 @@ export class AddRecipeComponent implements OnInit {
   		this.newDirectionsCategoryInput.nativeElement.value = "";
   		this.newDirectionsCategory = "";
   	}
+
+	//////////////////////////////////////////////////////////////////////
+	//// Prep/Cook Time methods						
+	//////////////////////////////////////////////////////////////////////
+
+	prepTimeHoursChanged(hours) {
+		this.recipe.prepTime = (hours * 60) + (this.prepTimeMinutes ? this.prepTimeMinutes : 0);
+	}
+
+	prepTimeMinutesChanged(minutes) {
+		this.recipe.prepTime = +minutes + (this.prepTimeHours ? this.prepTimeHours * 60 : 0);
+	}
+
+	cookTimeHoursChanged(hours) {
+		this.recipe.cookTime = (hours * 60) + (this.cookTimeMinutes ? this.cookTimeMinutes : 0);
+	}
+
+	cookTimeMinutesChanged(minutes) {
+		this.recipe.cookTime = +minutes + (this.cookTimeHours ? this.cookTimeHours * 60 : 0);
+	}
 
 	//////////////////////////////////////////////////////////////////////
 	//// General methods						

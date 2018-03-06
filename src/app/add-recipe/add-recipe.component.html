@@ -45,16 +45,22 @@
 		                <label>זמן הכנה</label>
 		                <div class="row">
 			                <div class="inline-block col-6">
-				                <select class="form-control" id="exampleSelect1">
-				                	<option disabled>שעות</option>
-							        <option *ngFor="let dummy of ' '.repeat(24).split(''), let x = index">{{ x + 1 }}</option>
-						        </select>
+				                <div class="select">
+					                <select [(ngModel)]="prepTimeHours" name="prepTimeHoursSelect" class="form-control" (change)="prepTimeHoursChanged($event.target.value)">
+					                	<option disabled hidden [value]="undefined">שעות</option>
+								        <option *ngFor="let dummy of ' '.repeat(24).split(''), let x = index">{{ x + 1 }}</option>
+							        </select>
+							        <i class="fas fa-angle-down"></i>
+				                </div>
 						    </div>
 						    <div class="inline-block col-6">
-						        <select class="form-control" id="exampleSelect1">
-				                	<option disabled>דקות</option>
-							        <option *ngFor="let dummy of ' '.repeat(60).split(''), let x = index">{{ x + 1 }}</option>
-						        </select>
+						        <div class="select">
+							        <select [(ngModel)]="prepTimeMinutes" name="prepTimeMinutesSelect" class="form-control" (change)="prepTimeMinutesChanged($event.target.value)">
+					                	<option disabled hidden [value]="undefined">דקות</option>
+								        <option *ngFor="let dummy of ' '.repeat(60).split(''), let x = index">{{ x + 1 }}</option>
+							        </select>
+							        <i class="fas fa-angle-down"></i>
+							    </div>
 						    </div>
 		                </div>
 		                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
@@ -63,16 +69,22 @@
 	            		<label>זמן בישול</label>
 		                <div class="row">
 			                <div class="inline-block col-6">
-				                <select class="form-control">
-				                	<option disabled>שעות</option>
-							        <option *ngFor="let dummy of ' '.repeat(24).split(''), let x = index">{{ x + 1 }}</option>
-						        </select>
+			                	<div class="select">
+					                <select [(ngModel)]="cookTimeHours" name="cookTimeHoursSelect" class="form-control" (change)="cookTimeHoursChanged($event.target.value)">
+					                	<option disabled hidden [value]="undefined">שעות</option>
+								        <option *ngFor="let dummy of ' '.repeat(24).split(''), let x = index">{{ x + 1 }}</option>
+							        </select>
+							        <i class="fas fa-angle-down"></i>
+							    </div>
 						    </div>
 						    <div class="inline-block col-6">
-						        <select class="form-control">
-				                	<option disabled>דקות</option>
-							        <option *ngFor="let dummy of ' '.repeat(60).split(''), let x = index">{{ x + 1 }}</option>
-						        </select>
+						    	<div class="select">
+							        <select [(ngModel)]="cookTimeMinutes" name="cookTimeMinutesSelect" class="form-control" (change)="cookTimeMinutesChanged($event.target.value)">
+					                	<option disabled hidden [value]="undefined">דקות</option>
+								        <option *ngFor="let dummy of ' '.repeat(60).split(''), let x = index">{{ x + 1 }}</option>
+							        </select>
+							        <i class="fas fa-angle-down"></i>
+							    </div>
 						    </div>
 		                </div>
 		                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
@@ -123,9 +135,12 @@
 					<section class="new-category">
 						<div *ngIf="objectKeys(recipe.ingredients).length > 1" class="form-group">
 							<label>הוסף לקטגוריה</label>
-							<select class="form-control inline-block" (change)="ingredientsCategoryChanged($event.target.value)">
-								<option *ngFor="let categoryName of objectKeys(recipe.ingredients)" [attr.selected]="categoryName == selectedIngredientsCategory ? true : null">{{ categoryName }}</option>
-							</select>
+							<div class="select">
+								<select class="form-control inline-block" (change)="ingredientsCategoryChanged($event.target.value)">
+									<option *ngFor="let categoryName of objectKeys(recipe.ingredients)" [attr.selected]="categoryName == selectedIngredientsCategory ? true : null">{{ categoryName }}</option>
+								</select>
+								<i class="fas fa-angle-down"></i>
+							</div>
 						</div>
 						<div class="form-group">
 							<label>הוסף קטגוריה חדשה</label>

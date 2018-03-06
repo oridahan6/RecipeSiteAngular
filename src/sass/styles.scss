@@ -45,6 +45,17 @@ input[type=file].inputfile {
 .inline-block { display: inline-block !important; }
 .align-center { text-align: center !important; }
 
+.select { 
+	position: relative;
+
+	select { padding-left: 1.5rem; }
+	.fa-angle-down {
+		position: absolute;
+		top: 12px;
+		left: 10px;
+	}
+}
+
 // Bootstrap styling ====================================================================== 
 .alert-danger {
     color: #a94442;
