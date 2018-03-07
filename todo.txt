@@ -1,0 +1,1 @@
+- Deploy to AWS: https://scotch.io/tutorials/deploying-a-mean-app-to-amazon-ec2-part-1
