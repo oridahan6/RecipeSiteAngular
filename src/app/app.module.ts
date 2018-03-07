@@ -10,6 +10,9 @@ import { routing } from './app.routes';
 // Services
 import { DataService } from './services/data.service';
 
+// Helpers
+import './helpers/extensions.ts';
+
 // Components
 import { AppComponent } from './app.component';
 import { RecipesListComponent } from './recipes-list/recipes-list.component';
