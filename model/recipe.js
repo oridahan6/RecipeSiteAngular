@@ -1,22 +1,12 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 var recipeSchema = mongoose.Schema({
     title: String,
-    ingredients: {
-    	categoryName: [
-    		{ 
-	    		title: String, 
-	    		quantity: Number, 
-	    		unit: {
-	    			type: mongoose.Schema.Types.ObjectId, 
-			        ref: 'Unit'
-	    		} 
-    		}
-    	]
-    },
-    directions: { categoryName: [ { title: String } ] },
+    ingredients: Schema.Types.Mixed,
+    directions: Schema.Types.Mixed,
     categories: { 
-        type: [mongoose.Schema.Types.ObjectId], 
+        type: [Schema.Types.ObjectId], 
         ref: 'Category'
     },
     prepTime: Number,
@@ -24,15 +14,15 @@ var recipeSchema = mongoose.Schema({
 	level: String,
     kosherType: String,
     cuisines: { 
-        type: [mongoose.Schema.Types.ObjectId], 
+        type: [Schema.Types.ObjectId], 
         ref: 'Cuisine'
     },
     mainIngredients: { 
-        type: [mongoose.Schema.Types.ObjectId], 
+        type: [Schema.Types.ObjectId], 
         ref: 'MainIngredient'
     },
     directionMethods: { 
-        type: [mongoose.Schema.Types.ObjectId], 
+        type: [Schema.Types.ObjectId], 
         ref: 'DirectionMethod'
     },
     created: { 
