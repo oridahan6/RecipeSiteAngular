@@ -23,6 +23,18 @@ export class DataService {
 	  		.map(result => this.result = result.json().data);
 	}
 
+	uploadImage(imagesData) : Observable<string[]> {
+		return this._http.post("/api/upload", imagesData)
+			.map((res) => res.json())
+			.map((res) => {
+				var imagesNames = [];
+				res.uploadedFiles.forEach(function(file, index){
+					imagesNames.push(file.filename);
+				});
+				return imagesNames;
+			});
+	}
+
 	// TODO: add a success and error message
 	saveRecipe(recipe) {
 		let headers = new Headers;
@@ -42,31 +54,31 @@ export class DataService {
 	getCategories() : Observable<Category[]> {
 		return this._http.get("/api/categories")
 	  		.map(result => result.json())
-	  		.map(res => <Category[]>res.categories);;
+	  		.map(res => <Category[]>res.categories);
 	}
 
 	getUnits() : Observable<Unit[]> {
 		return this._http.get("/api/units")
 	  		.map(result => result.json())
-	  		.map(res => <Unit[]>res.units);;
+	  		.map(res => <Unit[]>res.units);
 	}
 
 	getCuisines() : Observable<Cuisine[]> {
 		return this._http.get("/api/cuisines")
 	  		.map(result => result.json())
-	  		.map(res => <Cuisine[]>res.cuisines);;
+	  		.map(res => <Cuisine[]>res.cuisines);
 	}
 
 	getMainIngredients() : Observable<Ingredient[]> {
 		return this._http.get("/api/main-ingredients")
 	  		.map(result => result.json())
-	  		.map(res => <Ingredient[]>res.mainIngredients);;
+	  		.map(res => <Ingredient[]>res.mainIngredients);
 	}
 
 	getDirectionMethods() : Observable<DirectionMethod[]> {
 		return this._http.get("/api/direction-methods")
 	  		.map(result => result.json())
-	  		.map(res => <DirectionMethod[]>res.directionMethods);;
+	  		.map(res => <DirectionMethod[]>res.directionMethods);
 	}
 
 }

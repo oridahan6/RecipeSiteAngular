@@ -300,10 +300,39 @@ export class AddRecipeComponent implements OnInit {
 	//////////////////////////////////////////////////////////////////////
 
 	submitForm(val) {
-		console.log("this.recipe", this.recipe);
-		this._dataService.saveRecipe(this.recipe);
+		// UploadImages
+		if (this.uploadedFiles.length) {
+			var formData: FormData = new FormData();
+			for (var i = 0; i < this.uploadedFiles.length; i++) {
+	            formData.append("images", this.uploadedFiles[i], this.uploadedFiles[i].name);
+	        }	
+			this._dataService.uploadImage(formData)
+				.subscribe(
+					data => {
+						// console.log("this.recipe after uploading", this.recipe);
+						// console.log('data',data);
+						this.recipe.images = data;
+						this._dataService.saveRecipe(this.recipe);
+					},
+					err => console.error(err),
+					() => { /*console.log('done uploading images'); */ }
+			    );
+		} else {
+			// enable upload without images?
+			// set recipe images as empty?
+			// console.log("this.recipe", this.recipe);
+			// this._dataService.saveRecipe(this.recipe.fileData);
+		}
+
 	}
 
+	// TODO: what happens if user changes images?
+  	updateUploadedFiles(event) {
+  		let fileList: FileList = event.target.files;
+	    if (fileList.length > 0) {
+	    	this.uploadedFiles = fileList;
+	    }
+  	}
 
   	// TODO: Remove this when we're done
 	get diagnostic() { return JSON.stringify(this.recipe); }
