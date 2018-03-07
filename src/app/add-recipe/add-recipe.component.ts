@@ -60,6 +60,8 @@ export class AddRecipeComponent implements OnInit {
 
 	recipe: Recipe;
 
+	unitsNamesRegex = "";
+
 	// added support for looping through an associative object|array
 	objectKeys = Object.keys;
 
@@ -213,8 +215,14 @@ export class AddRecipeComponent implements OnInit {
   	}
 
   	getUnitsRegex() {
-  		// TODO: convert from this.units
-		return "(גרם|כפית|כף|כפות|כפיות|קופסא)?";
+  		if (this.unitsNamesRegex)
+  			return this.unitsNamesRegex;
+  		var unitsNames = [];
+  		var ret = this.units.map(unit => {
+  			unitsNames.push(unit.name);
+  		});
+  		this.unitsNamesRegex = "(" + unitsNames.join("|") + ")";
+  		return this.unitsNamesRegex;
   	}
 
   	getUnitIdFromName(name: string): string {
