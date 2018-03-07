@@ -315,11 +315,7 @@ export class AddRecipeComponent implements OnInit {
 	setCategories() {
 		this._dataService.getCategories()
 		    .subscribe(
-				data => {
-					this.categories = data;
-					console.log("this.categories", this.categories);
-
-				},
+				data => this.categories = data,
 				err => console.error(err),
 				() => { /*console.log('done loading categories'); */ }
 		    );
@@ -328,11 +324,7 @@ export class AddRecipeComponent implements OnInit {
 	setUnits() {
 		this._dataService.getUnits()
 		    .subscribe(
-				data => {
-					this.units = data;
-					console.log("this.units", this.units);
-
-				},
+				data => this.units = data,
 				err => console.error(err),
 				() => { /*console.log('done loading units'); */ }
 		    );
@@ -341,11 +333,7 @@ export class AddRecipeComponent implements OnInit {
 	setCuisines() {
 		this._dataService.getCuisines()
 		    .subscribe(
-				data => {
-					this.cuisines = data;
-					console.log("this.cuisines", this.cuisines);
-
-				},
+				data => this.cuisines = data,
 				err => console.error(err),
 				() => { /*console.log('done loading cuisines'); */ }
 		    );
@@ -354,11 +342,7 @@ export class AddRecipeComponent implements OnInit {
 	setMainIngredients() {
 		this._dataService.getMainIngredients()
 		    .subscribe(
-				data => {
-					this.mainIngredients = data;
-					console.log("this.mainIngredients", this.mainIngredients);
-
-				},
+				data => this.mainIngredients = data,
 				err => console.error(err),
 				() => { /*console.log('done loading main ingredients'); */ }
 		    );
@@ -369,8 +353,6 @@ export class AddRecipeComponent implements OnInit {
 		    .subscribe(
 				data => {
 					this.directionMethods = data;
-					console.log("this.directionMethods", this.directionMethods);
-
 				},
 				err => console.error(err),
 				() => { /*console.log('done loading direction methods'); */ }
