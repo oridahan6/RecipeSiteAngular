@@ -1,2 +1,4 @@
 - Deploy to AWS: https://scotch.io/tutorials/deploying-a-mean-app-to-amazon-ec2-part-1
 - User Authentication - https://www.sitepoint.com/user-authentication-mean-stack/
+- improve image upload security - https://github.com/expressjs/multer/issues/170
+- block images requests if not from the app?
