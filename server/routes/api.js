@@ -39,7 +39,6 @@ router.get('/recipes', (req, res) => {
 
 // Save Recipe
 router.post('/recipe', function(req, res, next) {
-	console.log('req.body',req.body);
 	Recipe.create(req.body, function (err, post) {
 		if (err) return next(err);
 		res.json(post);
