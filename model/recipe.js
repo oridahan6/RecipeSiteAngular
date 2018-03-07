@@ -9,6 +9,7 @@ var recipeSchema = mongoose.Schema({
         type: [Schema.Types.ObjectId], 
         ref: 'Category'
     },
+    images: [String],
     prepTime: Number,
 	cookTime: Number,
 	level: String,

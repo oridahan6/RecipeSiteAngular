@@ -19,5 +19,6 @@ export class Recipe {
 	    public mainIngredients: string[],
 	    public directionMethods: string[],
 		public id?: string,	
+		public images?: string[]
 	) {  }
 }
