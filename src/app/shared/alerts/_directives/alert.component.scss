@@ -1,0 +1,21 @@
+﻿@import 'variables';
+
+.alerts-container {
+    position: fixed;
+    width: 100%;
+    top: 56px;
+    z-index: $top-z-index;
+
+	.alert {
+	    border-radius: 0;
+	    direction: rtl;
+	    text-align: right;
+	    margin-bottom: 0;
+
+	    .close {
+		    position: absolute;
+		    left: 15px;
+	    }
+	}
+
+}

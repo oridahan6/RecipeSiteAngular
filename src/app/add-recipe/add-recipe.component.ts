@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
+// Services
 import { DataService } from '../services/data.service';
+import { AlertService } from '../shared';
 
 import { SelectUnitsComponent } from '../select-units/select-units.component';
 
@@ -84,7 +86,7 @@ export class AddRecipeComponent implements OnInit {
 	mainIngredients: Ingredient[];
 	directionMethods: DirectionMethod[];
 
-	constructor(private _dataService: DataService) {
+	constructor(private _dataService: DataService, private _alertService: AlertService) {
 		this.setCategories();
 		this.setUnits();
 		this.setCuisines();
@@ -182,7 +184,6 @@ export class AddRecipeComponent implements OnInit {
 			}
 		}
 		// TODO - show error if one of the ingredients were not matched with the regex
-		// TODO - show error if ingredient exsited
 		this.ingredientsTextInput.nativeElement.value = "";
 		this.ingredientsText = "";
   	}
@@ -242,7 +243,7 @@ export class AddRecipeComponent implements OnInit {
 			this.recipe.ingredients[this.selectedIngredientsCategory].push(ingredient);
 			return;
 		} 
-		// TODO: show error
+		this.showErrorAlert("מצרך '" + ingredient.title + "' קיים בקטגוריה '" + this.selectedIngredientsCategory + "', הוסף מצרך שונה");
   	}
 
 	//////////////////////////////////////////////////////////////////////
@@ -407,5 +408,16 @@ export class AddRecipeComponent implements OnInit {
 				() => { /*console.log('done loading direction methods'); */ }
 		    );
 	}
+
+	//////////////////////////////////////////////////////////////////////
+	//// Alerts methods						
+	//////////////////////////////////////////////////////////////////////
+	showSuccessAlert(message: string) {
+        this._alertService.success(message);
+    }
+
+	showErrorAlert(message: string) {
+        this._alertService.error(message);
+    }
 
 }

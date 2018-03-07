@@ -19,9 +19,11 @@ import { RecipesListComponent } from './recipes-list/recipes-list.component';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { HomeComponent } from './home/home.component';
 import {
-  FooterComponent,
-  HeaderComponent,
-  SharedModule
+	FooterComponent,
+	HeaderComponent,
+	AlertComponent,
+	AlertService,
+	SharedModule
 } from './shared';
 import { AddedPropertiesComponent } from './added-properties/added-properties.component';
 import { SelectUnitsComponent } from './select-units/select-units.component';
@@ -35,7 +37,8 @@ import { SelectUnitsComponent } from './select-units/select-units.component';
     FooterComponent,
     HeaderComponent,
     AddedPropertiesComponent,
-    SelectUnitsComponent
+    SelectUnitsComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,10 @@ import { SelectUnitsComponent } from './select-units/select-units.component';
     SharedModule,
     DndModule.forRoot()
   ],
-  providers: [DataService],
+  providers: [
+  	DataService,
+  	AlertService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
