@@ -1,6 +1,21 @@
 const express = require('express');
+const crypto = require('crypto');
+const mime = require('mime');
 const router = express.Router();
 const ObjectID = require('mongodb').ObjectID;
+
+var multer = require('multer');
+var DIR = './uploads/';
+var storage = multer.diskStorage({
+  destination: './uploads/',
+  filename: function (req, file, cb) {
+    crypto.pseudoRandomBytes(16, function (err, raw) {
+      	cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+      	// cb(null, file.originalname);
+    });
+  }
+});
+var upload = multer({ storage: storage });
 
 var mongoose = require('mongoose');
 var Recipe = require('../../model/recipe.js');
@@ -35,6 +50,12 @@ router.get('/recipes', (req, res) => {
 		if (err) return next(err);
 		res.json(recipes);
   	});
+});
+
+// Upload Images
+router.post("/upload", upload.array("images", 12), function(req, res) {
+	res.write(JSON.stringify({success: true, uploadedFiles: req.files},null,2));
+    res.end();
 });
 
 // Save Recipe
