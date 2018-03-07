@@ -117,18 +117,17 @@ export class AddRecipeComponent implements OnInit {
 		};
 
 		this.recipe = new Recipe(
-			0,
-			"",
+			"t",
 			ingredients,
 			directions,
-			[0],
-			0,
-			0,
+			[],
+			100,
+			20,
 			this.levels[0].presentedName,
 			this.kosherTypes[0].presentedName,
-			[0],
-			[0],
-			[0]
+			[],
+			[],
+			[]
 		);
 	}
 
@@ -302,7 +301,7 @@ export class AddRecipeComponent implements OnInit {
 
 	submitForm(val) {
 		console.log("this.recipe", this.recipe);
-
+		this._dataService.saveRecipe(this.recipe);
 	}
 
 

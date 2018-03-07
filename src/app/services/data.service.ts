@@ -23,6 +23,21 @@ export class DataService {
 	  		.map(result => this.result = result.json().data);
 	}
 
+	saveRecipe(recipe) {
+		let headers = new Headers;
+		let body = JSON.stringify(recipe);
+		headers.append('Content-Type', 'application/json');
+		return this._http.post("/api/recipe", body ,{headers: headers})
+        	.subscribe(
+				res => {
+					console.log("after res", res);
+				},
+				err => {
+					console.log("Error occured");
+				}
+			);
+	}
+
 	getCategories() : Observable<Category[]> {
 		return this._http.get("/api/categories")
 	  		.map(result => result.json())

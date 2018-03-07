@@ -7,17 +7,17 @@ import { Category } from '../model/category';
 // TODO: add dates - created, updated etc.
 export class Recipe {
 	constructor(
-		public id: number,	
 	    public title: string,
 	    public ingredients: {[categoryName: string]: Ingredient[]},
 	    public directions: {[categoryName: string]: Direction[]},
-	    public categories: number[],
+	    public categories: string[],
 	    public prepTime: number,
 	    public cookTime: number,
 	    public level: string,
 	    public kosherType: string,
-	    public cuisines: number[],
-	    public mainIngredients: number[],
-	    public directionMethods: number[]
+	    public cuisines: string[],
+	    public mainIngredients: string[],
+	    public directionMethods: string[],
+		public id?: string,	
 	) {  }
 }
