@@ -229,10 +229,7 @@ export class AddRecipeComponent implements OnInit {
   	}
 
   	getUnitIdFromName(name: string): string {
-  		var foundUnit = this.units.filter(function(e) {
-			return e.name == name;
-		});
-		return foundUnit.length ? foundUnit[0]._id : "";
+  		return this.units.findObjectPropertyByAnotherProperty("name", name, "_id");
   	}
 
   	checkAndAddIngredientAlreadyExist(ingredient: Ingredient) {
