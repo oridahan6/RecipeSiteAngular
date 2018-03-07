@@ -23,6 +23,7 @@ export class DataService {
 	  		.map(result => this.result = result.json().data);
 	}
 
+	// TODO: add a success and error message
 	saveRecipe(recipe) {
 		let headers = new Headers;
 		let body = JSON.stringify(recipe);
