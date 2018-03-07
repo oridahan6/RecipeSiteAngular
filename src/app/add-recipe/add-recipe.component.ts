@@ -138,6 +138,7 @@ export class AddRecipeComponent implements OnInit {
 	//////////////////////////////////////////////////////////////////////
 
 	// TODO: check for duplicates before adding ingredient to array
+	// TODO: auto select main ingredients after adding
 	addIngredient(): void {
 		if (!this.ingredientNameInput.nativeElement.value)
 			return;
@@ -148,7 +149,8 @@ export class AddRecipeComponent implements OnInit {
 			this.selectUnitsComponent.selectedUnit	
 		);
 		console.log('addedIngredient',addedIngredient);
-		this.recipe.ingredients[this.selectedIngredientsCategory].push(addedIngredient);
+
+		this.checkAndAddIngredientAlreadyExist(addedIngredient);
 
 		console.log('after add ingredient this.recipe.ingredients',this.recipe.ingredients);
 
@@ -176,10 +178,11 @@ export class AddRecipeComponent implements OnInit {
 					this.getUnitIdFromName(matches[2])
 
 				);
-				this.recipe.ingredients[this.selectedIngredientsCategory].push(addedIngredient);
+				this.checkAndAddIngredientAlreadyExist(addedIngredient);
 			}
 		}
 		// TODO - show error if one of the ingredients were not matched with the regex
+		// TODO - show error if ingredient exsited
 		this.ingredientsTextInput.nativeElement.value = "";
 		this.ingredientsText = "";
   	}
@@ -230,6 +233,16 @@ export class AddRecipeComponent implements OnInit {
 			return e.name == name;
 		});
 		return foundUnit.length ? foundUnit[0]._id : "";
+  	}
+
+  	checkAndAddIngredientAlreadyExist(ingredient: Ingredient) {
+		var isExists = this.recipe.ingredients[this.selectedIngredientsCategory].inArray(ingredient);
+
+		if (isExists === -1) {
+			this.recipe.ingredients[this.selectedIngredientsCategory].push(ingredient);
+			return;
+		} 
+		// TODO: show error
   	}
 
 	//////////////////////////////////////////////////////////////////////
