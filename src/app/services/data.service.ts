@@ -40,6 +40,7 @@ export class DataService {
 		let headers = new Headers;
 		let body = JSON.stringify(recipe);
 		headers.append('Content-Type', 'application/json');
+		// TODO: return success using map like in upload images to show success message in add-recipe component
 		return this._http.post("/api/recipe", body ,{headers: headers})
         	.subscribe(
 				res => {
