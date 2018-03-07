@@ -1,5 +1,6 @@
 Todo:
 	- block images requests if not from the app?
+	- add preview before add recipe submit?
 
 Resources:
 	- Bootstrap themes - https://bootswatch.com/
