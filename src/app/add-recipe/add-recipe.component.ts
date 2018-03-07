@@ -139,7 +139,6 @@ export class AddRecipeComponent implements OnInit {
 	//// Ingredients methods						
 	//////////////////////////////////////////////////////////////////////
 
-	// TODO: check for duplicates before adding ingredient to array
 	// TODO: auto select main ingredients after adding
 	addIngredient(): void {
 		if (!this.ingredientNameInput.nativeElement.value)
