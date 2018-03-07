@@ -1,4 +1,14 @@
-- Deploy to AWS: https://scotch.io/tutorials/deploying-a-mean-app-to-amazon-ec2-part-1
-- User Authentication - https://www.sitepoint.com/user-authentication-mean-stack/
-- improve image upload security - https://github.com/expressjs/multer/issues/170
-- block images requests if not from the app?
+Todo:
+	- block images requests if not from the app?
+
+Resources:
+	- Deploy to AWS: https://scotch.io/tutorials/deploying-a-mean-app-to-amazon-ec2-part-1
+	- User Authentication - https://www.sitepoint.com/user-authentication-mean-stack/
+	- improve image upload security - https://github.com/expressjs/multer/issues/170
+	- Angular hero tutorial - https://angular.io/tutorial/toh-pt2
+	- Great mean apps examples:
+		- https://www.djamware.com/post/5a0673c880aca7739224ee21/mean-stack-angular-5-crud-web-application-example
+		- https://www.codeproject.com/Articles/1185294/Build-Modern-App-with-MEAN-Stack-Part
+		- https://www.sitepoint.com/mean-stack-angular-2-angular-cli/
+	- Mongoose Schema example - https://code.tutsplus.com/articles/an-introduction-to-mongoose-for-mongodb-and-nodejs--cms-29527
+	- MongoDB schema design rules and object refernce examples - https://www.mongodb.com/blog/post/6-rules-of-thumb-for-mongodb-schema-design-part-1
