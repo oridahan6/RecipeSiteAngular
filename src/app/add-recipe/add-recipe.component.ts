@@ -15,9 +15,9 @@ import { Cuisine } from '../model/cuisine';
 import { DirectionMethod } from '../model/direction-method';
 
 @Component({
-  selector: 'app-add-recipe',
-  templateUrl: './add-recipe.component.html',
-  styleUrls: ['./add-recipe.component.scss']
+	selector: 'app-add-recipe',
+	templateUrl: './add-recipe.component.html',
+	styleUrls: ['./add-recipe.component.scss']
 })
 export class AddRecipeComponent implements OnInit {
 
@@ -79,12 +79,15 @@ export class AddRecipeComponent implements OnInit {
 		{ name: "intermediate", presentedName: "מנוסה" },
 		{ name: "expert", presentedName: "מומחה" }
 	];
-	// get from db
+
 	units: Unit[];
 	categories: Category[];
 	cuisines: Cuisine[];
-	mainIngredients: Ingredient[];
+	mainIngredients: Ingredient[] = [];
 	directionMethods: DirectionMethod[];
+
+	// NgModels
+	selectedMainIngredients = [];
 
 	constructor(private _dataService: DataService, private _alertService: AlertService) {
 		this.setCategories();
@@ -152,6 +155,7 @@ export class AddRecipeComponent implements OnInit {
 		console.log('addedIngredient',addedIngredient);
 
 		this.checkAndAddIngredientAlreadyExist(addedIngredient);
+		this.autoSelectMainIngredients(addedIngredient);
 
 		console.log('after add ingredient this.recipe.ingredients',this.recipe.ingredients);
 
@@ -180,6 +184,7 @@ export class AddRecipeComponent implements OnInit {
 
 				);
 				this.checkAndAddIngredientAlreadyExist(addedIngredient);
+				this.autoSelectMainIngredients(addedIngredient);
 			}
 		}
 		// TODO - show error if one of the ingredients were not matched with the regex
@@ -229,7 +234,8 @@ export class AddRecipeComponent implements OnInit {
   	}
 
   	getUnitIdFromName(name: string): string {
-  		return this.units.findObjectPropertyByAnotherProperty("name", name, "_id");
+  		var unit = this.units.find(unit => unit.name === name);
+  		return unit ? unit._id : "";
   	}
 
   	checkAndAddIngredientAlreadyExist(ingredient: Ingredient) {
@@ -240,6 +246,20 @@ export class AddRecipeComponent implements OnInit {
 			return;
 		} 
 		this.showErrorAlert("מצרך '" + ingredient.title + "' קיים בקטגוריה '" + this.selectedIngredientsCategory + "', הוסף מצרך שונה");
+  	}
+
+  	autoSelectMainIngredients(ingredient: Ingredient) {
+  		var mainIngredient = this.mainIngredients.find(mainIngredient => mainIngredient.title === ingredient.title);
+  		if (mainIngredient){
+  			if (this.recipe.mainIngredients.inArray(mainIngredient) === -1){
+  				this.selectedMainIngredients = [mainIngredient._id];
+  				this.recipe.mainIngredients.push(mainIngredient._id);
+  			} 
+  		}
+  	}
+
+  	onMainIngredientsChange(mainIngredients) {
+  	    this.recipe.mainIngredients = mainIngredients.map(item => item._id);
   	}
 
 	//////////////////////////////////////////////////////////////////////

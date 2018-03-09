@@ -3,7 +3,10 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+
+// External modules
 import { DndModule } from 'ng2-dnd';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { routing } from './app.routes';
 
@@ -46,7 +49,8 @@ import { SelectUnitsComponent } from './select-units/select-units.component';
     HttpModule,
     routing,
     SharedModule,
-    DndModule.forRoot()
+    DndModule.forRoot(),
+    NgSelectModule
   ],
   providers: [
   	DataService,

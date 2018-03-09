@@ -18,5 +18,9 @@ Array.prototype.findObjectPropertyByAnotherProperty = function (searchPropertyNa
 	var foundObject = this.filter(function(e) {
 		return e[searchPropertyName] == searchPropertyValue;
 	});
-	return foundObject.length ? foundObject[0][returnedPropertyValue] : "";
+	if (returnedPropertyValue){
+		return foundObject.length ? foundObject[0][returnedPropertyValue] : "";	
+	}
+	return foundObject.length ? foundObject[0] : "";
+	
 }
