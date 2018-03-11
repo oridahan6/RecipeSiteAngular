@@ -147,7 +147,7 @@ export class AddRecipeComponent implements OnInit {
 	//// Ingredients methods						
 	//////////////////////////////////////////////////////////////////////
 
-	// TODO: auto select main ingredients after adding
+	// TODO - try to auto select ingredients based on common names: potato - potatos etc.
 	addIngredient(): void {
 		if (!this.ingredientNameInput.nativeElement.value)
 			return;
