@@ -95,7 +95,8 @@ export class AddRecipeComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		let ingredients = {
+		// testing
+		var ingredients = {
 			"כללי": [
 				new Ingredient("a", "3", "5a9e883884d81edd7cb98249"),
 				new Ingredient("b", "5", "5a9e884a84d81edd7cb9825a"),
@@ -107,7 +108,7 @@ export class AddRecipeComponent implements OnInit {
 				new Ingredient("f", "6", "5a9e88c284d81edd7cb982b6")
 			]
 		};
-		let directions = {
+		var directions = {
 			"כללי": [
 				new Direction("בלה"),
 				new Direction("בלה בלה"),
@@ -118,6 +119,13 @@ export class AddRecipeComponent implements OnInit {
 				new Direction("בלו בלו"),
 				new Direction("בלו בלו בלו")
 			]
+		};
+
+		ingredients = {
+			"כללי": []
+		};
+		directions = {
+			"כללי": []
 		};
 
 		this.recipe = new Recipe(
@@ -211,10 +219,10 @@ export class AddRecipeComponent implements OnInit {
   	}
 
 	getIngredientsRegex() {
-  		const ingredientQtyRegex = "(\\d\\.\\d{2}|\\d\\/\\d|\\d+|(?:חצי|רבע))";
+  		const ingredientQtyRegex = "(\\d\\.\\d{2}|\\d{1,2}-\\d{1,2}|\\d\\/\\d|\\d+|(?:חצי|רבע))";
 		const possibleSpaceChars = "\\s?";
 		const ingredientNameRegex = "(\\D+)";
-		const wholeRegex = ingredientQtyRegex + possibleSpaceChars + this.getUnitsRegex() + possibleSpaceChars + ingredientNameRegex;
+		const wholeRegex = ingredientQtyRegex + "?" + possibleSpaceChars + this.getUnitsRegex() + "?" + possibleSpaceChars + ingredientNameRegex;
 
 		return new RegExp(wholeRegex);
   	}
