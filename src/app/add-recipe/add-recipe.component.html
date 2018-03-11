@@ -226,12 +226,14 @@
 				    <ng-select
 						#mainIngredientsSelect
 				        [items]="mainIngredients"
+				        class="custom"
 				        [multiple]="true"
 				        [closeOnSelect]="false"
 				        name="mainIngredients"
 				        bindLabel="title"
 				        bindValue="_id"
 				        placeholder="בחר"
+				        notFoundText="לא נמצאו מצרכים"
 				        [(ngModel)]="recipe.mainIngredients">
 					</ng-select>
 				    <small class="form-text text-muted">בחר מצרכים עיקריים הנמצאים במתכון</small>
