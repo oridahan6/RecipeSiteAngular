@@ -239,9 +239,18 @@
             	</div>
 				<div class="form-group">
 					<label>דרכי הכנה</label>
-				    <select multiple="" class="form-control" [(ngModel)]="recipe.directionMethods" name="directionMethods">
-				        <option *ngFor="let directionMethod of directionMethods" value="{{ directionMethod._id }}">{{ directionMethod.name }}</option>
-				    </select>
+				    <ng-select
+				        [items]="directionMethods"
+				        class="custom"
+				        [multiple]="true"
+				        [closeOnSelect]="false"
+				        name="directionMethods"
+				        bindLabel="name"
+				        bindValue="_id"
+				        placeholder="בחר"
+				        notFoundText="לא נמצאו שלבי הכנה"
+				        [(ngModel)]="recipe.directionMethods">
+					</ng-select>
 				    <small class="form-text text-muted">בחר שיטות בישול במתכון</small>
             	</div>
             	<div class="form-group align-center">
