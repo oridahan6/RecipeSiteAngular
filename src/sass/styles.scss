@@ -18,15 +18,16 @@
 
 .ng-select.custom .ng-control { padding-right: 10px; }
 
-.ng-select.ng-multiple .ng-control .ng-value-container .ng-value {
+.ng-select.custom.ng-multiple .ng-control .ng-value-container .ng-value {
 	background-color: #fff5f5;
     border: 1px solid #ffc2c2;
 }
 
-.ng-select.ng-multiple .ng-control .ng-value-container .ng-value .ng-value-icon.left { border-right: none; }
-.ng-select.ng-multiple .ng-control .ng-value-container .ng-value .ng-value-icon:hover { background-color: #fdd8d8; }
-.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.marked { background-color: #fdd8d8; }
-.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.selected { background-color: #fff5f5; }
+.ng-select.custom.ng-multiple .ng-control .ng-value-container .ng-value { padding-left: .3125rem; }
+.ng-select.custom.ng-multiple .ng-control .ng-value-container .ng-value .ng-value-icon.left { border-right: none; }
+.ng-select.custom.ng-multiple .ng-control .ng-value-container .ng-value .ng-value-icon:hover { background-color: #fdd8d8; }
+.ng-select.custom .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.marked { background-color: #fdd8d8; }
+.ng-select.custom .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.selected { background-color: #fff5f5; }
 
 // General styling ====================================================================== 
 * {
