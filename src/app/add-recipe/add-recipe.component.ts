@@ -273,15 +273,13 @@ export class AddRecipeComponent implements OnInit {
   		this.recipe.directions[categoryName] = this.recipe.directions[categoryName].filter(obj => obj !== removedDirection);
   	}
 
-	// TODO: check for duplicates before adding ingredient to array
+	// TODO: check for duplicates before adding direction to array
 	addDirection(): void {
 		if (!this.directionInput.nativeElement.value)
 			return;
 
 		var addedDirection = new Direction(this.directionInput.nativeElement.value);
 		this.recipe.directions[this.selectedDirectionsCategory].push(addedDirection);
-
-		console.log('after add ingredient this.recipe.directions',this.recipe.directions);
 
 		this.directionInput.nativeElement.value = "";
 		this.direction = "";
