@@ -86,9 +86,6 @@ export class AddRecipeComponent implements OnInit {
 	mainIngredients: Ingredient[] = [];
 	directionMethods: DirectionMethod[];
 
-	// NgModels
-	selectedMainIngredients = [];
-
 	constructor(private _dataService: DataService, private _alertService: AlertService) {
 		this.setCategories();
 		this.setUnits();
@@ -252,14 +249,10 @@ export class AddRecipeComponent implements OnInit {
   		var mainIngredient = this.mainIngredients.find(mainIngredient => mainIngredient.title === ingredient.title);
   		if (mainIngredient){
   			if (this.recipe.mainIngredients.inArray(mainIngredient) === -1){
-  				this.selectedMainIngredients = [mainIngredient._id];
   				this.recipe.mainIngredients.push(mainIngredient._id);
+  				this.recipe.mainIngredients = [...this.recipe.mainIngredients];
   			} 
   		}
-  	}
-
-  	onMainIngredientsChange(mainIngredients) {
-  	    this.recipe.mainIngredients = mainIngredients.map(item => item._id);
   	}
 
 	//////////////////////////////////////////////////////////////////////
