@@ -157,12 +157,22 @@
             	<h2>שלבי הכנה</h2>
             	<div class="form-group">
 					<input id="directions-tab1" type="radio" name="directions-tabs" checked>
-					<label class="tab" for="directions-tab1">הוספת שלב הכנה</label>
+					<label class="tab" for="directions-tab1">ע"י הדבקה</label>
 
 					<input id="directions-tab2" type="radio" name="directions-tabs">
-					<label class="tab" for="directions-tab2">ע"י הדבקה</label>
+					<label class="tab" for="directions-tab2">הוספת שלב הכנה</label>
 
 					<section id="directions-content1" class="tab-content">
+						<!-- add explanation -->
+						<div class="form-group">
+							<label>הדבק שלבים</label>
+	            			<textarea class="form-control" #directionsTextInput [(ngModel)]="directionsText" name="directionsText" rows="4" placeholder="הדבק שלבים, כל שלב בשורה חדשה."></textarea>
+	            		</div>
+            			<div class="align-center">
+	            			<button type="button" class="btn btn-outline-primary" [attr.disabled]="directionsText ? null : true" (click)="addPastedDirections()">הוסף שלבים</button>
+	            		</div>
+					</section>
+					<section id="directions-content2" class="tab-content">
 		        		<div class="form-group">
 			                <label>שלב</label>
 			                <input #directionInput [(ngModel)]="direction" name="direction" type="text" class="form-control" placeholder="הוסף שלב">
@@ -173,16 +183,7 @@
 			           	</div>
 					</section>
 
-					<section id="directions-content2" class="tab-content">
-						<!-- add explanation -->
-						<div class="form-group">
-							<label>הדבק שלבים</label>
-	            			<textarea class="form-control" #directionsTextInput [(ngModel)]="directionsText" name="directionsText" rows="4" placeholder="הדבק שלבים, כל שלב בשורה חדשה."></textarea>
-	            		</div>
-            			<div class="align-center">
-	            			<button type="button" class="btn btn-outline-primary" [attr.disabled]="directionsText ? null : true" (click)="addPastedDirections()">הוסף שלבים</button>
-	            		</div>
-					</section>
+					
 					<section class="new-category">
 						<div *ngIf="objectKeys(recipe.directions).length > 1" class="form-group">
 							<label>הוסף לקטגוריה</label>
