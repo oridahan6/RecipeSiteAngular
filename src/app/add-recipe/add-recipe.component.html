@@ -216,9 +216,18 @@
 				</div>
 				<div class="form-group">
 					<label>סוג מטבח</label>
-				    <select multiple="" class="form-control" [(ngModel)]="recipe.cuisines" name="cuisines">
-				        <option *ngFor="let cuisine of cuisines" value="{{ cuisine._id }}">{{ cuisine.name }}</option>
-				    </select>
+				    <ng-select
+				        [items]="cuisines"
+				        class="custom"
+				        [multiple]="true"
+				        [closeOnSelect]="false"
+				        name="cuisines"
+				        bindLabel="name"
+				        bindValue="_id"
+				        placeholder="בחר"
+				        notFoundText="לא נמצאו מטבחים"
+				        [(ngModel)]="recipe.cuisines">
+					</ng-select>
 				    <small class="form-text text-muted">בחר סוגי מטבחים הקשורים למתכון</small>
 				</div>
 				<div class="form-group">
