@@ -96,12 +96,22 @@
             	<h2>מצרכים</h2>
             	<div class="form-group">
 					<input id="ingredient-tab1" type="radio" name="ingredient-tabs" checked>
-					<label class="tab" for="ingredient-tab1">הוספת מצרך</label>
+					<label class="tab" for="ingredient-tab1">ע"י הדבקה</label>
 
 					<input id="ingredient-tab2" type="radio" name="ingredient-tabs">
-					<label class="tab" for="ingredient-tab2">ע"י הדבקה</label>
+					<label class="tab" for="ingredient-tab2">הוספת מצרך</label>
 
 					<section id="ingredient-content1" class="tab-content">
+						<!-- add explanation -->
+						<div class="form-group">
+							<label>הדבק מצרכים</label>
+	            			<textarea class="form-control" #ingredientsTextInput [(ngModel)]="ingredientText" name="ingredientText" rows="4" placeholder="הדבק מצרכים, כל מצרך בשורה חדשה."></textarea>
+	            		</div>
+            			<div class="align-center">
+	            			<button type="button" class="btn btn-outline-primary" [attr.disabled]="ingredientText ? null : true" (click)="addPastedIngredients()">הוסף מצרכים</button>
+	            		</div>
+					</section>
+					<section id="ingredient-content2" class="tab-content">
 		        		<div class="form-group">
 			                <label>שם</label>
 			                <input #ingredientNameInput [(ngModel)]="ingredientName" name="ingredientName" type="text" class="form-control" placeholder="שם המצרך">
@@ -120,17 +130,6 @@
 			           	<div class="align-center">
 							<button type="button" class="btn btn-outline-primary" [attr.disabled]="ingredientName ? null : true" (click)="addIngredient()">הוסף מצרך</button>			           		
 			           	</div>
-					</section>
-
-					<section id="ingredient-content2" class="tab-content">
-						<!-- add explanation -->
-						<div class="form-group">
-							<label>הדבק מצרכים</label>
-	            			<textarea class="form-control" #ingredientsTextInput [(ngModel)]="ingredientText" name="ingredientText" rows="4" placeholder="הדבק מצרכים, כל מצרך בשורה חדשה."></textarea>
-	            		</div>
-            			<div class="align-center">
-	            			<button type="button" class="btn btn-outline-primary" [attr.disabled]="ingredientText ? null : true" (click)="addPastedIngredients()">הוסף מצרכים</button>
-	            		</div>
 					</section>
 					<section class="new-category">
 						<div *ngIf="objectKeys(recipe.ingredients).length > 1" class="form-group">
