@@ -159,12 +159,9 @@ export class AddRecipeComponent implements OnInit {
 			this.ingredientQty.nativeElement.value,
 			this.selectUnitsComponent.selectedUnit	
 		);
-		console.log('addedIngredient',addedIngredient);
 
 		this.checkAndAddIngredientAlreadyExist(addedIngredient);
 		this.autoSelectMainIngredients(addedIngredient);
-
-		console.log('after add ingredient this.recipe.ingredients',this.recipe.ingredients);
 
 		this.ingredientNameInput.nativeElement.value = "";
 		this.ingredientName = "";
