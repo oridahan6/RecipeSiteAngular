@@ -339,30 +339,26 @@ export class AddRecipeComponent implements OnInit {
 	//////////////////////////////////////////////////////////////////////
 
 	submitForm(val) {
-		// UploadImages
-		if (this.uploadedFiles.length) {
-			var formData: FormData = new FormData();
-			for (var i = 0; i < this.uploadedFiles.length; i++) {
-	            formData.append("images", this.uploadedFiles[i], this.uploadedFiles[i].name);
-	        }	
-			this._dataService.uploadImage(formData)
-				.subscribe(
-					data => {
-						// console.log("this.recipe after uploading", this.recipe);
-						// console.log('data',data);
-						this.recipe.images = data;
-						this._dataService.saveRecipe(this.recipe);
-					},
-					err => console.error(err),
-					() => { /*console.log('done uploading images'); */ }
-			    );
-		} else {
-			// enable upload without images?
-			// set recipe images as empty?
-			// console.log("this.recipe", this.recipe);
-			// this._dataService.saveRecipe(this.recipe.fileData);
+		if (!this.uploadedFiles.length) {
+			this.showErrorAlert("לא ניתן להעלות מתכון ללא תמונות.");
+			return;
 		}
 
+		var formData: FormData = new FormData();
+		for (var i = 0; i < this.uploadedFiles.length; i++) {
+            formData.append("images", this.uploadedFiles[i], this.uploadedFiles[i].name);
+        }	
+		this._dataService.uploadImage(formData)
+			.subscribe(
+				data => {
+					// console.log("this.recipe after uploading", this.recipe);
+					// console.log('data',data);
+					this.recipe.images = data;
+					this._dataService.saveRecipe(this.recipe);
+				},
+				err => console.error(err),
+				() => { /*console.log('done uploading images'); */ }
+		    );
 	}
 
   	updateUploadedFiles(event) {
