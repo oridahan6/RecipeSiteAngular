@@ -1,4 +1,3 @@
-<!-- TODO: BUG: add new category -> add ingredient -> remove the ingredient -> the category ul is still visible -->
 <section class="added-properties-container" [class.added-ingredients]="isIngredientsType" [class.added-directions]="!isIngredientsType" *ngIf="!isEmptyAddedObjects()">
 	<h2>{{ title }} שהוספו</h2>
 	<ng-container *ngFor="let categoryName of objectKeys(addedObjects)">
