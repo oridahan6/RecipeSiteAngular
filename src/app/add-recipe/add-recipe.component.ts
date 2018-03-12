@@ -192,10 +192,8 @@ export class AddRecipeComponent implements OnInit {
 					matches[3],
 					matches[1],
 					this.getUnitIdFromName(matches[2])
-
 				);
 				this.checkAndAddIngredientAlreadyExist(addedIngredient);
-				// TODO: not autoselecting קוטג'
 				this.autoSelectMainIngredients(addedIngredient);
 			}
 		}
