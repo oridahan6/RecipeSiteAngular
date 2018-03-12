@@ -99,47 +99,51 @@ export class AddRecipeComponent implements OnInit {
 
 	ngOnInit() {
 		// testing
-		var ingredients = {
-			"כללי": [
-				new Ingredient("a", "3", "5a9e883884d81edd7cb98249"),
-				new Ingredient("b", "5", "5a9e884a84d81edd7cb9825a"),
-				new Ingredient("c", "6", "5a9e88c284d81edd7cb982b6")
-			],
-			"רוטב": [
-				new Ingredient("d", "3", "5a9e884a84d81edd7cb9825a"),
-				new Ingredient("e", "5", "5a9e883884d81edd7cb98249"),
-				new Ingredient("f", "6", "5a9e88c284d81edd7cb982b6")
-			]
-		};
-		var directions = {
-			"כללי": [
-				new Direction("בלה"),
-				new Direction("בלה בלה"),
-				new Direction("בלה בלה בלה")
-			],
-			"רוטב": [
-				new Direction("בלו"),
-				new Direction("בלו בלו"),
-				new Direction("בלו בלו בלו")
-			]
-		};
+		// var ingredients = {
+		// 	"כללי": [
+		// 		new Ingredient("a", "3", "5a9e883884d81edd7cb98249"),
+		// 		new Ingredient("b", "5", "5a9e884a84d81edd7cb9825a"),
+		// 		new Ingredient("c", "6", "5a9e88c284d81edd7cb982b6")
+		// 	],
+		// 	"רוטב": [
+		// 		new Ingredient("d", "3", "5a9e884a84d81edd7cb9825a"),
+		// 		new Ingredient("e", "5", "5a9e883884d81edd7cb98249"),
+		// 		new Ingredient("f", "6", "5a9e88c284d81edd7cb982b6")
+		// 	]
+		// };
+		// var directions = {
+		// 	"כללי": [
+		// 		new Direction("בלה"),
+		// 		new Direction("בלה בלה"),
+		// 		new Direction("בלה בלה בלה")
+		// 	],
+		// 	"רוטב": [
+		// 		new Direction("בלו"),
+		// 		new Direction("בלו בלו"),
+		// 		new Direction("בלו בלו בלו")
+		// 	]
+		// };
 
-		ingredients = {
-			"כללי": []
-		};
-		directions = {
-			"כללי": []
-		};
+
+		let ingredients = {};
+		let directions = {};
+
+		ingredients["כללי"] = [] as Ingredient[];
+		// delete ingredients['רוטב'];
+		// directions = {
+		// 	"כללי": []
+		// };
+
 
 		this.recipe = new Recipe(
 			"t",
 			ingredients,
 			directions,
 			[],
-			100,
-			20,
-			this.levels[0].presentedName,
-			this.kosherTypes[0].presentedName,
+			0,
+			0,
+			"",
+			"",
 			[],
 			[],
 			[]
