@@ -41,6 +41,23 @@ form {
 }
 .new-category .select { display: inline-block; width: 30%; margin-right: 1rem; }
 
+ul.uploaded-files {
+
+	list-style-type: none;
+
+	li {
+		display: inline-block;
+	    background-color: #fff5f5;
+	    border: 1px solid #ffc2c2;
+	    padding: .3125rem .5rem;
+	    margin-left: .9375rem;
+
+	    .file-name { padding-left: .3125rem }
+
+	    .fa-times { cursor: pointer; }
+	}
+}
+
 // CSS Tabs ====================================================================== 
 
 /*@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');*/

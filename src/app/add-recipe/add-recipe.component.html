@@ -272,9 +272,21 @@
 				    <small class="form-text text-muted">בחר שיטות בישול במתכון</small>
             	</div>
             	<div class="form-group align-center">
-	                <input type="file" id="imagesUploadInput" (change)="updateUploadedFiles($event)" class="form-control-file inputfile" name="recipe-images" aria-describedby="fileHelp" multiple  accept=".jpg,.jpeg,.png,.hief,.hiec">
+	                <input type="file" id="imagesUploadInput" (change)="updateUploadedFiles($event)" class="form-control-file inputfile" name="recipe-images" aria-describedby="fileHelp" multiple accept=".jpg,.jpeg,.png,.hief,.hiec">
 	                <label for="imagesUploadInput"><i class="fas fa-upload"></i>הוספת תמונות</label>
 	                <!-- <small id="fileHelp" class="form-text text-muted">הוסף תמונות של המתכון</small> -->
+	            </div>
+	            <div class="form-group align-center">
+	            	<ul class="uploaded-files">
+	            		<li *ngFor="let uploadedFile of uploadedFiles">
+		            		<div>
+		            			<span class="file-name">{{ uploadedFile.name }}</span>
+		            			<span (click)="removeFile(uploadedFile)">
+		            				<i class="fas fa-times"></i>
+		            			</span>
+		            		</div>
+		            	</li>
+	            	</ul>
 	            </div>
             </section>
             <div class="align-center">

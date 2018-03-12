@@ -67,7 +67,7 @@ export class AddRecipeComponent implements OnInit {
 	// added support for looping through an associative object|array
 	objectKeys = Object.keys;
 
-	uploadedFiles: FileList;
+	uploadedFiles = [];
 
 	kosherTypes = [
 		{ name: "dairy", presentedName: "חלבי" },
@@ -364,12 +364,17 @@ export class AddRecipeComponent implements OnInit {
 
 	}
 
-	// TODO: what happens if user changes images?
   	updateUploadedFiles(event) {
   		let fileList: FileList = event.target.files;
 	    if (fileList.length > 0) {
-	    	this.uploadedFiles = fileList;
+	    	for (var i = 0; i < fileList.length; i++) {
+	            this.uploadedFiles.push(fileList[i]);
+	        }
 	    }
+  	}
+
+  	removeFile(file) {
+  		this.uploadedFiles = this.uploadedFiles.filter( obj => obj.name !== file.name );
   	}
 
   	// TODO: Remove this when we're done
