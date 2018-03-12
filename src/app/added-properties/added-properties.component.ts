@@ -35,9 +35,18 @@ export class AddedPropertiesComponent implements OnInit {
 			this.title = "שלבי הכנה";
 	}
 
+	isEmptyAddedObjects() {
+		var isEmptyAddedObjects = true;
+		for (var key in this.addedObjects) {
+			if (this.addedObjects.hasOwnProperty(key)) {
+				if (this.addedObjects[key].length)
+					isEmptyAddedObjects = false;
+			}
+		}
+		return isEmptyAddedObjects;
+	}
+
 	removeObject(categoryName: string, object: {}) {
-		console.log("object", object);
-		console.log('categoryName',categoryName);
 		this.objectRemovedEvent.emit({categoryName: categoryName, removedObject: object});
 	}
 

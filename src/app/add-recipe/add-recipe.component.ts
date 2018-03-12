@@ -292,8 +292,11 @@ export class AddRecipeComponent implements OnInit {
   		pastedDirectionsText = pastedDirectionsText.split("\n");;
 
   		for (let pastedDirection of pastedDirectionsText) {
-  		    if (pastedDirection)
+  		    if (pastedDirection){
+  		    	if (!this.recipe.directions[this.selectedDirectionsCategory])
+  		    		this.recipe.directions[this.selectedDirectionsCategory] = [];
 				this.recipe.directions[this.selectedDirectionsCategory].push( new Direction(pastedDirection) );
+  		    }
 		}
 		this.directionsTextInput.nativeElement.value = "";
 		this.directionsText = "";
