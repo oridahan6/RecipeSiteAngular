@@ -64,7 +64,8 @@ export class AddRecipeComponent implements OnInit {
 
 	recipe: Recipe;
 
-	unitsNamesRegex = "";
+	singularUnitsNamesRegex = "";
+	pluralUnitsNamesRegex = "";
 
 	// added support for looping through an associative object|array
 	objectKeys = Object.keys;
@@ -179,6 +180,10 @@ export class AddRecipeComponent implements OnInit {
   		for (let pastedIngredient of pastedIngredientsText) {
 			// matches[1] - quantity, matches[2] - unit, matches[3] - ingredient name
 			var matches = pastedIngredient.match(this.getIngredientsRegex());
+			var matches = pastedIngredient.match(this.getIngredientsRegex(true));
+			if (!matches || !matches[2]){
+				matches = pastedIngredient.match(this.getIngredientsRegex());
+			}
 			if (matches) {
 				var addedIngredient = new Ingredient(
 					matches[3],
@@ -187,6 +192,7 @@ export class AddRecipeComponent implements OnInit {
 
 				);
 				this.checkAndAddIngredientAlreadyExist(addedIngredient);
+				// TODO: not autoselecting קוטג'
 				this.autoSelectMainIngredients(addedIngredient);
 			}
 		}
@@ -224,15 +230,27 @@ export class AddRecipeComponent implements OnInit {
 		return new RegExp(wholeRegex);
   	}
 
-  	getUnitsRegex() {
-  		if (this.unitsNamesRegex)
-  			return this.unitsNamesRegex;
+  	getUnitsRegex(plural: boolean) {
+  		if (plural && this.pluralUnitsNamesRegex)
+  			return this.pluralUnitsNamesRegex;
+  		if (!plural && this.singularUnitsNamesRegex)
+  			return this.singularUnitsNamesRegex;
   		var unitsNames = [];
-  		var ret = this.units.map(unit => {
+  		var units = this.units;
+  		if (plural) {
+			units = units.filter(unit => unit.plural);
+  		} else {
+  			units = units.filter(unit => !unit.plural);
+  		}
+  		var ret = units.map(unit => {
   			unitsNames.push(unit.name);
   		});
-  		this.unitsNamesRegex = "(" + unitsNames.join("|") + ")";
-  		return this.unitsNamesRegex;
+  		if (plural) {
+	  		this.pluralUnitsNamesRegex = "(" + unitsNames.join("|") + ")";
+	  		return this.pluralUnitsNamesRegex;
+  		} 
+  		this.singularUnitsNamesRegex = "(" + unitsNames.join("|") + ")";
+  		return this.singularUnitsNamesRegex;
   	}
 
   	getUnitIdFromName(name: string): string {
