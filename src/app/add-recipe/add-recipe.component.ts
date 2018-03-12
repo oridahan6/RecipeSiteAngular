@@ -6,6 +6,8 @@ import { AlertService } from '../shared';
 
 import { SelectUnitsComponent } from '../select-units/select-units.component';
 
+import { Helper } from '../helpers/helper';
+
 import { Recipe } from '../model/recipe';
 import { Ingredient } from '../model/ingredient';
 import { Direction } from '../model/direction';
@@ -175,10 +177,9 @@ export class AddRecipeComponent implements OnInit {
   		var pastedIngredientsText = this.ingredientsTextInput.nativeElement.value;
   		if (!pastedIngredientsText)
   			return;
-  		pastedIngredientsText = pastedIngredientsText.split("\n");;
+  		pastedIngredientsText = pastedIngredientsText.split("\n");
 
   		for (let pastedIngredient of pastedIngredientsText) {
-
 			// matches[1] - quantity, matches[2] - unit, matches[3] - ingredient name
 			var matches = pastedIngredient.match(this.getIngredientsRegex());
 			if (matches) {
@@ -339,10 +340,8 @@ export class AddRecipeComponent implements OnInit {
 	//////////////////////////////////////////////////////////////////////
 
 	submitForm(val) {
-		if (!this.uploadedFiles.length) {
-			this.showErrorAlert("לא ניתן להעלות מתכון ללא תמונות.");
+		if (this.checkForFormErrors())
 			return;
-		}
 
 		var formData: FormData = new FormData();
 		for (var i = 0; i < this.uploadedFiles.length; i++) {
@@ -372,6 +371,51 @@ export class AddRecipeComponent implements OnInit {
 
   	removeFile(file) {
   		this.uploadedFiles = this.uploadedFiles.filter( obj => obj.name !== file.name );
+  	}
+
+  	// TODO: consider drawing a box with all the errors next to the submit button
+  	checkForFormErrors() : boolean {
+  		if (!this.recipe.title) {
+			this.showErrorAlert("לא נבחר שם למתכון.");
+			return true;
+		}
+  		if (!this.recipe.kosherType) {
+			this.showErrorAlert("לא נבחר סוג המתכון.");
+			return true;
+		}
+  		if (!this.recipe.level) {
+			this.showErrorAlert("לא נבחרה רמת המתכון.");
+			return true;
+		}
+  		if (!this.recipe.prepTime && !this.recipe.cookTime) {
+			this.showErrorAlert("זמן ההכנה וזמן הבישול חסרים.");
+			return true;
+		}
+  		if (Helper.isAllObjectPropertiesEmpty(this.recipe.ingredients)) {
+			this.showErrorAlert("לא הוספו מצרכים.");
+			return true;
+		}
+  		if (Helper.isAllObjectPropertiesEmpty(this.recipe.directions)) {
+			this.showErrorAlert("לא הוספו שלבי הכנה.");
+			return true;
+		}
+  		if (!this.recipe.categories.length) {
+			this.showErrorAlert("לא נבחרו קטגוריות.");
+			return true;
+		}
+  		if (!this.recipe.directionMethods.length) {
+			this.showErrorAlert("לא נבחרו דרכי הכנה.");
+			return true;
+		}
+  		if (!this.recipe.mainIngredients.length) {
+			this.showErrorAlert("לא נבחרו מצרכים עיקריים.");
+			return true;
+		}
+  		if (!this.uploadedFiles.length) {
+			this.showErrorAlert("לא ניתן להעלות מתכון ללא תמונות.");
+			return true;
+		}
+		return false;
   	}
 
   	// TODO: Remove this when we're done
