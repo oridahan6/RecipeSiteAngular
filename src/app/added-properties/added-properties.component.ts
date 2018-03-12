@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
+import { Helper } from '../helpers/helper';
+
 import { Ingredient } from '../model/ingredient';
 
 @Component({
@@ -36,14 +38,7 @@ export class AddedPropertiesComponent implements OnInit {
 	}
 
 	isEmptyAddedObjects() {
-		var isEmptyAddedObjects = true;
-		for (var key in this.addedObjects) {
-			if (this.addedObjects.hasOwnProperty(key)) {
-				if (this.addedObjects[key].length)
-					isEmptyAddedObjects = false;
-			}
-		}
-		return isEmptyAddedObjects;
+		return Helper.isAllObjectPropertiesEmpty(this.addedObjects);
 	}
 
 	removeObject(categoryName: string, object: {}) {
