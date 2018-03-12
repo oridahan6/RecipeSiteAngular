@@ -148,7 +148,7 @@
 							</div>
 						</div>
 					</section>
-					<app-added-properties [addedObjects]="recipe.ingredients" [selectedObjectsCategory]="selectedIngredientsCategory" [objectType]="'ingredient'" [units]="units" (objectRemovedEvent)="ingredientRemoved($event)"></app-added-properties>
+					<app-added-properties [addedObjects]="recipe.ingredients" [selectedObjectsCategory]="selectedIngredientsCategory" [objectType]="'ingredient'" [units]="units" (objectRemovedEvent)="removeIngredient($event)"></app-added-properties>
             	</div>
             </section>
     		<!-- Directions -->

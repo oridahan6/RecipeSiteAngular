@@ -197,8 +197,7 @@ export class AddRecipeComponent implements OnInit {
 		this.ingredientsText = "";
   	}
 
-	// TODO: chnage func name to removeIngredient
-  	ingredientRemoved(removedIngredientObject) {
+  	removeIngredient(removedIngredientObject) {
   		let removedIngredient = removedIngredientObject.removedObject;
   		let categoryName = removedIngredientObject.categoryName;
   		this.recipe.ingredients[categoryName] = this.recipe.ingredients[categoryName].filter(obj => obj !== removedIngredient);
