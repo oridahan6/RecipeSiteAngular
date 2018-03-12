@@ -183,7 +183,6 @@ export class AddRecipeComponent implements OnInit {
 
   		for (let pastedIngredient of pastedIngredientsText) {
 			// matches[1] - quantity, matches[2] - unit, matches[3] - ingredient name
-			var matches = pastedIngredient.match(this.getIngredientsRegex());
 			var matches = pastedIngredient.match(this.getIngredientsRegex(true));
 			if (!matches || !matches[2]){
 				matches = pastedIngredient.match(this.getIngredientsRegex());
@@ -225,11 +224,11 @@ export class AddRecipeComponent implements OnInit {
   		this.newIngredientsCategory = "";
   	}
 
-	getIngredientsRegex() {
-  		const ingredientQtyRegex = "(\\d\\.\\d{2}|\\d{1,2}-\\d{1,2}|\\d\\/\\d|\\d+|(?:חצי|רבע))";
+	getIngredientsRegex(pluralUnits: boolean = false) {
+  		const ingredientQtyRegex = "(\\d\\.\\d{1,2}|\\d{1,2}-\\d{1,2}|(?:\\d\\s)?\\d[\\/\\\\]\\d|\\d+|(?:חצי|רבע))";
 		const possibleSpaceChars = "\\s?";
 		const ingredientNameRegex = "(\\D+)";
-		const wholeRegex = ingredientQtyRegex + "?" + possibleSpaceChars + this.getUnitsRegex() + "?" + possibleSpaceChars + ingredientNameRegex;
+		const wholeRegex = ingredientQtyRegex + "?" + possibleSpaceChars + this.getUnitsRegex(pluralUnits) + "?" + possibleSpaceChars + ingredientNameRegex;
 
 		return new RegExp(wholeRegex);
   	}
