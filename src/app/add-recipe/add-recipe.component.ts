@@ -272,7 +272,6 @@ export class AddRecipeComponent implements OnInit {
   		this.recipe.directions[categoryName] = this.recipe.directions[categoryName].filter(obj => obj !== removedDirection);
   	}
 
-	// TODO: check for duplicates before adding direction to array
 	addDirection(): void {
 		if (!this.directionInput.nativeElement.value)
 			return;
