@@ -28,6 +28,7 @@
 .ng-select.custom.ng-multiple .ng-control .ng-value-container .ng-value .ng-value-icon:hover { background-color: #fdd8d8; }
 .ng-select.custom .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.marked { background-color: #fdd8d8; }
 .ng-select.custom .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.selected { background-color: #fff5f5; }
+.ng-select.custom.focused:not(.opened) > .ng-control { border-color: #ccc; @include box-shadow(none); }
 
 // General styling ====================================================================== 
 * {
