@@ -2,24 +2,28 @@ import { Component, OnInit } from '@angular/core';
 
 import { DataService } from '../services/data.service';
 
+import { Recipe } from '../model/recipe';
+
 @Component({
   selector: 'app-recipes-list',
   templateUrl: './recipes-list.component.html',
   styleUrls: ['./recipes-list.component.scss']
 })
 export class RecipesListComponent implements OnInit {
-	// Define a users property to hold our user data
-	// add recipe.ts model class? and use a Recipe object?
-	recipes: Array<any>;
+	recipes: Array<Recipe>;
 
 	ngOnInit() {
 	}
 
-	// Create an instance of the DataService through dependency injection
 	constructor(private _dataService: DataService) {
-
-		// Access the Data Service's getRecipes() method we defined
 		this._dataService.getRecipes()
-		    .subscribe(res => this.recipes = res);
+		    .subscribe(
+				data => {
+					console.log('data',data);
+					this.recipes = data;
+				},
+				err => console.error(err),
+				() => { console.log('done loading recipes'); }
+		    );
 	}
 }

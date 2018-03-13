@@ -46,10 +46,20 @@ let response = {
 
 // Get Recipes
 router.get('/recipes', (req, res) => {
-	Recipe.find(function (err, recipes) {
-		if (err) return next(err);
-		res.json(recipes);
-  	});
+	Recipe.
+		find({}).
+		populate('categories', "name").
+		populate('cuisines', "name").
+		populate('mainIngredients', "title").
+		populate('directionMethods', "name").
+		exec(function (err, recipes) {
+		if (err) {
+			res.json({success:false, message: `Failed to load all recipes. Error: ${err}`});
+		}
+
+		res.write(JSON.stringify({success: true, recipes: recipes},null,2));
+		res.end();
+	});
 });
 
 // Upload Images

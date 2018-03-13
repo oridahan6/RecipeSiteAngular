@@ -4,6 +4,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+import { Recipe } from '../model/recipe';
 import { Ingredient } from '../model/ingredient';
 import { Category } from '../model/category';
 import { Unit } from '../model/unit';
@@ -18,9 +19,10 @@ export class DataService {
 	constructor(private _http: Http) { }
 
 	// add Observable<Recipe[]>
-	getRecipes() {
+	getRecipes() : Observable<Recipe[]> {
 		return this._http.get("/api/recipes")
-	  		.map(result => this.result = result.json().data);
+	  		.map(result => result.json())
+	  		.map(res => <Recipe[]>res.recipes);
 	}
 
 	uploadImage(imagesData) : Observable<string[]> {

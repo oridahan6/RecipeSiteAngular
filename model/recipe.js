@@ -5,27 +5,27 @@ var recipeSchema = mongoose.Schema({
     title: String,
     ingredients: Schema.Types.Mixed,
     directions: Schema.Types.Mixed,
-    categories: { 
-        type: [Schema.Types.ObjectId], 
+    categories: [{ 
+        type: Schema.Types.ObjectId, 
         ref: 'Category'
-    },
+    }],
     images: [String],
     prepTime: Number,
 	cookTime: Number,
 	level: String,
     kosherType: String,
-    cuisines: { 
-        type: [Schema.Types.ObjectId], 
+    cuisines: [{ 
+        type: Schema.Types.ObjectId, 
         ref: 'Cuisine'
-    },
-    mainIngredients: { 
-        type: [Schema.Types.ObjectId], 
+    }],
+    mainIngredients: [{ 
+        type: Schema.Types.ObjectId, 
         ref: 'MainIngredient'
-    },
-    directionMethods: { 
-        type: [Schema.Types.ObjectId], 
+    }],
+    directionMethods: [{ 
+        type: Schema.Types.ObjectId, 
         ref: 'DirectionMethod'
-    },
+    }],
     created: { 
         type: Date,
         default: Date.now
