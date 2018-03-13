@@ -187,6 +187,9 @@ export class AddRecipeComponent implements OnInit {
 			if (!matches || !matches[2]){
 				matches = pastedIngredient.match(this.getIngredientsRegex());
 			}
+			if (pastedIngredient && !matches[3]) {
+				this.showErrorAlert("שגיאה. מצרך: " + pastedIngredient + " לא נוסף, נא בדוק את תצורת המצרך.");
+			}
 			if (matches) {
 				var addedIngredient = new Ingredient(
 					matches[3],
