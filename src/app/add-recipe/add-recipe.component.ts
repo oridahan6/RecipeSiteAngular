@@ -366,16 +366,39 @@ export class AddRecipeComponent implements OnInit {
 		for (var i = 0; i < this.uploadedFiles.length; i++) {
             formData.append("images", this.uploadedFiles[i], this.uploadedFiles[i].name);
         }	
+		this.uploadImages(formData);
+	}
+
+	uploadImages(formData: FormData) {
 		this._dataService.uploadImage(formData)
 			.subscribe(
 				data => {
-					// console.log("this.recipe after uploading", this.recipe);
-					// console.log('data',data);
 					this.recipe.images = data;
-					this._dataService.saveRecipe(this.recipe);
+					this.saveRecipe();
 				},
-				err => console.error(err),
+				err => {
+					console.error(err)
+					// show friendly error
+					this.showErrorAlert("There was an error uploading images. Error: " + err);
+				},
 				() => { /*console.log('done uploading images'); */ }
+		    );		
+	}
+
+	saveRecipe() {
+		this._dataService.saveRecipe(this.recipe)
+			.subscribe(
+				data => {
+					if (data.success)
+						this.showSuccessAlert("המתכון נשמר בהצלחה.");
+					else
+						this.showErrorAlert("קרתה שגיאה בעת שמירת המתכון.");
+				},
+				err => {
+					// show friendly error
+					this.showErrorAlert("There was an error saving the recipe. Error: " + err);
+				},
+				() => { /* console.log('done saving recipe'); */ }
 		    );
 	}
 

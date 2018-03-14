@@ -70,9 +70,12 @@ router.post("/upload", upload.array("images", 12), function(req, res) {
 
 // Save Recipe
 router.post('/recipe', function(req, res, next) {
-	Recipe.create(req.body, function (err, post) {
-		if (err) return next(err);
-		res.json(post);
+	Recipe.create(req.body, function (err, recipe) {
+		if (err) {
+			res.json({success:false, message: `Failed to save recipe. Error: ${err}`});
+		}
+		res.write(JSON.stringify({success: true, recipe: recipe},null,2));
+        res.end();
 	});
 });
 

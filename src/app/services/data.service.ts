@@ -38,20 +38,13 @@ export class DataService {
 	}
 
 	// TODO: add a success and error message
-	saveRecipe(recipe) {
+	saveRecipe(recipe) : Observable<any> {
 		let headers = new Headers;
 		let body = JSON.stringify(recipe);
 		headers.append('Content-Type', 'application/json');
 		// TODO: return success using map like in upload images to show success message in add-recipe component
 		return this._http.post("/api/recipe", body ,{headers: headers})
-        	.subscribe(
-				res => {
-					console.log("after res", res);
-				},
-				err => {
-					console.log("Error occured");
-				}
-			);
+			.map(result => result.json());
 	}
 
 	getCategories() : Observable<Category[]> {
