@@ -233,7 +233,7 @@ export class AddRecipeComponent implements OnInit {
 
 	getIngredientsRegex(pluralUnits: boolean = false) {
   		const ingredientQtyRegex = "(\\d\\.\\d{1,2}|\\d{1,2}-\\d{1,2}|(?:\\d\\s)?\\d[\\/\\\\]\\d|\\d+|(?:חצי|רבע))";
-		const possibleSpaceChars = "\\s?";
+		const possibleSpaceChars = "\\s*";
 		const ingredientNameRegex = "(\\D+)";
 		const wholeRegex = ingredientQtyRegex + "?" + possibleSpaceChars + this.getUnitsRegex(pluralUnits) + "?" + possibleSpaceChars + ingredientNameRegex;
 
