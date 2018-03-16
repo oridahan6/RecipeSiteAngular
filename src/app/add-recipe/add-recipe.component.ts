@@ -263,6 +263,9 @@ export class AddRecipeComponent implements OnInit {
   	}
 
   	checkAndAddIngredientAlreadyExist(ingredient: Ingredient) {
+  		if (this.isEmptyIngredients()){
+  			this.recipe.ingredients[this.selectedIngredientsCategory] = [];	
+  		}
 		var isExists = this.recipe.ingredients[this.selectedIngredientsCategory].inArray(ingredient);
 
 		if (isExists === -1) {
@@ -389,10 +392,12 @@ export class AddRecipeComponent implements OnInit {
 		this._dataService.saveRecipe(this.recipe)
 			.subscribe(
 				data => {
-					if (data.success)
+					if (data.success){
 						this.showSuccessAlert("המתכון נשמר בהצלחה.");
-					else
+						this.clearForm();
+					} else {
 						this.showErrorAlert("קרתה שגיאה בעת שמירת המתכון.");
+					}
 				},
 				err => {
 					// show friendly error
@@ -400,6 +405,28 @@ export class AddRecipeComponent implements OnInit {
 				},
 				() => { /* console.log('done saving recipe'); */ }
 		    );
+	}
+
+	clearForm() {
+		this.recipe.title = "";
+		this.recipe.ingredients = {};
+		this.recipe.directions = {};
+		this.recipe.kosherType = "";
+		this.recipe.level = "";
+		this.recipe.categories = [];
+		this.recipe.cuisines = [];
+		this.recipe.mainIngredients = [];
+		this.recipe.directionMethods = [];
+		
+		this.recipe.prepTime = 0;
+		this.prepTimeMinutes = undefined;
+		this.prepTimeHours = undefined;
+		
+		this.recipe.cookTime = 0;
+		this.cookTimeMinutes = undefined;
+		this.cookTimeHours = undefined;
+
+		this.uploadedFiles = [];
 	}
 
   	updateUploadedFiles(event) {
@@ -433,11 +460,11 @@ export class AddRecipeComponent implements OnInit {
 			this.showErrorAlert("זמן ההכנה וזמן הבישול חסרים.");
 			return true;
 		}
-  		if (Helper.isAllObjectPropertiesEmpty(this.recipe.ingredients)) {
+  		if (this.isEmptyIngredients()) {
 			this.showErrorAlert("לא הוספו מצרכים.");
 			return true;
 		}
-  		if (Helper.isAllObjectPropertiesEmpty(this.recipe.directions)) {
+  		if (this.isEmptyDirections()) {
 			this.showErrorAlert("לא הוספו שלבי הכנה.");
 			return true;
 		}
@@ -458,6 +485,14 @@ export class AddRecipeComponent implements OnInit {
 			return true;
 		}
 		return false;
+  	}
+
+  	isEmptyIngredients() : boolean {
+  		return Helper.isAllObjectPropertiesEmpty(this.recipe.ingredients);
+  	}
+
+  	isEmptyDirections() : boolean {
+		return Helper.isAllObjectPropertiesEmpty(this.recipe.directions);
   	}
 
   	// TODO: Remove this when we're done
