@@ -40,6 +40,8 @@ body { padding-top: 4.5rem; }
 
 button { cursor: pointer; }
 
+select { -webkit-appearance: none; }
+
 input[type=file].inputfile { 
     width: 0.1px;
     height: 0.1px;
@@ -112,4 +114,21 @@ input[type=file].inputfile {
 			@include box-shadow(none); 
 		}
 	}
+}
+
+// Media Queries ====================================================================== 
+
+@media (min-width: 576px) { }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { 
+	.add-recipe-container { max-width: 720px; }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+	.add-recipe-container { max-width: 720px; }
 }
