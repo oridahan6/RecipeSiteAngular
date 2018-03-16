@@ -182,6 +182,7 @@ export class AddRecipeComponent implements OnInit {
   		pastedIngredientsText = pastedIngredientsText.split("\n");
 
   		for (let pastedIngredient of pastedIngredientsText) {
+			pastedIngredient = pastedIngredient.trim();
 			// matches[1] - quantity, matches[2] - unit, matches[3] - ingredient name
 			var matches = pastedIngredient.match(this.getIngredientsRegex(true));
 			if (!matches || !matches[2]){
@@ -216,8 +217,13 @@ export class AddRecipeComponent implements OnInit {
   	}
 
   	addIngredientCategory(categoryName) {
+  		var categoryName = categoryName.trim();
   		if (!categoryName)
   			return;
+  		if (this.recipe.ingredients.hasOwnProperty(categoryName)){
+  			this.showErrorAlert("קטגוריה \"" + categoryName + "\" כבר קיימת במצרכים.");
+  			return;
+  		}
 
   		this.recipe.ingredients[categoryName] = [];
   		this.selectedIngredientsCategory = categoryName;
@@ -313,6 +319,7 @@ export class AddRecipeComponent implements OnInit {
   		pastedDirectionsText = pastedDirectionsText.split("\n");;
 
   		for (let pastedDirection of pastedDirectionsText) {
+  			pastedDirection = pastedDirection.trim();
   		    if (pastedDirection){
   		    	if (!this.recipe.directions[this.selectedDirectionsCategory])
   		    		this.recipe.directions[this.selectedDirectionsCategory] = [];
@@ -328,8 +335,14 @@ export class AddRecipeComponent implements OnInit {
   	}
 
   	addDirectionCategory(categoryName) {
+  		var categoryName = categoryName.trim();
   		if (!categoryName)
   			return;
+  		if (this.recipe.directions.hasOwnProperty(categoryName)){
+  			this.showErrorAlert("קטגוריה \"" + categoryName + "\" כבר קיימת בשלבי ההכנה.");
+  			return;
+  		}
+
 
   		this.recipe.directions[categoryName] = [];
   		this.selectedDirectionsCategory = categoryName;
