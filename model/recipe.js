@@ -1,5 +1,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var autoIncrement = require('mongoose-auto-increment');
+
+var connection = mongoose.createConnection("mongodb://localhost:27017/recipes");
+autoIncrement.initialize(connection);
 
 var recipeSchema = mongoose.Schema({
     title: String,
@@ -35,6 +39,9 @@ var recipeSchema = mongoose.Schema({
         default: Date.now
     }
 }, { collection: "Recipe" });
+
+//Auto-increment
+recipeSchema.plugin(autoIncrement.plugin, { model: 'Recipe' });
 
 module.exports = mongoose.model('Recipe', recipeSchema);
 
