@@ -1,3 +1,23 @@
-<ul>
-  <li *ngFor="let recipe of recipes">{{ recipe.title }}</li>
-</ul>
+<section class="page-header container" *ngIf="title">
+	<h1>{{ title }}</h1>
+</section>
+<section class="recipes-list-container">
+	<ul class="row no-gutters">
+		<li *ngFor="let recipe of recipes" class="recipe-card col-3">
+			<div class="card">
+				<div class="card-gradient"></div>
+			    <a href="/recipe/{{ recipe._id }}">
+			    	<div class="card-info">
+				    	<h2 class="card-title mb-0">
+				    		{{ recipe.title }}
+				    	</h2>
+				    </div>
+			    </a>
+			    <a href="/recipe/{{ recipe._id }}">
+			    	<img src="assets/images/{{ recipe.images[0] }}" alt="{{ recipe.title }}">	
+			    </a>
+			    
+			</div>
+		</li>
+	</ul>
+</section>

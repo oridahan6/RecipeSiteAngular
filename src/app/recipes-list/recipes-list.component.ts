@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { DataService } from '../services/data.service';
 
@@ -10,6 +10,8 @@ import { Recipe } from '../model/recipe';
   styleUrls: ['./recipes-list.component.scss']
 })
 export class RecipesListComponent implements OnInit {
+
+	@Input() title: string = "מתכונים";
 	recipes: Array<Recipe>;
 
 	ngOnInit() {
