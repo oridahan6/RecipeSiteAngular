@@ -18,11 +18,16 @@ export class DataService {
 
 	constructor(private _http: Http) { }
 
-	// add Observable<Recipe[]>
 	getRecipes() : Observable<Recipe[]> {
 		return this._http.get("/api/recipes")
 	  		.map(result => result.json())
 	  		.map(res => <Recipe[]>res.recipes);
+	}
+
+	getRecipe(id) : Observable<Recipe> {
+		return this._http.get("/api/recipe/" + id)
+	  		.map(result => result.json())
+	  		.map(res => <Recipe>res.recipe);
 	}
 
 	uploadImage(imagesData) : Observable<string[]> {

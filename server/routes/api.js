@@ -63,6 +63,24 @@ router.get('/recipes', (req, res) => {
 	});
 });
 
+// Get Recipe with id
+router.get('/recipe/:id', (req, res) => {
+    var id = req.params.id;
+	Recipe.
+		findOne({_id: id}).
+		populate('categories', "name").
+		populate('cuisines', "name").
+		populate('mainIngredients', "title").
+		populate('directionMethods', "name").
+		exec(function (err, recipe) {
+		if (err) {
+			res.json({success:false, message: `Failed to load recipe with id: ${id}. Error: ${err}`});
+		}
+		res.write(JSON.stringify({success: true, recipe: recipe},null,2));
+		res.end();
+	});
+});
+
 // Upload Images
 router.post("/upload", upload.array("images", 12), function(req, res) {
 	res.write(JSON.stringify({success: true, uploadedFiles: req.files},null,2));

@@ -30,6 +30,7 @@ import {
 } from './shared';
 import { AddedPropertiesComponent } from './added-properties/added-properties.component';
 import { SelectUnitsComponent } from './select-units/select-units.component';
+import { RecipeComponent } from './recipe/recipe.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { SelectUnitsComponent } from './select-units/select-units.component';
     HeaderComponent,
     AddedPropertiesComponent,
     SelectUnitsComponent,
-    AlertComponent
+    AlertComponent,
+    RecipeComponent
   ],
   imports: [
     BrowserModule,
