@@ -1,4 +1,9 @@
 Todo:
+	- add zero to cook and prep time hours and minutes selects
+	- add bootswatch elements
+	 	- add breadcrumbs
+	 	- add pagination to recipes list
+	 	- use their alert view?
 	- block images requests if not from the app?
 	- add preview before add recipe submit?
 

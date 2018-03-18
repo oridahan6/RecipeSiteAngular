@@ -5,9 +5,10 @@ const router = express.Router();
 const ObjectID = require('mongodb').ObjectID;
 
 var multer = require('multer');
-var DIR = './uploads/';
+// var DIR = './uploads/';
+var DIR = './src/assets/images/';
 var storage = multer.diskStorage({
-  destination: './uploads/',
+  destination: DIR,
   filename: function (req, file, cb) {
     crypto.pseudoRandomBytes(16, function (err, raw) {
       	cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));

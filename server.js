@@ -14,6 +14,9 @@ app.use(bodyParser.urlencoded({ extended: false}));
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Allow access to images
+// app.use('/images', express.static('src/assets/images'))
+
 // app.use(function(req, res, next) {
 // //set headers to allow cross origin request.
 //     res.header("Access-Control-Allow-Origin", "*");
