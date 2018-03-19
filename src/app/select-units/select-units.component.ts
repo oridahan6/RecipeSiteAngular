@@ -11,14 +11,14 @@ export class SelectUnitsComponent implements OnInit {
 
 	@Input() addedIngredient: Ingredient;
 	@Input() units: string[];
-	@Input() selectedUnit: string;
+	@Input() selectedUnit: number;
 
 	constructor() { }
 
 	ngOnInit() {
 	}
 
-	unitSelectChanged(newValue: string) {
+	unitSelectChanged(newValue: number) {
 		if (this.addedIngredient){
 			this.selectedUnit = newValue;
 			this.addedIngredient.unit = newValue;	

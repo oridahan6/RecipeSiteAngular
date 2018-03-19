@@ -10,7 +10,7 @@ var recipeSchema = mongoose.Schema({
     ingredients: Schema.Types.Mixed,
     directions: Schema.Types.Mixed,
     categories: [{ 
-        type: Schema.Types.ObjectId, 
+        type: Number, 
         ref: 'Category'
     }],
     images: [String],
@@ -19,15 +19,15 @@ var recipeSchema = mongoose.Schema({
 	level: String,
     kosherType: String,
     cuisines: [{ 
-        type: Schema.Types.ObjectId, 
+        type: Number, 
         ref: 'Cuisine'
     }],
     mainIngredients: [{ 
-        type: Schema.Types.ObjectId, 
+        type: Number, 
         ref: 'MainIngredient'
     }],
     directionMethods: [{ 
-        type: Schema.Types.ObjectId, 
+        type: Number, 
         ref: 'DirectionMethod'
     }],
     created: { 
@@ -41,7 +41,7 @@ var recipeSchema = mongoose.Schema({
 }, { collection: "Recipe" });
 
 //Auto-increment
-recipeSchema.plugin(autoIncrement.plugin, { model: 'Recipe' });
+recipeSchema.plugin(autoIncrement.plugin, { model: 'Recipe', startAt: 1 });
 
 module.exports = mongoose.model('Recipe', recipeSchema);
 

@@ -98,20 +98,47 @@ export class AddRecipeComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		// testing
-		// var ingredients = {
+		this.recipe = new Recipe(
+			"",
+			{},
+			{},
+			[],
+			0,
+			0,
+			"",
+			"",
+			[],
+			[],
+			[]
+		);
+
+		// this.recipe.title = "t";
+		// this.recipe.categories = [1,2];
+		// this.recipe.cuisines = [2];
+		// this.recipe.mainIngredients = [3,4];
+		// this.recipe.directionMethods = [1,4];
+		// this.recipe.prepTime = 120;
+		// this.recipe.cookTime = 80;
+		// this.recipe.kosherType = "חלבי";
+		// this.recipe.level = "מנוסה";
+
+		// this.prepTimeMinutes = 2;
+		// this.prepTimeHours = 3;
+		// this.cookTimeMinutes = 2;
+		// this.cookTimeHours = 3;
+		// this.recipe.ingredients = {
 		// 	"כללי": [
-		// 		new Ingredient("a", "3", "5a9e883884d81edd7cb98249"),
-		// 		new Ingredient("b", "5", "5a9e884a84d81edd7cb9825a"),
-		// 		new Ingredient("c", "6", "5a9e88c284d81edd7cb982b6")
+		// 		new Ingredient("a", "3", 1),
+		// 		new Ingredient("b", "5", 2),
+		// 		new Ingredient("c", "6", 3)
 		// 	],
 		// 	"רוטב": [
-		// 		new Ingredient("d", "3", "5a9e884a84d81edd7cb9825a"),
-		// 		new Ingredient("e", "5", "5a9e883884d81edd7cb98249"),
-		// 		new Ingredient("f", "6", "5a9e88c284d81edd7cb982b6")
+		// 		new Ingredient("d", "3", 1),
+		// 		new Ingredient("e", "5", 4),
+		// 		new Ingredient("f", "6", 2)
 		// 	]
 		// };
-		// var directions = {
+		// this.recipe.directions = {
 		// 	"כללי": [
 		// 		new Direction("בלה"),
 		// 		new Direction("בלה בלה"),
@@ -123,31 +150,6 @@ export class AddRecipeComponent implements OnInit {
 		// 		new Direction("בלו בלו בלו")
 		// 	]
 		// };
-
-
-		let ingredients = {};
-		let directions = {};
-
-		ingredients["כללי"] = [] as Ingredient[];
-		// delete ingredients['רוטב'];
-		// directions = {
-		// 	"כללי": []
-		// };
-
-
-		this.recipe = new Recipe(
-			"t",
-			ingredients,
-			directions,
-			[],
-			0,
-			0,
-			"",
-			"",
-			[],
-			[],
-			[]
-		);
 	}
 
 	//////////////////////////////////////////////////////////////////////
@@ -171,7 +173,7 @@ export class AddRecipeComponent implements OnInit {
 		this.ingredientNameInput.nativeElement.value = "";
 		this.ingredientName = "";
 		this.ingredientQty.nativeElement.value = "";
-		this.selectUnitsComponent.selectedUnit = "";
+		this.selectUnitsComponent.selectedUnit = undefined;
 
   	}
 
@@ -263,9 +265,9 @@ export class AddRecipeComponent implements OnInit {
   		return this.singularUnitsNamesRegex;
   	}
 
-  	getUnitIdFromName(name: string): string {
+  	getUnitIdFromName(name: string): number {
   		var unit = this.units.find(unit => unit.name === name);
-  		return unit ? unit._id : "";
+  		return unit ? unit._id : 0;
   	}
 
   	checkAndAddIngredientAlreadyExist(ingredient: Ingredient) {
@@ -306,6 +308,9 @@ export class AddRecipeComponent implements OnInit {
 			return;
 
 		var addedDirection = new Direction(this.directionInput.nativeElement.value);
+		if (this.isEmptyDirections()){
+  			this.recipe.directions[this.selectedDirectionsCategory] = [];	
+  		}
 		this.recipe.directions[this.selectedDirectionsCategory].push(addedDirection);
 
 		this.directionInput.nativeElement.value = "";
