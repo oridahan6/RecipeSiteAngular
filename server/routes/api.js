@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const mime = require('mime');
 const router = express.Router();
 const ObjectID = require('mongodb').ObjectID;
+var fs = require('fs');
 
 var multer = require('multer');
 // var DIR = './uploads/';
@@ -10,9 +11,26 @@ var DIR = './src/assets/images/';
 var storage = multer.diskStorage({
   destination: DIR,
   filename: function (req, file, cb) {
+      	var fileName = file.originalname;
+      	var counter = 0;
+      	var isFilenameAvailable = false;
+		var regex = /(.+)(\.\w+)$/;
+		var matches = regex.exec(fileName);
+
+		do {
+		    fileName = matches[1] + (counter ? "-" + counter : "") + matches[2];
+			if (!fs.existsSync("src/assets/images/" + fileName)) {
+				isFilenameAvailable = true;
+				break;
+			}
+			counter++;
+		}
+		while (!isFilenameAvailable);
+
+      // console.log("req", req);
     crypto.pseudoRandomBytes(16, function (err, raw) {
-      	cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
-      	// cb(null, file.originalname);
+      	// cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+      	cb(null, fileName);
     });
   }
 });
