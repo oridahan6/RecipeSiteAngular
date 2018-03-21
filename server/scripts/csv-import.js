@@ -10,12 +10,10 @@ var Cuisine = require('../../model/cuisine.js');
 var MainIngredient = require('../../model/mainIngredient.js');
 var DirectionMethod = require('../../model/directionMethod.js');
 
-
 var type = process.argv[2];
 
 var importObjet = require('../../model/' + type + '.js');
-var stream = fs.createReadStream('data-backup/' + type + 's.csv');
-
+var stream = fs.createReadStream('data-backup/' + type + '.csv');
 
 mongoose.connect('mongodb://localhost:27017/recipes', function (err) {
    if (err) throw err;
@@ -26,10 +24,6 @@ mongoose.connect('mongodb://localhost:27017/recipes', function (err) {
 
 function performAction() {
 
-	// importObjet.resetCount(function(err, nextCount) {
-	//     console.log("nextCount", nextCount);
-	// });
-
 	// read in CSV as stream row by row
 	csv.fromStream(stream, {headers:true})
 	    .on('data', function(data){
@@ -39,27 +33,26 @@ function performAction() {
 	    });
 
 	function addToCollection(data){
-		var object = new importObjet(data);
+		importObjet.findById(data._id, function (err, obj) {
+			if (err) console.log(err);
 
-		importObjet.findOne({ name: object.name }).exec(function (err, foundObject) {
-			if (err) {
-				return console.log("err", err);	
-			} 
+			if (obj) {
+				delete data._id;
+				delete data.updated;
+				delete data.created;
 
-			if (!foundObject) {
-				
-				//create model and save to database
-				object.save(function (err) {
-				    if (err) {
-				    	console.log(err);
-				    	return;
+				for (var key in data) {
+				    if (data.hasOwnProperty(key)) {
+				        obj[key] = data[key];
 				    }
-					console.log("Saved: " + object.name);
-				});
+				}
 			} else {
-				console.log(object.name + " exists. Not saving,");
+				obj = new importObjet(data);
 			}
-			
+
+			obj.save(function (err, updatedObj) {
+				if (err) return console.log(err);
+			});
 		});
 
 	}

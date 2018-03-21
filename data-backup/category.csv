@@ -1,0 +1,9 @@
+_id,name,recipesCount,imageName,order
+1,עוגיות,0,cookies.jpg,1
+2,חלבי,0,dairy.jpg,2
+3,עוגות,0,cakes.jpg,3
+4,בריאות,0,healthy.jpg,4
+5,פרווה,0,parve.jpg,5
+6,איטלקי,0,italian.jpg,6
+7,בשרי,0,meat.jpg,7
+8,ארוחת ערב,0,dinner.jpg,8
