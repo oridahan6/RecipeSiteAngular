@@ -1,7 +1,7 @@
 
 require('./common-requirements.js');
 
-var stream = fs.createReadStream('data-backup/' + type + '.csv');
+var stream = fs.createReadStream('data-backup/collections/' + type + '.csv');
 
 mongoose.connect('mongodb://localhost:27017/recipes', function (err) {
    if (err) throw err;
