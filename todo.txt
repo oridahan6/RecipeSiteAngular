@@ -6,6 +6,8 @@ Todo:
 	 	- use their alert view?
 	- block images requests if not from the app?
 	- add preview before add recipe submit?
+	- support adding unit, mainIngredient, category, directionMethod, cuisine from add-recipe form?
+	- when pasting/adding ingredients - show a popup with possible main ingredients to add to the collection?
 
 Resources:
 	- Bootstrap themes - https://bootswatch.com/
