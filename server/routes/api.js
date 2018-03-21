@@ -120,27 +120,27 @@ router.post('/recipe', function(req, res, next) {
 
 // Get Categories
 router.get('/categories', (req, res) => {
-	dbHelper.createResponseFromDocs("category", Category, "name", res);
+	dbHelper.createResponseFromDocs("categories", Category, "name", res);
 });
 
 // Get Units
 router.get('/units', (req, res) => {
-	dbHelper.createResponseFromDocs("unit", Unit, "name", res);
+	dbHelper.createResponseFromDocs("units", Unit, "name", res);
 });
 
 // Get Cuisines
 router.get('/cuisines', (req, res) => {
-	dbHelper.createResponseFromDocs("cuisine", Cuisine, "name", res);
+	dbHelper.createResponseFromDocs("cuisines", Cuisine, "name", res);
 });
 
 // Get Main Ingredients
 router.get('/main-ingredients', (req, res) => {
-	dbHelper.createResponseFromDocs("mainIngredient", MainIngredient, "title", res);
+	dbHelper.createResponseFromDocs("mainIngredients", MainIngredient, "title", res);
 });
 
 // Get Direction Methods
 router.get('/direction-methods', (req, res) => {
-	dbHelper.createResponseFromDocs("directionMethod", DirectionMethod, "name", res);
+	dbHelper.createResponseFromDocs("directionMethods", DirectionMethod, "name", res);
 });
 
 module.exports = router;

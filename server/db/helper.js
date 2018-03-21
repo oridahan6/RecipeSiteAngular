@@ -19,13 +19,13 @@ var self = module.exports = {
  		.sort(sortby)
 		.exec( function (err, docs) {
 			if (err) {
-				response.json({success:false, message: `Failed to load all ` + docType + `s. Error: ${err}`});
+				response.json({success:false, message: `Failed to load all ` + docType + `. Error: ${err}`});
 			}
 			response.set({ 'content-type': 'application/json; charset=utf-8' });
 			var resObject = {
 				success: true
 			};
-			resObject[docType + "s"] = docs;
+			resObject[docType] = docs;
 			response.write(JSON.stringify(resObject,null,2));
 	        response.end();
 	  	});
