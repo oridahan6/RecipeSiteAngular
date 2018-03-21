@@ -1,18 +1,6 @@
-var fs = require('fs');
-var csv = require('fast-csv');
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 
-var Recipe = require('../../model/recipe.js');
-var Category = require('../../model/category.js');
-var Unit = require('../../model/unit.js');
-var Cuisine = require('../../model/cuisine.js');
-var MainIngredient = require('../../model/mainIngredient.js');
-var DirectionMethod = require('../../model/directionMethod.js');
+require('./common-requirements.js');
 
-var type = process.argv[2];
-
-var importObjet = require('../../model/' + type + '.js');
 var stream = fs.createReadStream('data-backup/' + type + '.csv');
 
 mongoose.connect('mongodb://localhost:27017/recipes', function (err) {
