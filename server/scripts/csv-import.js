@@ -24,8 +24,6 @@ mongoose.connect('mongodb://localhost:27017/recipes', function (err) {
    performAction();
 });
 
-var masterList = [];
-
 function performAction() {
 
 	// importObjet.resetCount(function(err, nextCount) {
