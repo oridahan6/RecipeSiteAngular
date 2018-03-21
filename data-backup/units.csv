@@ -1,0 +1,17 @@
+_id,name,plural
+1,גרם,false
+2,"מ""ל",false
+3,כוס,false
+4,כוסות,true
+5,כפית,false
+6,כפיות,true
+7,כף,false
+8,כפות,true
+9,חבילת,false
+10,חבילה,false
+11,חבילות,true
+12,גביע,false
+13,גביעי,true
+14,גביעים,true
+15,קופסא,false
+16,קופסאות,true
