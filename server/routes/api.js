@@ -129,13 +129,16 @@ router.get('/categories', (req, res) => {
 
 // Get Units
 router.get('/units', (req, res) => {
-	Unit.find(function (err, units) {
-		if (err) {
-			res.json({success:false, message: `Failed to load all units. Error: ${err}`});
-		}
-		res.write(JSON.stringify({success: true, units: units},null,2));
-        res.end();
-  	});
+ 	Unit.find({})
+ 		.sort('name')
+		.exec( function (err, units) {
+			if (err) {
+				res.json({success:false, message: `Failed to load all units. Error: ${err}`});
+			}
+			res.set({ 'content-type': 'application/json; charset=utf-8' });
+			res.write(JSON.stringify({success: true, units: units},null,2));
+	        res.end();
+	  	});
 });
 
 // Get Cuisines
