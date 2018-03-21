@@ -36,6 +36,8 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage });
 
+var dbHelper = require('../db/helper');
+
 var mongoose = require('mongoose');
 var Recipe = require('../../model/recipe.js');
 var Category = require('../../model/category.js');
@@ -118,60 +120,27 @@ router.post('/recipe', function(req, res, next) {
 
 // Get Categories
 router.get('/categories', (req, res) => {
-	Category.find(function (err, categories) {
-		if (err) {
-			res.json({success:false, message: `Failed to load all categories. Error: ${err}`});
-		}
-		res.write(JSON.stringify({success: true, categories: categories},null,2));
-        res.end();
-  	});
+	dbHelper.createResponseFromDocs("category", Category, "name", res);
 });
 
 // Get Units
 router.get('/units', (req, res) => {
- 	Unit.find({})
- 		.sort('name')
-		.exec( function (err, units) {
-			if (err) {
-				res.json({success:false, message: `Failed to load all units. Error: ${err}`});
-			}
-			res.set({ 'content-type': 'application/json; charset=utf-8' });
-			res.write(JSON.stringify({success: true, units: units},null,2));
-	        res.end();
-	  	});
+	dbHelper.createResponseFromDocs("unit", Unit, "name", res);
 });
 
 // Get Cuisines
 router.get('/cuisines', (req, res) => {
-	Cuisine.find(function (err, cuisines) {
-		if (err) {
-			res.json({success:false, message: `Failed to load all cuisines. Error: ${err}`});
-		}
-		res.write(JSON.stringify({success: true, cuisines: cuisines},null,2));
-        res.end();
-  	});
+	dbHelper.createResponseFromDocs("cuisine", Cuisine, "name", res);
 });
 
 // Get Main Ingredients
 router.get('/main-ingredients', (req, res) => {
-	MainIngredient.find(function (err, mainIngredients) {
-		if (err) {
-			res.json({success:false, message: `Failed to load all main ingredients. Error: ${err}`});
-		}
-		res.write(JSON.stringify({success: true, mainIngredients: mainIngredients},null,2));
-        res.end();
-  	});
+	dbHelper.createResponseFromDocs("mainIngredient", MainIngredient, "title", res);
 });
 
 // Get Direction Methods
 router.get('/direction-methods', (req, res) => {
-	DirectionMethod.find(function (err, directionMethods) {
-		if (err) {
-			res.json({success:false, message: `Failed to load all direction methods. Error: ${err}`});
-		}
-		res.write(JSON.stringify({success: true, directionMethods: directionMethods},null,2));
-        res.end();
-  	});
+	dbHelper.createResponseFromDocs("directionMethod", DirectionMethod, "name", res);
 });
 
 module.exports = router;
